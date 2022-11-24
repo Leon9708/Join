@@ -3,15 +3,21 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background-color: #F6F7F8;
 }
 
-.container_summary {
-    display: flex;
+p,
+h1,
+h2,
+h3 {
+    padding: 0;
+    margin: 0;
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    left: 0;
+    z-index: 0;
     width: 15%;
     height: 100vh;
     background-color: #2A3647;
@@ -27,14 +33,195 @@ body {
     box-shadow: 0px 5px 3px -3px rgba(0, 0, 0, 0.127);
 }
 
+.container_heading_summary {
+    display: flex;
+    align-items: center;
+    padding-left: 22.5rem;
+    padding-top: 7.5rem;
+}
+
+.heading_summary {
+    font-size: 3.25rem;
+}
+
+.heading_separation_summary {
+    content: "";
+    display: block;
+    width: 0.2rem;
+    height: 3.5rem;
+    border-radius: 2rem;
+    margin-left: 4rem;
+    background-color: #29ABE2;
+}
+
+.subheading_summary {
+    font-size: 1.75rem;
+    font-weight: 500;
+    padding-left: 2rem;
+}
+
+.place_main_summary {
+    display: flex;
+    gap: 7.5rem;
+    align-items: center;
+}
+
 main {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-left: 10rem;
-    padding-top: 10rem;
+    padding-left: 22.5rem;
 }
 
-.heading_summary {
-    font-size: 1.5rem;
+.container_board_activities_summary {
+    display: flex;
+    gap: 2rem;
+    padding-top: 3rem;
+}
+
+.box_board_activities_summary {
+    width: 8rem;
+    height: 8rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.092);
+}
+
+.board_activitiy_content_summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.content_number_summary {
+    font-size: 3rem;
+    font-weight: bolder;
+}
+
+.content_text_summary {
+    text-align: center;
+}
+
+.content_text_Feedback_summary {
+    text-align: left;
+}
+
+.container_deadline_summary {
+    max-width: 28rem;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.092);
+    margin-top: 2rem;
+}
+
+.box_dealine_urgency_summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 3.5rem;
+}
+
+.urgency_logo_summary {
+    width: 3rem;
+    height: 3rem;
+}
+
+.box_urgency_info_summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.urgency_num_summary {
+    font-size: 2rem;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.urgency_text_summary {
+    font-size: 0.8rem;
+}
+
+.deadline_separation_summary {
+    content: "";
+    display: block;
+    width: 0.1rem;
+    height: 5rem;
+    border-radius: 2rem;
+    background-color: #cfcfcf;
+}
+
+.box_deadline_date_summery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-right: 3.5rem;
+}
+
+.date_summery {
+    font-weight: bold;
+}
+
+.text_deadline_summery {
+    font-size: 0.8rem;
+}
+
+.container_todo_summary {
+    display: flex;
+    gap: 2rem;
+    padding-top: 2rem;
+}
+
+.box_todo_summary {
+    width: 13rem;
+    height: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.092);
+}
+
+.todo_icon_summary {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.todo_content_summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo_num_summary {
+    font-size: 2.75rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.todo_text_summary {
+    text-align: center;
+}
+
+.container_greeting_summary {
+    padding-top: 4rem;
+}
+
+.greeting_summary {
+    font-size: 2rem;
+    color: #2A3647;
+}
+
+.greeting_name_summary {
+    font-size: 3rem;
+    color: #29ABE2;
 }
