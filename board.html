@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN - Board</title>
+
+    <link rel="stylesheet" href="board.css">
+    <script src="script.js"></script>    
+    <script src="board.js"></script>
+
+</head>
+
+<body onload="renderBoard()">
+    <div class="content_container">
+
+    <!-- LEFT SIDE (BLUE SIDEBAR) !! SIDEBAR IN TEMPLATE AUSLAGERN??? -->
+    <aside class="left_main_container">
+        <div class="aside_logo_container">
+            <img class="aside_logo" src="assets/img/logo_sidebar.png">
+        </div>
+        <nav>
+            <a href="#" class="aside_nav_container">
+                <img class="aside_icons" src="assets/img/nav_summary.svg">
+                <p>Summary</p>
+            </a>
+            <a href="#" class="aside_nav_container">
+                <img class="aside_icons" src="assets/img/nav_summary.svg">
+                <p>Board</p>
+            </a>
+            <a href="#" class="aside_nav_container">
+                <img class="aside_icons" src="assets/img/nav_summary.svg">
+                <p>Add Task</p>
+            </a>
+            <a href="#" class="aside_nav_container">
+                <img class="aside_icons" src="assets/img/nav_summary.svg">
+                <p>Contacts</p>
+            </a>
+        </nav>
+        <a href="#" class="aside_nav_container">
+            <img class="aside_icons" src="assets/img/nav_summary.svg">
+            <p>Legal notice</p>
+        </a>
+    </aside>
+    <!-- RIGHT SIDE (MAIN CONTENT) --> 
+    <div class="main_container">
+
+        <header class="main_header">
+            <p class="top_title">Kanban Project Management Tool</p>
+        </header>
+            <div class="container_heading_board">
+            <h1 class="heading_board">Board</h1>
+            <div class="search_container">
+                <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
+                <button title="Add Task" onclick="addTask()" class="btn_add">Find Task +</button>
+            </div>
+        </div>
+        <main>
+            <div class="drag_area_container">
+                <div>
+                    <div class="board_header_container">
+                        <h2>To Do</h2>
+                        <img class="sidebar_icons" src="assets/img/plus.svg">
+                    </div>
+                    <div class="drag_area" id="open" ondrop="moveTo('open')" ondragleave="removeHighlight('open')" ondragover="allowDrop(event); highlight('open')"></div>
+                </div>
+                <div>
+                    <div class="board_header_container">
+                        <h2>In Progress</h2>
+                        <img class="sidebar_icons" src="assets/img/plus.svg">
+                    </div>
+                    <div class="drag_area" id="progress" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')" ondragover="allowDrop(event); highlight('progress')"></div>
+                </div>
+                <div>
+                    <div class="board_header_container">
+                        <h2>Awaiting Feedback</h2>
+                        <img class="sidebar_icons" src="assets/img/plus.svg">
+                    </div>
+                    <div class="drag_area" id="feedback" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"></div>
+                </div>
+                <div>
+                    <div class="board_header_container">
+                        <h2>Done</h2>
+                        <img class="sidebar_icons" src="assets/img/plus.svg">
+                    </div>
+                    <div class="drag_area" id="closed" ondrop="moveTo('closed')" ondragleave="removeHighlight('closed')" ondragover="allowDrop(event); highlight('closed')"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>
