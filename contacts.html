@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,65 +8,40 @@
     <title>JOIN - CONTACTS</title>
 
     <link rel="stylesheet" href="contacts.css">
-    <script src="script.js"></script>    
+    <script src="script.js"></script>
     <script src="contacts.js"></script>
+    <script src="template.js"></script>
 
 </head>
 
-<body>
+<body onload="includeHTML()">
     <div class="content_container">
+        <div w3-include-html="template.html"></div>
+        <!-- RIGHT SIDE (MAIN CONTENT) -->
+        <div class="main_container">
+            <header class="main_header">
+                <p class="top_title">Kanban Project Management Tool</p>
+            </header>
+            <main class="contacts_container">
+                <div class="summary_contacts">
+                    <div>
+                        <div id="contactSummary">A</div>
+                    </div>
+                </div>
+                <div class="show_contacts_container">
+                    <div class="container_heading_board">
+                        <h1 class="heading_board">Contacts</h1>
+                        <div class="heading_separation_summary"></div>
+                        <h2 class="subheading_summary">Everything in a nutshell!</h2>
+                    </div>
+                    <div id="contactCard">Selected Contact1</div>
 
-    <!-- LEFT SIDE (BLUE SIDEBAR) !! SIDEBAR IN TEMPLATE AUSLAGERN??? -->
-    <aside class="left_main_container">
-        <div class="aside_logo_container">
-            <img class="aside_logo" src="assets/img/logo_sidebar.png">
-        </div>
-        <nav>
-            <a href="#" class="aside_nav_container">
-                <img class="aside_icons" src="assets/img/nav_summary.svg">
-                <p>Summary</p>
-            </a>
-            <a href="#" class="aside_nav_container">
-                <img class="aside_icons" src="assets/img/nav_summary.svg">
-                <p>Board</p>
-            </a>
-            <a href="#" class="aside_nav_container">
-                <img class="aside_icons" src="assets/img/nav_summary.svg">
-                <p>Add Task</p>
-            </a>
-            <a href="#" class="aside_nav_container">
-                <img class="aside_icons" src="assets/img/nav_summary.svg">
-                <p>Contacts</p>
-            </a>
-        </nav>
-        <a href="#" class="aside_nav_container">
-            <img class="aside_icons" src="assets/img/nav_summary.svg">
-            <p>Legal notice</p>
-        </a>
-    </aside>
-    <!-- RIGHT SIDE (MAIN CONTENT) --> 
-    <div class="main_container">
-        <header class="main_header">
-            <p class="top_title">Kanban Project Management Tool</p>
-        </header>
-            <div class="container_heading_board">
-            <h1 class="heading_board">Board</h1>
-            <div class="heading_separation_summary"></div>
-            <h2 class="subheading_summary">Everything in a nutshell!</h2>
-        </div>
-        <main>
-            <div>
-                <div class="board_header_container">
-                    <h2>A</h2>
+                    <div class="search_container">
+                        <button title="Add Task" onclick="addTask()" class="btn_add">New Contact +</button>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div class="board_header_container">
-                    <h2>B</h2>
-                </div>
-            </div>
-        </main>
-    </div>
+            </main>
+        </div>
 
 </body>
 

@@ -8,14 +8,12 @@
     <title>Add Task</title>
     <link rel="stylesheet" href="assets/font/font.css">
     <link rel="stylesheet" href="add_task.css">
+    <script src="template.js"></script>
 
 </head>
 
-<body>
-    <div class="sidebar">
-    </div>
-    <div class="topbar">
-    </div>
+<body onload="includeHTML()">
+    <div w3-include-html="template.html"></div>
     <div class="container_heading_task">
         <h1 class="heading_task">Add Task</h1>
     </div>
