@@ -22,7 +22,9 @@ h2 {
     font-size: 21px;
 }
 
+
 /* MAIN CONTENT RIGHT SIDE - BEGIN */
+
 .content_container {
     display: flex;
     align-items: center;
@@ -150,11 +152,14 @@ main {
     box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.092);
     cursor: pointer;
     font-size: 16px;
-    width: 180px;;
+    width: 180px;
+    ;
     height: 150px;
 }
 
+
 /* LEFT SIDE - SIDEBAR/NAV/LOGO */
+
 aside {
     display: flex;
     flex-direction: column;
@@ -163,11 +168,12 @@ aside {
     padding: 66px 20px;
     gap: 83px;
     width: 232px;
-    height: 100vh; /*1024px;*/
+    height: 100vh;
+    /*1024px;*/
     left: 0px;
     top: 0px;
     background-color: #2A3647;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 0px;
     color: #CDCDCD;
 }
