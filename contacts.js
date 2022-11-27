@@ -1,18 +1,33 @@
-function renderContacts() {                                    
+function renderContacts() {     
+    updateHTML(); 
 } 
 
 
-// Placeholder!! Needs to be filled with input from 'Add Task'-field. 
+// Placeholder!! Needs to be filled with input from 'Add Contact'-field. 
 let contacts = [{
     'id': 0,
-    'name': 'Mayer',
-    'category': 'open',
+    'name': 'Adam',
+    'firstName': ,
+    'email': ,
+    'phone': ,
+    'category': 'A',
 }, {
     'id': 1,
-    'name': 'Schulz',
-    'category': 'open',
+    'name': 'Adam',
+    'firstName': ,
+    'email': ,
+    'phone': ,
+    'category': 'B',
 }, {
     'id': 2,
-    'name': 'Ziegler',
-    'category': 'closed',
+    'name': 'Charles',
+    'firstName': ,
+    'email': ,
+    'phone': ,
+    'category': 'C',
 }];
+
+
+function updateHTML() {
+    let contact = document.getElementById('contactSummary'); 
+}

@@ -48,20 +48,22 @@
         <header class="main_header">
             <p class="top_title">Kanban Project Management Tool</p>
         </header>
-            <div class="container_heading_board">
-            <h1 class="heading_board">Board</h1>
-            <div class="heading_separation_summary"></div>
-            <h2 class="subheading_summary">Everything in a nutshell!</h2>
-        </div>
-        <main>
-            <div>
-                <div class="board_header_container">
-                    <h2>A</h2>
+        <main class="contacts_container">
+            <div class="summary_contacts">
+                <div>
+                    <div id="contactSummary">A</div>
                 </div>
             </div>
-            <div>
-                <div class="board_header_container">
-                    <h2>B</h2>
+            <div class="show_contacts_container">
+                <div class="container_heading_board">
+                    <h1 class="heading_board">Contacts</h1>
+                    <div class="heading_separation_summary"></div>
+                    <h2 class="subheading_summary">Everything in a nutshell!</h2>
+                </div>
+                <div id="contactCard">Selected Contact1</div>
+
+                <div class="search_container">
+                    <button title="Add Task" onclick="addTask()" class="btn_add">New Contact +</button>
                 </div>
             </div>
         </main>
