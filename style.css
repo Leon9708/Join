@@ -15,7 +15,7 @@ body {
     background-color: rgb(246, 247, 248);
     transition-delay: 2s;
     animation-name: moveImg;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-delay: 1s;
     animation-fill-mode: forwards;
 }
@@ -24,7 +24,7 @@ body {
     height: 335px;
     width: 274px;
     animation-name: shrinkImg;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-delay: 1s;
     animation-fill-mode: forwards;
 }
@@ -35,6 +35,8 @@ body {
 
     from{height: 100vh}
     to{height: 220px}
+
+    to{background-color: rgb(246, 247, 248, 0.0);}
 }
 
 @keyframes shrinkImg {
@@ -66,6 +68,8 @@ body {
 
 .signUpBtn:hover {
     cursor: pointer;
+    background-color: rgb(41, 171,226);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .contentContainer {
@@ -81,12 +85,83 @@ body {
     width: 600px;
     height: 400px;
     background-color: white;
-    border-radius: 16px;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.logInHeadline {
+    font-size: 50px;
+    margin-bottom: 4px !important;
+}
+
+.underlineHeadline {
+    width: 120px;
+    border: none;
+    background-color: #6BC5EB;
+    height: 3px;
+    margin-bottom: 28px;
+}
+
+.logInForm {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.logInHeadline {
-    font-size: 50px;
+.logInInput {
+    border-radius: 6px;
+    min-width: 300px;
+    margin-bottom: 34px;
+    border: 1.8px solid rgb(0, 0, 0, 0.1);
+    padding: 8px;
+}
+
+.belowPassword {
+    display: flex;
+    align-items: center;
+}
+
+.belowPassword a {
+    margin-left: 16px;
+    text-decoration: none;
+    color:rgb(41, 171,226);
+}
+
+.belowPassword input {
+    margin-right: 12px;
+}
+
+.logInButtons {
+    margin-top: 32px;
+}
+
+.logInBtn {
+    color: white;
+    background-color: rgb(42, 54, 71);
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    width: 82px;
+}
+
+.logInBtn:hover {
+    cursor: pointer;
+    background-color:rgb(41, 171,226);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.guestLogInBtn {
+    color:rgb(42, 54, 71);
+    width: 100px;
+    border-radius: 6px;
+    padding: 6px;
+    background-color: white;
+    border: 1px solid rgb(42, 54, 71);
+}
+
+.guestLogInBtn:hover {
+    color: rgb(41, 171,226);
+    border: 1px solid rgb(41, 171,226);
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }

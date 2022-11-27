@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,25 +11,35 @@
 
 <body>
 
-<div class="logInHeader">
-    <span>Not a Join user?</span> <button onclick="" class="signUpBtn">Sign up</button>
-</div>
-
-<div class="divLogo">
- <img src="assets/img/Logo.png">   
-</div>
-
-<div class="contentContainer">
-
-    <div class="divLogIn">
-        <form action="">
-        <h1 class="logInHeadline">Log In</h1>
-        <input type="text" placeholder="Email">
-        <input type="text" placeholder="Password">
-        </form>
+    <div class="logInHeader">
+        <span>Not a Join user?</span> <button onclick="" class="signUpBtn">Sign up</button>
     </div>
 
-</div>
+    <div class="divLogo">
+        <img src="assets/img/Logo.png">
+    </div>
+
+    <div class="contentContainer">
+
+        <div class="divLogIn">
+            <form class="logInForm" action="">
+                <h1 class="logInHeadline">Log In</h1>
+                <hr class="underlineHeadline">
+                <input class="logInInput" type="text" placeholder="Email">
+                <input class="logInInput" type="text" placeholder="Password">
+                <div class="belowPassword">
+                    <input type="checkbox">
+                    <span>Remember me</span>
+                    <a href="http://">Forgot my password</a>
+                </div>
+                <div class="logInButtons">
+                    <button class="logInBtn">Log in</button>
+                    <button class="guestLogInBtn">Guest Log in</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
 
 
 
