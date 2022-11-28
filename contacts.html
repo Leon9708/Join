@@ -5,44 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOIN - CONTACTS</title>
-
+    <title>Contacts</title>
     <link rel="stylesheet" href="contacts.css">
-    <script src="script.js"></script>
-    <script src="contacts.js"></script>
+    <link rel="stylesheet" href="assets/font/font.css">
     <script src="template.js"></script>
 
 </head>
 
 <body onload="includeHTML()">
-    <div class="content_container">
-        <div w3-include-html="template.html"></div>
-        <!-- RIGHT SIDE (MAIN CONTENT) -->
-        <div class="main_container">
-            <header class="main_header">
-                <p class="top_title">Kanban Project Management Tool</p>
-            </header>
-            <main class="contacts_container">
-                <div class="summary_contacts">
-                    <div>
-                        <div id="contactSummary">A</div>
-                    </div>
-                </div>
-                <div class="show_contacts_container">
-                    <div class="container_heading_board">
-                        <h1 class="heading_board">Contacts</h1>
-                        <div class="heading_separation_summary"></div>
-                        <h2 class="subheading_summary">Everything in a nutshell!</h2>
-                    </div>
-                    <div id="contactCard">Selected Contact1</div>
-
-                    <div class="search_container">
-                        <button title="Add Task" onclick="addTask()" class="btn_add">New Contact +</button>
-                    </div>
+    <div w3-include-html="template.html"></div>
+    <div class="main_container_contacts">
+        <div class="container_contacts_left">
+            <p>A</p>
+            <p>B</p>
+            <p>C</p>
+            <p>D</p>
+        </div>
+        <div class="container_contacts_right">
+            <div class="container_heading_summary">
+                <h1 class="heading_summary">Contacts</h1>
+                <div class="heading_separation_summary"></div>
+                <h2 class="subheading_summary">Everything in a nutshell!</h2>
+            </div>
+            <main>
+                <div class="container_contacts_card">CONTACT CARD</div>
+                <div class="container_buttons_bottom_task">
+                    <button title="Add Contact" class="add_button_contacts">
+                        <p class="">New Contact</p>
+                        <img src="./assets/img/check_white_task.png" alt="#">
+                    </button>
                 </div>
             </main>
         </div>
-
+    </div>
 </body>
 
 </html>
