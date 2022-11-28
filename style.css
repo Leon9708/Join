@@ -1,6 +1,8 @@
 body {
     margin: 0;
     background-color: rgb(246, 247, 248);
+    font-family: 'Open Sans';
+    padding: 0;
 }
 
 .divLogo {
@@ -78,7 +80,6 @@ body {
     align-items: center;
     width: 100%;
     height: 100vh;
-    padding-top: 50px;
 }
 
 .divLogIn {
@@ -108,23 +109,41 @@ body {
     flex-direction: column;
 }
 
-.logInInput {
+.logInInputMail {
     border-radius: 6px;
-    min-width: 300px;
+    min-width: 280px;
     margin-bottom: 34px;
     border: 1.8px solid rgb(0, 0, 0, 0.1);
     padding: 8px;
+    background: url(assets/img/mail.png) no-repeat scroll;
+    background-size: 16px;
+    background-position: center;
+    background-position-x: calc(100% - 8px);
+}
+
+.logInInputPassword {
+    border-radius: 6px;
+    min-width: 280px;
+    margin-bottom: 34px;
+    border: 1.8px solid rgb(0, 0, 0, 0.1);
+    padding: 8px;
+    background: url(assets/img/lock.png) no-repeat scroll;
+    background-size: 16px;
+    background-position: center;
+    background-position-x: calc(100% - 8px);
 }
 
 .belowPassword {
     display: flex;
     align-items: center;
+    font-size: 14px;
 }
 
 .belowPassword a {
     margin-left: 16px;
     text-decoration: none;
     color:rgb(41, 171,226);
+    cursor: pointer;
 }
 
 .belowPassword input {
@@ -164,4 +183,8 @@ body {
     border: 1px solid rgb(41, 171,226);
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.d-none {
+    display: none;
 }

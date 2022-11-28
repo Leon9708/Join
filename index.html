@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/font/font.css">
+    <script src="script.js"></script>
     <title>Join</title>
 </head>
 
 <body>
 
-    <div class="logInHeader">
+    <div id="logInHeader" class="logInHeader">
         <span>Not a Join user?</span> <button onclick="" class="signUpBtn">Sign up</button>
     </div>
 
@@ -19,18 +21,18 @@
         <img src="assets/img/Logo.png">
     </div>
 
-    <div class="contentContainer">
+    <div id="contentContainer" class="contentContainer">
 
         <div class="divLogIn">
             <form class="logInForm" action="">
                 <h1 class="logInHeadline">Log In</h1>
                 <hr class="underlineHeadline">
-                <input class="logInInput" type="text" placeholder="Email">
-                <input class="logInInput" type="text" placeholder="Password">
+                <input class="logInInputMail" type="text" placeholder="Email">
+                <input class="logInInputPassword" type="text" placeholder="Password">
                 <div class="belowPassword">
                     <input type="checkbox">
                     <span>Remember me</span>
-                    <a href="http://">Forgot my password</a>
+                    <a onclick="newPassword()">Forgot my password</a>
                 </div>
                 <div class="logInButtons">
                     <button class="logInBtn">Log in</button>
