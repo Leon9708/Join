@@ -29,8 +29,6 @@ function backToLogin() {
 
 function loginContainer() {
     return `
-    <div id="contentContainer" class="contentContainer">
-
         <div class="divLogIn">
             <form class="logInForm" action="">
                 <h1 class="logInHeadline">Log In</h1>
@@ -48,7 +46,30 @@ function loginContainer() {
                 </div>
             </form>
         </div>
+    `
+}
 
-    </div>
+function signUp() {
+    content = document.getElementById('contentContainer');
+    content.innerHTML = '';
+    document.getElementById('logInHeader').classList.add('d-none')
+    content.innerHTML += signUpContainer();
+}
+
+function signUpContainer() {
+    return `
+        <div style="height: 420px; padding: 14px" class="divLogIn">
+        <img style="cursor: pointer;" onclick="backToLogin()" src="./assets/img/arrow.png">
+            <form class="logInForm" action="">
+                <h1 style="margin-top: 0" class="logInHeadline">Sign Up</h1>
+                <hr class="underlineHeadline">
+                <input class="logInInputName" type="text" placeholder="Name">
+                <input class="logInInputMail" type="text" placeholder="Email">
+                <input class="logInInputPassword" type="text" placeholder="Password">
+                <div style="margin-top: 10px" class="logInButtons">
+                    <button class="logInBtn">Sign Up</button>
+                </div>
+            </form>
+        </div>
     `
 }
