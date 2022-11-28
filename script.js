@@ -13,7 +13,7 @@ function forgotPasswordContainer() {
     <h1 style="margin-top: 0" class="logInHeadline">I forgot my password</h1>
     <hr class="underlineHeadline">
     <span> Don´t worry! We will send you an email with the instructions to reset your password. </span>
-    <input style="margin-top: 28px" class="logInInputMail" type="text" placeholder="Email">
+    <input required style="margin-top: 28px" class="logInInputMail" type="email" placeholder="Email">
     <button style="width: 140px" class="logInBtn">Send me the mail</button>
     </form>
     </div>
@@ -33,8 +33,8 @@ function loginContainer() {
             <form class="logInForm" action="">
                 <h1 class="logInHeadline">Log In</h1>
                 <hr class="underlineHeadline">
-                <input class="logInInputMail" type="text" placeholder="Email">
-                <input class="logInInputPassword" type="text" placeholder="Password">
+                <input required class="logInInputMail" type="email" placeholder="Email">
+                <input required class="logInInputPassword" type="text" placeholder="Password">
                 <div class="belowPassword">
                     <input type="checkbox">
                     <span>Remember me</span>
@@ -63,9 +63,9 @@ function signUpContainer() {
             <form class="logInForm" action="">
                 <h1 style="margin-top: 0" class="logInHeadline">Sign Up</h1>
                 <hr class="underlineHeadline">
-                <input class="logInInputName" type="text" placeholder="Name">
-                <input class="logInInputMail" type="text" placeholder="Email">
-                <input class="logInInputPassword" type="text" placeholder="Password">
+                <input required class="logInInputName" type="text" placeholder="Name">
+                <input required class="logInInputMail" type="email" placeholder="Email">
+                <input required class="logInInputPassword" type="text" placeholder="Password">
                 <div style="margin-top: 10px" class="logInButtons">
                     <button class="logInBtn">Sign Up</button>
                 </div>
