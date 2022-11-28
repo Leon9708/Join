@@ -5,65 +5,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOIN - Board</title>
-
+    <title>Board</title>
+    <!--<link rel="stylesheet" href="board.css">-->
     <link rel="stylesheet" href="board.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="assets/font/font.css">
     <script src="board.js"></script>
     <script src="template.js"></script>
 
 </head>
 
 <body onload="renderBoard();includeHTML()">
-    <div class="content_container">
-        <div w3-include-html="template.html"></div>
-        <!-- RIGHT SIDE (MAIN CONTENT) -->
-        <div class="main_container">
 
-            <header class="main_header">
-                <p class="top_title">Kanban Project Management Tool</p>
-            </header>
-            <div class="container_heading_board">
-                <h1 class="heading_board">Board</h1>
-                <div class="search_container">
-                    <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
-                    <button title="Add Task" onclick="addTask()" class="btn_add">Add Task +</button>
-                </div>
-            </div>
-            <main>
-                <div class="drag_area_container">
-                    <div>
-                        <div class="board_header_container">
-                            <h2>To Do</h2>
-                            <img class="sidebar_icons" src="assets/img/plus.svg">
-                        </div>
-                        <div class="drag_area" id="open" ondrop="moveTo('open')" ondragleave="removeHighlight('open')" ondragover="allowDrop(event); highlight('open')"></div>
-                    </div>
-                    <div>
-                        <div class="board_header_container">
-                            <h2>In Progress</h2>
-                            <img class="sidebar_icons" src="assets/img/plus.svg">
-                        </div>
-                        <div class="drag_area" id="progress" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')" ondragover="allowDrop(event); highlight('progress')"></div>
-                    </div>
-                    <div>
-                        <div class="board_header_container">
-                            <h2>Awaiting Feedback</h2>
-                            <img class="sidebar_icons" src="assets/img/plus.svg">
-                        </div>
-                        <div class="drag_area" id="feedback" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"></div>
-                    </div>
-                    <div>
-                        <div class="board_header_container">
-                            <h2>Done</h2>
-                            <img class="sidebar_icons" src="assets/img/plus.svg">
-                        </div>
-                        <div class="drag_area" id="closed" ondrop="moveTo('closed')" ondragleave="removeHighlight('closed')" ondragover="allowDrop(event); highlight('closed')"></div>
-                    </div>
-                </div>
-            </main>
+    <div w3-include-html="template.html"></div>
+    <div class="container_heading_summary">
+        <h1 class="heading_summary">Board</h1>
+        <div class="search_container">
+            <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
+            <button title="Add Contact" class="add_button_task">
+                <p class="">Add Task</p>
+                <img src="./assets/img/check_white_task.png" alt="#">
+            </button>
         </div>
-
+    </div>
+    <main>
+        <div class="drag_area_container">
+            <div>
+                <div class="board_header_container">
+                    <h2 class="h2_padding">To Do</h2>
+                    <img class="sidebar_icons" src="assets/img/plus.svg">
+                </div>
+                <div class="drag_area" id="open" ondrop="moveTo('open')" ondragleave="removeHighlight('open')" ondragover="allowDrop(event); highlight('open')"></div>
+            </div>
+            <div>
+                <div class="board_header_container">
+                    <h2 class="h2_padding">In Progress</h2>
+                    <img class="sidebar_icons" src="assets/img/plus.svg">
+                </div>
+                <div class="drag_area" id="progress" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')" ondragover="allowDrop(event); highlight('progress')"></div>
+            </div>
+            <div>
+                <div class="board_header_container">
+                    <h2 class="h2_padding">Awaiting Feedback</h2>
+                    <img class="sidebar_icons" src="assets/img/plus.svg">
+                </div>
+                <div class="drag_area" id="feedback" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"></div>
+            </div>
+            <div>
+                <div class="board_header_container">
+                    <h2 class="h2_padding">Done</h2>
+                    <img class="sidebar_icons" src="assets/img/plus.svg">
+                </div>
+                <div class="drag_area" id="closed" ondrop="moveTo('closed')" ondragleave="removeHighlight('closed')" ondragover="allowDrop(event); highlight('closed')"></div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
