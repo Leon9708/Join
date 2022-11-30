@@ -7,7 +7,7 @@ function newPassword() {
 
 function forgotPasswordContainer() {
     return `
-    <div style="width: 700px; height: 340px; padding: 14px" class="divLogIn">
+    <div class="divForgotPassword">
     <img style="cursor: pointer;" onclick="backToLogin()" src="./assets/img/arrow.png">
     <form class="logInForm" action="">
     <h1 style="margin-top: 0" class="logInHeadline">I forgot my password</h1>

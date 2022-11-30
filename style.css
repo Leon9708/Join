@@ -90,6 +90,15 @@ body {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
+.divForgotPassword {
+    width: 700px;
+    height: 340px;
+    padding: 14px;
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
 .logInHeadline {
     font-size: 50px;
     margin-bottom: 4px !important;
@@ -107,6 +116,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .logInInputMail {
@@ -199,4 +209,78 @@ body {
 
 .d-none {
     display: none;
+}
+
+@media (max-width: 850px){
+    .logInHeader{
+        bottom: 16px !important;
+        right: 0 !important;
+        justify-content: center;
+        padding-right: 0 !important;
+        align-items: center;
+        top: auto;
+    }
+
+    body {
+        margin: 30px;
+    }
+
+    .divForgotPassword {
+        flex-wrap: wrap;
+    }
+
+    @keyframes shrinkImg {
+        to{width: 82.2px}
+        to{height: 100.5px}
+    }
+
+    
+}
+
+@media (max-width: 640px){
+    .divLogIn{
+        width: 480px;
+    }
+
+    .divForgotPassword{
+        height: 400px;
+    }
+}
+
+@media (max-width: 520px){
+    .divLogIn{
+        width: 360px;
+        height: 420px;
+    }
+}
+
+@media (max-width: 420px){
+    .divLogIn{
+        width: 320px;
+        height: 420px;
+    }
+
+    .divForgotPassword{
+        height: 420px;
+    }
+
+    @keyframes moveImg {
+        to{height: 160px}
+        to{width: 160px}
+        to{background-color: rgb(246, 247, 248, 0.0);}
+    }
+}
+
+@media (max-height: 720px){
+    .divLogIn{
+        width: 320px;
+        height: 380px !important;
+        margin-top: 10px !important;
+    }
+
+    @keyframes moveImg {
+        to{height: 130px}
+        to{width: 130px}
+        to{background-color: rgb(246, 247, 248, 0.0);}
+    }
 }
