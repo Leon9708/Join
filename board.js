@@ -187,34 +187,3 @@ document.getElementById(id).classList.add('drag_area_highlight');
 function removeHighlight(id) {
 document.getElementById(id).classList.remove('drag_area_highlight');
 }
-
-
-// Match Colors
-function checkPriority() {
-    'urgent'
-    
-}
-
-
-// Matching colors (border-color) with Pokemon types
-function matchCategoryColor(element){
-    let categoryBackground = document.getElementById(`checkCategory${element['category']}`);
-    if (categoryBackground == 'Media') {
-        document.getElementById('checkCategory').classList.add('bg_media');
-    }
-    if (categoryBackground == 'Design') {
-        document.getElementById('checkCategory').classList.add('bg_design');
-    }
-    if (categoryBackground == 'Marketing') {
-        document.getElementById('checkCategory').classList.add('bg_marketing');
-    }
-    if (categoryBackground == 'Backoffice') {
-        document.getElementById('checkCategory').classList.add('bg_backoffice');
-    }
-    if (categoryBackground == 'Sales') {
-        document.getElementById('checkCategory').classList.add('bg_sales');
-    }
-    if (categoryBackground == 'None') {
-        document.getElementById('checkCategory').classList.add('bg_none');
-    } 
-}
