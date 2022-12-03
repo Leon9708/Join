@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="assets/font/font.css">
     <script src="board.js"></script>
     <script src="template.js"></script>
-
 </head>
 
 <body onload="renderBoard();includeHTML()">
@@ -32,28 +31,28 @@
             <div>
                 <div class="board_header_container">
                     <h2 class="h2_padding">To Do</h2>
-                    <img class="sidebar_icons" src="assets/img/plus_button.png">
+                    <img class="todo_icon" src="assets/img/plus_button.png">
                 </div>
                 <div class="drag_area" id="open" ondrop="moveTo('open')" ondragleave="removeHighlight('open')" ondragover="allowDrop(event); highlight('open')"></div>
             </div>
             <div>
                 <div class="board_header_container">
                     <h2 class="h2_padding">In Progress</h2>
-                    <img class="sidebar_icons" src="assets/img/plus_button.png">
+                    <img class="todo_icon" src="assets/img/plus_button.png">
                 </div>
                 <div class="drag_area" id="progress" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')" ondragover="allowDrop(event); highlight('progress')"></div>
             </div>
             <div>
                 <div class="board_header_container">
                     <h2 class="h2_padding">Awaiting Feedback</h2>
-                    <img class="sidebar_icons" src="assets/img/plus_button.png">
+                    <img class="todo_icon" src="assets/img/plus_button.png">
                 </div>
                 <div class="drag_area" id="feedback" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"></div>
             </div>
             <div>
                 <div class="board_header_container">
                     <h2 class="h2_padding">Done</h2>
-                    <img class="sidebar_icons" src="assets/img/plus_button.png">
+                    <img class="todo_icon" src="assets/img/plus_button.png">
                 </div>
                 <div class="drag_area" id="closed" ondrop="moveTo('closed')" ondragleave="removeHighlight('closed')" ondragover="allowDrop(event); highlight('closed')"></div>
             </div>

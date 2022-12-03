@@ -48,6 +48,31 @@ h3 {
     overflow: auto;
 }
 
+.contact_list_container {
+    display: flex;
+    align-items: center;
+}
+
+.contact_list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.contact_list_img {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    padding: 10px;
+    border: 1px solid rgb(82, 84, 82);
+    margin-right: 20px;
+}
+
+.contact_list_content {
+    padding-bottom: 5px;
+}
+
 .container_contacts_right {
 }
 

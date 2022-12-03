@@ -11,6 +11,16 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
+.topbar {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 10%;
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow: 0px 5px 3px -3px rgba(0, 0, 0, 0.127);
+}
+
 aside {
     z-index: 5;
     position: absolute;

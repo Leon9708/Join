@@ -8,18 +8,17 @@
     <title>Contacts</title>
     <link rel="stylesheet" href="contacts.css">
     <link rel="stylesheet" href="assets/font/font.css">
+    <script src="contacts.js"></script>
     <script src="template.js"></script>
 
 </head>
 
-<body onload="includeHTML()">
+<body onload="renderContacts(); includeHTML()">
     <div w3-include-html="template.html"></div>
     <div class="main_container_contacts">
         <div class="container_contacts_left">
-            <p>A</p>
-            <p>B</p>
-            <p>C</p>
-            <p>D</p>
+            <!-- Render Contact List -->
+            <div id="contactList"></div>   
         </div>
         <div class="container_contacts_right">
             <div class="container_heading_summary">
@@ -29,6 +28,8 @@
             </div>
             <main>
                 <div class="container_contacts_card">CONTACT CARD</div>
+                <!-- Render Contact Card -->
+                <div id="contactCard"></div>   
                 <div class="container_buttons_bottom_task">
                     <button title="Add Contact" class="add_button_contacts">
                         <p class="">New Contact</p>

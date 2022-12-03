@@ -1,5 +1,5 @@
 function renderContacts() {     
-    updateHTML(); 
+    showContacts();
 } 
 
 
@@ -7,27 +7,61 @@ function renderContacts() {
 let contacts = [{
     'id': 0,
     'name': 'Adam',
-    'firstName': ,
-    'email': ,
-    'phone': ,
-    'category': 'A',
+    'firstName': 'Adamadam',
+    'email': 'ABC@gmail.com',
+    'phone': '123',
 }, {
     'id': 1,
-    'name': 'Adam',
-    'firstName': ,
-    'email': ,
-    'phone': ,
-    'category': 'B',
+    'name': 'Berta',
+    'firstName': 'Bertaberta',
+    'email': 'BGI@gmail.com',
+    'phone': '257',
 }, {
     'id': 2,
-    'name': 'Charles',
-    'firstName': ,
-    'email': ,
-    'phone': ,
-    'category': 'C',
+    'name': 'Charlie',
+    'firstName': 'ABC',
+    'email': 'CGI@gmail.com',
+    'phone': '357',
+}, {
+    'id': 3,
+    'name': 'Dora',
+    'firstName': 'Doradora',
+    'email': 'DGI@gmail.com',
+    'phone': '457',
+}, {
+    'id': 4,
+    'name': 'Eva',
+    'firstName': 'Evaeva',
+    'email': 'EFG@gmail.com',
+    'phone': '543',
 }];
 
 
-function updateHTML() {
-    let contact = document.getElementById('contactSummary'); 
+function showContacts() {
+    let contactList = document.getElementById('contactList'); 
+    contactList.innerHTML = '';
+    for (let i = 0; i < contacts.length; i++) {
+        const singleContact = contacts[i];
+        contactList.innerHTML += showContactsHTML(singleContact, i);
+    }
+}
+
+
+function showContactsHTML(singleContact, i) {
+    return `
+    <div class="contact_list_container">
+        <div class="contact_list_img">AB</div>
+        <div class="contact_list">
+            <div class="contact_list_content">
+                <div><b>${singleContact['name']}</b></div>
+            </div>
+            <div class="contact_list_content">
+                <div>${singleContact['email']}</div>
+            </div>
+            <div class="contact_list_content">
+                <div>${singleContact['phone']}</div>
+            </div>
+        </div>
+    </div>    
+    `
 }
