@@ -24,9 +24,7 @@ function createTask() {
     let task = { "title": title, "description": description, "category": category, "color": color, }
 }
 
-//first Select section
-
-
+//first Select sectionx
 
 function selectTitle(id) {
     if (id === 'newCategory') {
