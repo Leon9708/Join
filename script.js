@@ -60,16 +60,32 @@ function signUpContainer() {
     return `
         <div style="height: 420px; padding: 14px" class="divLogIn">
         <img style="cursor: pointer;" onclick="backToLogin()" src="./assets/img/arrow.png">
-            <form class="logInForm" action="">
+            <form class="logInForm" onsubmit="submitSignUp(); return false">
                 <h1 style="margin-top: 0" class="logInHeadline">Sign Up</h1>
                 <hr class="underlineHeadline">
-                <input required class="logInInputName" type="text" placeholder="Name">
-                <input required class="logInInputMail" type="email" placeholder="Email">
-                <input required class="logInInputPassword" type="text" placeholder="Password">
+                <input required id="signUpInputName" class="logInInputName" type="text" placeholder="Name">
+                <input required id="signUpInputMail" class="logInInputMail" type="email" placeholder="Email">
+                <input required id="signUpInputPassword" class="logInInputPassword" type="text" placeholder="Password">
                 <div style="margin-top: 10px" class="logInButtons">
                     <button class="logInBtn">Sign Up</button>
                 </div>
             </form>
         </div>
     `
+}
+
+function login() {
+    document.getElementById('contentContainer').innerHTML += `
+        <div class="userAlert"> User not found - <br> instead use Guest Log in </div>
+    `
+}
+
+function submitSignUp() {
+    window.location.href="./summary.html";
+}
+
+function guestLogIn() {
+    document.getElementById('logInInputMail').required = false;
+    document.getElementById('logInInputPassword').required = false;
+    window.location.href="./summary.html";
 }
