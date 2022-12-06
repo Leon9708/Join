@@ -30,19 +30,19 @@ function backToLogin() {
 function loginContainer() {
     return `
         <div class="divLogIn">
-            <form class="logInForm" action="">
+            <form id="logInForm" class="logInForm" onsubmit="return false">
                 <h1 class="logInHeadline">Log In</h1>
                 <hr class="underlineHeadline">
-                <input required class="logInInputMail" type="email" placeholder="Email">
-                <input required class="logInInputPassword" type="text" placeholder="Password">
+                <input required id="logInInputMail" class="logInInputMail" type="email" placeholder="Email">
+                <input required id="logInInputPassword" class="logInInputPassword" type="text" placeholder="Password">
                 <div class="belowPassword">
                     <input type="checkbox">
                     <span>Remember me</span>
                     <a onclick="newPassword()">Forgot my password</a>
                 </div>
                 <div class="logInButtons">
-                    <button class="logInBtn">Log in</button>
-                    <button class="guestLogInBtn">Guest Log in</button>
+                    <button onclick="onsubmitLogIn()" class="logInBtn">Log in</button>
+                    <button onclick="onsubmitGuestLogIn()" class="guestLogInBtn">Guest Log in</button>
                 </div>
             </form>
         </div>
@@ -79,13 +79,21 @@ function login() {
         <div class="userAlert"> User not found - <br> instead use Guest Log in </div>
     `
 }
+function onsubmitLogIn() {
+    document.getElementById('logInForm').setAttribute("onsubmit", "login(); return false")
+}
 
 function submitSignUp() {
-    window.location.href="./summary.html";
+    window.location.href="./summary.html ";
 }
 
 function guestLogIn() {
-    document.getElementById('logInInputMail').required = false;
-    document.getElementById('logInInputPassword').required = false;
     window.location.href="./summary.html";
 }
+
+function onsubmitGuestLogIn(){
+    document.getElementById(`logInInputMail`).required = false;
+    document.getElementById(`logInInputPassword`).required = false;
+    document.getElementById('logInForm').setAttribute("onsubmit", "guestLogIn(); return false")
+}
+

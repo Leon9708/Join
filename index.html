@@ -25,19 +25,19 @@
     <div id="contentContainer" class="contentContainer">
 
         <div class="divLogIn">
-            <form class="logInForm"  onsubmit="return false">
+            <form id="logInForm" class="logInForm" onsubmit="return false">
                 <h1 class="logInHeadline">Log In</h1>
                 <hr class="underlineHeadline">
-                <input required id="logInInputMail" class="logInInputMail" type="email" placeholder="Email">
-                <input required id="logInInputPassword" class="logInInputPassword" type="text" placeholder="Password">
+                <input required id="logInInputMail" class="logInInputMail" type="email" placeholder="Email"/>
+                <input required id="logInInputPassword" class="logInInputPassword" type="text" placeholder="Password"/>
                 <div class="belowPassword">
                     <input type="checkbox">
                     <span>Remember me</span>
                     <a onclick="newPassword()">Forgot my password</a>
                 </div>
                 <div class="logInButtons">
-                    <button onclick="login()" class="logInBtn">Log in</button>
-                    <button onclick="guestLogIn()" class="guestLogInBtn">Guest Log in</button>
+                    <button onclick="onsubmitLogIn()" class="logInBtn">Log in</button>
+                    <button onclick="onsubmitGuestLogIn()" class="guestLogInBtn">Guest Log in</button>
                 </div>
             </form>
         </div>
