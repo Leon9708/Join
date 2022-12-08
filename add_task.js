@@ -21,6 +21,8 @@ function createTask() {
     })
     let color = label.color;
 
+    
+
     let task = { "title": title, "description": description, "category": category, "color": color, }
 }
 
@@ -52,7 +54,7 @@ function openInputCategory() {
 function createNewCategory() {
     let newLabel = document.querySelector('.input_category').value;
 
-    categoryLabels.push({ "label": newLabel, "color": colorID });
+    categoryLabels.push({ "label": newLabel/* , "color": colorID  */});
     unsetNewCategory();
 
     let newCategory = categoryLabels[categoryLabels.length - 1].label;
