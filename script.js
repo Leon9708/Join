@@ -30,19 +30,19 @@ function backToLogin() {
 function loginContainer() {
     return `
         <div class="divLogIn">
-            <form class="logInForm" action="">
+            <form id="logInForm" class="logInForm" onsubmit="return false">
                 <h1 class="logInHeadline">Log In</h1>
                 <hr class="underlineHeadline">
-                <input required class="logInInputMail" type="email" placeholder="Email">
-                <input required class="logInInputPassword" type="text" placeholder="Password">
+                <input required id="logInInputMail" class="logInInputMail" type="email" placeholder="Email">
+                <input required id="logInInputPassword" class="logInInputPassword" type="text" placeholder="Password">
                 <div class="belowPassword">
                     <input type="checkbox">
                     <span>Remember me</span>
                     <a onclick="newPassword()">Forgot my password</a>
                 </div>
                 <div class="logInButtons">
-                    <button class="logInBtn">Log in</button>
-                    <button class="guestLogInBtn">Guest Log in</button>
+                    <button onclick="onsubmitLogIn()" class="logInBtn">Log in</button>
+                    <button onclick="onsubmitGuestLogIn()" class="guestLogInBtn">Guest Log in</button>
                 </div>
             </form>
         </div>
@@ -60,12 +60,12 @@ function signUpContainer() {
     return `
         <div style="height: 420px; padding: 14px" class="divLogIn">
         <img style="cursor: pointer;" onclick="backToLogin()" src="./assets/img/arrow.png">
-            <form class="logInForm" action="">
+            <form class="logInForm" onsubmit="submitSignUp(); return false">
                 <h1 style="margin-top: 0" class="logInHeadline">Sign Up</h1>
                 <hr class="underlineHeadline">
-                <input required class="logInInputName" type="text" placeholder="Name">
-                <input required class="logInInputMail" type="email" placeholder="Email">
-                <input required class="logInInputPassword" type="text" placeholder="Password">
+                <input required id="signUpInputName" class="logInInputName" type="text" placeholder="Name">
+                <input required id="signUpInputMail" class="logInInputMail" type="email" placeholder="Email">
+                <input required id="signUpInputPassword" class="logInInputPassword" type="text" placeholder="Password">
                 <div style="margin-top: 10px" class="logInButtons">
                     <button class="logInBtn">Sign Up</button>
                 </div>
@@ -73,3 +73,27 @@ function signUpContainer() {
         </div>
     `
 }
+
+function login() {
+    document.getElementById('contentContainer').innerHTML += `
+        <div class="userAlert"> User not found - <br> instead use Guest Log in </div>
+    `
+}
+function onsubmitLogIn() {
+    document.getElementById('logInForm').setAttribute("onsubmit", "login(); return false")
+}
+
+function submitSignUp() {
+    window.location.href="./summary.html ";
+}
+
+function guestLogIn() {
+    window.location.href="./summary.html";
+}
+
+function onsubmitGuestLogIn(){
+    document.getElementById(`logInInputMail`).required = false;
+    document.getElementById(`logInInputPassword`).required = false;
+    document.getElementById('logInForm').setAttribute("onsubmit", "guestLogIn(); return false")
+}
+

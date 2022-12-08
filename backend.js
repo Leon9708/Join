@@ -12,8 +12,6 @@ CATEGORIES
  
 */
 
-
-
 async function getTodos() {
     try {
         let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
@@ -21,18 +19,21 @@ async function getTodos() {
             throw new Error("Response not ok")
         const tasks = await responseServer.json();
         console.log(tasks);
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error)
     }
 }
 
-async function postTodo(a,b,c,d,e,f,s1,s2,s3) {
+async function postTodo(a, b, c, d, e, f, s1, s2, s3) {
 
-    var data = JSON.stringify(
-        {
-        "title": a, "description": b, "category": c, "priority": d, "user": e, "due_date": f, "subtasks": [
-            {
+    var data = JSON.stringify({
+        "title": a,
+        "description": b,
+        "category": c,
+        "priority": d,
+        "user": e,
+        "due_date": f,
+        "subtasks": [{
                 "title": s1
             },
             {
@@ -45,13 +46,13 @@ async function postTodo(a,b,c,d,e,f,s1,s2,s3) {
     });
     console.log(data)
     fetch('https://jonas34.pythonanywhere.com/todos/', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: data
-    })
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
         .then(response => response.json())
         .then(response => console.log(JSON.stringify(response)))
 }
