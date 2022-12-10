@@ -8,28 +8,33 @@ let subtasks = []
 
 
 function createTask() {
-    let title = document.getElementById('inputTitle').value;
-    let description = document.getElementById('inputDescription').value;
+    let title = document.getElementById('inputTitle');
+    let description = document.getElementById('inputDescription');
     let category = document.getElementById('selectedLabel').innerText;
-    let due_date = document.getElementById('inputDate').value;
+    let due_date = document.getElementById('inputDate');
     let label = categoryLabels.filter(function(ele) {
         return ele.label === category
     })
     let color = label.color;
     let task = {
-        "title": title,
-        "description": description,
+        "title": title.value,
+        "description": description.value,
         "categories": [{
             "title": label,
             "color": color
         }],
         "prority": priority,
-        "due_date": date,
-
+        "due_date": due_date.value,
     }
+    title.value = "";
+    description.value = "";
+    due_date.value = "";
+    unsetPrioHTML();
+    unsetNewCategory();
+    document.getElementById('selectedUser').innerHTML = `Select user`;
 }
 
-//first Select sectionx
+//first Select section
 
 function selectTitle(id) {
     if (id === 'newCategory') {
@@ -180,14 +185,16 @@ function openSubtask() {
 
 function newSubtask() {
     let newSubtask = document.querySelector('.input_subtask').value;
-    document.getElementById('containerSubtask').innerHTML = unsetSubtaskHTML();
-    subtaskID++;
-    console.log('newSubtask', newSubtask)
-    subtasks.push({
-        "id": subtaskID,
-        "subtask": newSubtask
-    })
-    loadSubtask();
+    if (newSubtask.length >= 3) {
+        unsetSubtaskHTML();
+        subtaskID++;
+        console.log('newSubtask', newSubtask)
+        subtasks.push({
+            "id": subtaskID,
+            "subtask": newSubtask
+        })
+        loadSubtask();
+    }
 }
 
 function loadSubtask() {
@@ -281,7 +288,7 @@ function openSubtaskHTML() {
     <div class="box_input_category">
         <div id="subtaskInput" class="place_input_category"></div>
         <div class="box_buttons_input_category">
-            <button onclick="unsetNewCategory()"  class="button_input_category">
+            <button onclick="unsetSubtaskHTML()"  class="button_input_category">
                 <img class="img_button_input_category" src="assets/img/cross_task.png" alt="#">
             </button>
             <div class="seperation_buttons_input_category"></div>
@@ -293,7 +300,7 @@ function openSubtaskHTML() {
 }
 
 function unsetSubtaskHTML() {
-    return `
+    document.getElementById('containerSubtask').innerHTML = `
         <button onclick="openSubtask()" id="boxSubtaskInput" class="box_subtask_input">
             <input  disabled="disabled" placeholder="Add new subtask" id="inputSubtask" type="text" class="input_subtask">
             <div  class="button_subtask_input">
