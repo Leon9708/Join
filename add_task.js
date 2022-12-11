@@ -179,7 +179,7 @@ function clickedColor(id) {
     document.getElementById(colorID).style.boxShadow = "0 0 2px 0.5px rgba(0, 0, 0, 0.7)"
 }
 
-//second Select section
+//user selection
 
 function toggleDropdown2() {
     if (dropdown.classList.contains('hidden')) {
@@ -211,7 +211,7 @@ function loadUser() {
 
 inputDate.max = new Date().toISOString().split("T")[0];
 
-// choose Prio
+// choose prio
 
 function selectUrgency(prio) {
     if (prio === 'urgent') {
@@ -265,7 +265,7 @@ function newSubtask() {
         subtaskID++;
         subtasks.push({
             "id": subtaskID,
-            "subtask": newSubtaskvalue,
+            "title": newSubtaskvalue,
             "done": false
         })
         loadSubtask();
@@ -303,6 +303,8 @@ function createInputSubtask() {
     x.setAttribute('id', 'inputSubtask')
     document.getElementById('subtaskInput').appendChild(x);
 }
+
+// change HTML 
 
 function unsetPrioHTML() {
     document.getElementById('containerButtonsTask').innerHTML = `
@@ -405,7 +407,7 @@ function subtasksHTML(subtask) {
             <input type="checkbox" >
             <span onclick="checkSubtask(${subtask.id})" class="checkmark"></span>
         </label>
-        <p class="subtask" id="subtask${subtask.id}">${subtask.subtask}</p>
+        <p class="subtask" id="subtask${subtask.id}">${subtask.title}</p>
     </div> 
     `
 }
