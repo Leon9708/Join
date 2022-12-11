@@ -1,31 +1,99 @@
+async function getTodos() {
+    try {
+        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        const tasks = await responseServer.json();
+        console.log(tasks);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function postTodo(task) {
+    const data = JSON.stringify(task);
+    console.log('data', data)
+    fetch('https://jonas34.pythonanywhere.com/todos/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+}
+
+async function getTodos() {
+    try {
+        let responseServer = await fetch('http://127.0.0.1:8000/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        const tasks = await responseServer.json();
+        console.log(tasks);
+    } catch (error) {
+        console.error(error)
+    }
+}
+async function getCategories() {
+    try {
+        let responseServer = await fetch('http://127.0.0.1:8000/categories/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        const tasks = await responseServer.json();
+        console.log(tasks);
+    } catch (error) {
+        console.error(error)
+    }
+}
+async function getSubtasks() {
+    try {
+        let responseServer = await fetch('http://127.0.0.1:8000/subtasks/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        const tasks = await responseServer.json();
+        console.log(tasks);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 const dropdown = document.getElementById("dropdown");
 const dropdown2 = document.getElementById("dropdown2");
-let priority;
-let colorID;
+
 let categoryLabels = []
+let colorID;
+let priority;
 let subtaskID = 0;
 let subtasks = []
-
 
 function createTask() {
     let title = document.getElementById('inputTitle');
     let description = document.getElementById('inputDescription');
-    let category = document.getElementById('selectedLabel').innerText;
+    let user = document.getElementById('selectedUser').innerText;
     let due_date = document.getElementById('inputDate');
-    let label = categoryLabels.filter(function(ele) {
-        return ele.label === category
+    let categoryLabel = document.getElementById('selectedLabel').innerText;
+    let category = categoryLabels.filter(function(ele) {
+        return ele.label == categoryLabel
     })
-    let color = label.color;
-    let task = {
+    let task = [{
+        "id": 1,
         "title": title.value,
         "description": description.value,
         "categories": [{
-            "title": label,
-            "color": color
+            "id": category[0].id,
+            "title": category[0].label,
+            "color": category[0].color
         }],
-        "prority": priority,
+        "priority": priority,
+        "user": user,
         "due_date": due_date.value,
-    }
+        "status": "To do",
+        "subtasks": subtasks
+    }]
+    postTodo(task);
+    console.log(task)
     title.value = "";
     description.value = "";
     due_date.value = "";
@@ -34,7 +102,7 @@ function createTask() {
     document.getElementById('selectedUser').innerHTML = `Select user`;
 }
 
-//first Select section
+// category selection
 
 function selectTitle(id) {
     if (id === 'newCategory') {
@@ -61,7 +129,9 @@ function openInputCategory() {
 
 function createNewCategory() {
     let newLabel = document.querySelector('.input_category').value;
-    categoryLabels.push({ "label": newLabel, "color": colorID });
+    let id = categoryLabels.length + 1;
+    categoryLabels.push({ "id": id, "label": newLabel, "color": colorID });
+    console.log('categoryLabels', categoryLabels)
     unsetNewCategory();
 
     let newCategory = categoryLabels[categoryLabels.length - 1].label;
@@ -74,7 +144,7 @@ function createNewCategory() {
 function addCategory() {
     document.getElementById('addCategory').innerHTML = "";
     for (let i = 0; i < categoryLabels.length; i++) {
-        document.getElementById('addCategory').innerHTML += addCategoryHTML()
+        document.getElementById('addCategory').innerHTML += addCategoryHTML(i)
         document.getElementById('categoryelement_color' + i).style.backgroundColor = categoryLabels[i].color;
     }
 }
@@ -137,7 +207,11 @@ function loadUser() {
     }
 }
 
-//choose Prio 
+// input date
+
+inputDate.max = new Date().toISOString().split("T")[0];
+
+// choose Prio
 
 function selectUrgency(prio) {
     if (prio === 'urgent') {
@@ -184,14 +258,15 @@ function openSubtask() {
 }
 
 function newSubtask() {
-    let newSubtask = document.querySelector('.input_subtask').value;
-    if (newSubtask.length >= 3) {
+    let newSubtask = document.querySelector('.input_subtask')
+    let newSubtaskvalue = newSubtask.value;
+    if (newSubtaskvalue.length >= 3) {
         unsetSubtaskHTML();
         subtaskID++;
-        console.log('newSubtask', newSubtask)
         subtasks.push({
             "id": subtaskID,
-            "subtask": newSubtask
+            "subtask": newSubtaskvalue,
+            "done": false
         })
         loadSubtask();
     }
@@ -203,6 +278,19 @@ function loadSubtask() {
         const subtask = subtasks[i];
         document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtask);
     }
+}
+
+function checkSubtask(id) {
+    let subtask = subtasks.filter(function(ele) {
+        return ele.id === id;
+    })
+    if (subtask[0].done === false) {
+        subtask[0].done = true
+    } else {
+        subtask[0].done = false
+    }
+
+
 }
 
 function createInputSubtask() {
@@ -274,7 +362,7 @@ function unsetNewCategoryHTML() {
 
 }
 
-function addCategoryHTML() {
+function addCategoryHTML(i) {
     return `
         <div id="${categoryLabels[i].label}" onclick="selectTitle(this.id)" class="box_categoryelement">
         <input class="option">
@@ -313,11 +401,11 @@ function unsetSubtaskHTML() {
 function subtasksHTML(subtask) {
     return `  
     <div class="box_create_subtask">
-        <label class="box_checkbox">
+        <label   class="box_checkbox">
             <input type="checkbox" >
-            <span class="checkmark"></span>
+            <span onclick="checkSubtask(${subtask.id})" class="checkmark"></span>
         </label>
-        <p class="subtask" id="subtask${subtask.subtaskID}">${subtask.subtask}</p>
+        <p class="subtask" id="subtask${subtask.id}">${subtask.subtask}</p>
     </div> 
     `
 }
