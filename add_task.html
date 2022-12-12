@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="add_task.css">
     <script src="template.js"></script>
     <script src="contacts.js"></script>
-    <script src="backend.js"></script>
 </head>
 
 <body onload="includeHTML();loadUser()">
@@ -50,7 +49,7 @@
             <div class="select_group_2">
                 <label class="label_select " for="button">Assigned to</label>
                 <div id="placeSelectCategory2 " class="place_select_category">
-                    <button onclick="toggleDropdown2()" id="selectButtonTask2" class="select_button_task ">
+                    <button onclick="toggleDropdownUser()" id="selectButtonTask2" class="select_button_task ">
                         <span class="select_label" id="selectedUser">Select user</span>
                         <div id="arrow " class="arrow "></div>
                     </button>

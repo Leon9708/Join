@@ -25,42 +25,8 @@ async function postTodo(task) {
         .then(response => console.log(JSON.stringify(response)))
 }
 
-async function getTodos() {
-    try {
-        let responseServer = await fetch('http://127.0.0.1:8000/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        const tasks = await responseServer.json();
-        console.log(tasks);
-    } catch (error) {
-        console.error(error)
-    }
-}
-async function getCategories() {
-    try {
-        let responseServer = await fetch('http://127.0.0.1:8000/categories/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        const tasks = await responseServer.json();
-        console.log(tasks);
-    } catch (error) {
-        console.error(error)
-    }
-}
-async function getSubtasks() {
-    try {
-        let responseServer = await fetch('http://127.0.0.1:8000/subtasks/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        const tasks = await responseServer.json();
-        console.log(tasks);
-    } catch (error) {
-        console.error(error)
-    }
-}
-
 const dropdown = document.getElementById("dropdown");
-const dropdown2 = document.getElementById("dropdown2");
+const dropdownUser = document.getElementById("dropdown2");
 
 let categoryLabels = []
 let colorID;
@@ -78,7 +44,6 @@ function createTask() {
         return ele.label == categoryLabel
     })
     let task = [{
-        "id": 1,
         "title": title.value,
         "description": description.value,
         "categories": [{
@@ -89,7 +54,7 @@ function createTask() {
         "priority": priority,
         "user": user,
         "due_date": due_date.value,
-        "status": "To do",
+        "status": 1,
         "subtasks": subtasks
     }]
     postTodo(task);
@@ -150,7 +115,7 @@ function addCategory() {
 }
 
 function toggleDropdown() {
-    if (dropdown2.classList.contains('hidden')) {
+    if (dropdownUser.classList.contains('hidden')) {
         dropdown.classList.toggle("hidden");
     }
 }
@@ -181,9 +146,9 @@ function clickedColor(id) {
 
 //user selection
 
-function toggleDropdown2() {
+function toggleDropdownUser() {
     if (dropdown.classList.contains('hidden')) {
-        dropdown2.classList.toggle('hidden');
+        dropdownUser.classList.toggle('hidden');
     }
 }
 
@@ -192,7 +157,7 @@ function selectUser(e) {
         return ele.id === +e
     })
     document.getElementById('selectedUser').innerHTML = `${selectedUser[0].firstName} ${selectedUser[0].name}`;
-    toggleDropdown2();
+    toggleDropdownUser();
 };
 
 function loadUser() {
@@ -231,7 +196,7 @@ function urgent() {
     document.getElementById('urgentButton').classList.toggle('box_button_task_u');
     urgent.classList.toggle('urgency_img_u_clicked_task');
     urgent.classList.toggle('urgency_img_u_task');
-    priority = "urgent";
+    priority = "H";
 }
 
 function medium() {
@@ -239,7 +204,7 @@ function medium() {
     document.getElementById('mediumButton').classList.toggle('box_button_task_m');
     medium.classList.toggle('urgency_img_m_clicked_task');
     medium.classList.toggle('urgency_img_m_task');
-    priority = "medium";
+    priority = "M";
 }
 
 function low() {
@@ -247,7 +212,7 @@ function low() {
     document.getElementById('lowButton').classList.toggle('box_button_task_l');
     low.classList.toggle('urgency_img_l_clicked_task');
     low.classList.toggle('urgency_img_l_task');
-    priority = "low";
+    priority = "L";
 }
 
 //subtask
@@ -262,9 +227,7 @@ function newSubtask() {
     let newSubtaskvalue = newSubtask.value;
     if (newSubtaskvalue.length >= 3) {
         unsetSubtaskHTML();
-        subtaskID++;
         subtasks.push({
-            "id": subtaskID,
             "title": newSubtaskvalue,
             "done": false
         })
