@@ -25,6 +25,29 @@ async function postTodo(task) {
         .then(response => console.log(JSON.stringify(response)))
 }
 
+async function getCategories() {
+    try {
+        let responseServer = await fetch('https://jonas34.pythonanywhere.com/categories/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        const categoriesBD = await responseServer.json();
+        console.log(tasks);
+    } catch (error) {
+        console.error(error)
+    }
+}
+async function getSubtasks() {
+    try {
+        let responseServer = await fetch('https://jonas34.pythonanywhere.com/subtasks/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        subtasks = await responseServer.json();
+        console.log(subtasks);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 const dropdown = document.getElementById("dropdown");
 const dropdownUser = document.getElementById("dropdown2");
 
@@ -32,18 +55,19 @@ let categoryLabels = []
 let colorID;
 let priority;
 let subtaskID = 0;
-let subtasks = []
+let subtasks;
+let date;
 
 function createTask() {
     let title = document.getElementById('inputTitle');
     let description = document.getElementById('inputDescription');
     let user = document.getElementById('selectedUser').innerText;
-    let due_date = document.getElementById('inputDate');
     let categoryLabel = document.getElementById('selectedLabel').innerText;
     let category = categoryLabels.filter(function(ele) {
         return ele.label == categoryLabel
     })
-    let task = [{
+    setDate();
+    let task = {
         "title": title.value,
         "description": description.value,
         "categories": [{
@@ -53,19 +77,24 @@ function createTask() {
         }],
         "priority": priority,
         "user": user,
-        "due_date": due_date.value,
+        "due_date": date,
         "status": 1,
         "subtasks": subtasks
-    }]
+    }
     postTodo(task);
-    console.log(task)
+    setBackFormular(title, description)
+}
+
+function setBackFormular(title, description) {
     title.value = "";
     description.value = "";
-    due_date.value = "";
+    document.getElementById('inputDate').value = "";
     unsetPrioHTML();
     unsetNewCategory();
     document.getElementById('selectedUser').innerHTML = `Select user`;
 }
+
+
 
 // category selection
 
@@ -176,6 +205,14 @@ function loadUser() {
 
 inputDate.max = new Date().toISOString().split("T")[0];
 
+function setDate() {
+    let due_date_rev = document.getElementById('inputDate').value;
+    let year = due_date_rev.substr(0, 4)
+    let month = due_date_rev.substr(5, 2)
+    let day = due_date_rev.substr(8, 2)
+    date = day + "/" + month + "/" + year
+}
+
 // choose prio
 
 function selectUrgency(prio) {
@@ -225,18 +262,22 @@ function openSubtask() {
 function newSubtask() {
     let newSubtask = document.querySelector('.input_subtask')
     let newSubtaskvalue = newSubtask.value;
+    let status = false;
+    let statusStr = toString(status);
     if (newSubtaskvalue.length >= 3) {
         unsetSubtaskHTML();
         subtasks.push({
             "title": newSubtaskvalue,
-            "done": false
+            "done": statusStr
         })
-        loadSubtask();
+
     }
 }
 
 function loadSubtask() {
+    getSubtasks();
     document.getElementById('boxSubtasks').innerHTML = "";
+    console.log(subtasks)
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
         document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtask);
