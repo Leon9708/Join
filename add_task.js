@@ -3,7 +3,7 @@ async function getTodos() {
         let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
         if (!responseServer.ok)
             throw new Error("Response not ok")
-        const tasks = await responseServer.json();
+        let tasks = await responseServer.json();
         console.log(tasks);
     } catch (error) {
         console.error(error)
@@ -30,8 +30,8 @@ async function getCategories() {
         let responseServer = await fetch('https://jonas34.pythonanywhere.com/categories/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
         if (!responseServer.ok)
             throw new Error("Response not ok")
-        const categoriesBD = await responseServer.json();
-        console.log(tasks);
+        categoryLabels = await responseServer.json();
+        console.log(categoryLabels);
     } catch (error) {
         console.error(error)
     }
@@ -51,12 +51,20 @@ async function getSubtasks() {
 const dropdown = document.getElementById("dropdown");
 const dropdownUser = document.getElementById("dropdown2");
 
-let categoryLabels = []
+let categoryLabels;
 let colorID;
 let priority;
 let subtaskID = 0;
 let subtasks;
 let date;
+
+async function render() {
+    await getSubtasks();
+    await getCategories();
+    loadSubtask();
+    loadCategory();
+    loadUser();
+}
 
 function createTask() {
     let title = document.getElementById('inputTitle');
@@ -64,7 +72,7 @@ function createTask() {
     let user = document.getElementById('selectedUser').innerText;
     let categoryLabel = document.getElementById('selectedLabel').innerText;
     let category = categoryLabels.filter(function(ele) {
-        return ele.label == categoryLabel
+        return ele.title == categoryLabel
     })
     setDate();
     let task = {
@@ -72,7 +80,7 @@ function createTask() {
         "description": description.value,
         "categories": [{
             "id": category[0].id,
-            "title": category[0].label,
+            "title": category[0].title,
             "color": category[0].color
         }],
         "priority": priority,
@@ -94,8 +102,6 @@ function setBackFormular(title, description) {
     document.getElementById('selectedUser').innerHTML = `Select user`;
 }
 
-
-
 // category selection
 
 function selectTitle(id) {
@@ -109,9 +115,9 @@ function selectTitle(id) {
 
 function selectedCategory(id) {
     let selectedCategory = categoryLabels.filter(function(ele) {
-        return ele.label === id
+        return ele.title === id
     })
-    document.getElementById('selectedLabel').innerHTML = selectedCategory[0].label;
+    document.getElementById('selectedLabel').innerHTML = selectedCategory[0].title;
     document.getElementById('selectedColor').style.backgroundColor = selectedCategory[0].color;
 }
 
@@ -124,18 +130,17 @@ function openInputCategory() {
 function createNewCategory() {
     let newLabel = document.querySelector('.input_category').value;
     let id = categoryLabels.length + 1;
-    categoryLabels.push({ "id": id, "label": newLabel, "color": colorID });
-    console.log('categoryLabels', categoryLabels)
+    categoryLabels.push({ "id": id, "title": newLabel, "color": colorID });
     unsetNewCategory();
 
-    let newCategory = categoryLabels[categoryLabels.length - 1].label;
+    let newCategory = categoryLabels[categoryLabels.length - 1].title;
     let newColor = categoryLabels[categoryLabels.length - 1].color;
     document.getElementById('selectedLabel').innerHTML = newCategory;
     document.getElementById('selectedColor').style.backgroundColor = newColor;
-    addCategory();
+    loadCategory();
 }
 
-function addCategory() {
+function loadCategory() {
     document.getElementById('addCategory').innerHTML = "";
     for (let i = 0; i < categoryLabels.length; i++) {
         document.getElementById('addCategory').innerHTML += addCategoryHTML(i)
@@ -203,7 +208,20 @@ function loadUser() {
 
 // input date
 
-inputDate.max = new Date().toISOString().split("T")[0];
+
+inputDate.min = new Date().toISOString().split("T")[0];
+
+let today = new Date();
+let future = document.getElementById('inputDate').value;
+let dayInFuture = function() {
+    if (future >= today) {
+        return true;
+    } else {
+        return false;
+    }
+}
+console.log('dayInFuture', dayInFuture)
+
 
 function setDate() {
     let due_date_rev = document.getElementById('inputDate').value;
@@ -270,14 +288,12 @@ function newSubtask() {
             "title": newSubtaskvalue,
             "done": statusStr
         })
-
+        loadSubtask();
     }
 }
 
 function loadSubtask() {
-    getSubtasks();
     document.getElementById('boxSubtasks').innerHTML = "";
-    console.log(subtasks)
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
         document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtask);
@@ -370,9 +386,9 @@ function unsetNewCategoryHTML() {
 
 function addCategoryHTML(i) {
     return `
-        <div id="${categoryLabels[i].label}" onclick="selectTitle(this.id)" class="box_categoryelement">
+        <div id="${categoryLabels[i].title}" onclick="selectTitle(this.id)" class="box_categoryelement">
         <input class="option">
-            <label  class="select-item">${categoryLabels[i].label}</label>
+            <label  class="select-item">${categoryLabels[i].title}</label>
             <div id="categoryelement_color${i}" class="button_color categoryelement_color"></div>
         </div>`
 }

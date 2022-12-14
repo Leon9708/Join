@@ -68,7 +68,7 @@ select {
     font-size: 3.25rem;
 }
 
-main {
+.main {
     display: flex;
     gap: 4rem;
 }
