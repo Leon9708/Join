@@ -10,21 +10,6 @@ async function getTodos() {
     }
 }
 
-async function postTodo(task) {
-    const data = JSON.stringify(task);
-    console.log('data', data)
-    fetch('https://jonas34.pythonanywhere.com/todos/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: data
-        })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
-}
-
 async function getCategories() {
     try {
         let responseServer = await fetch('https://jonas34.pythonanywhere.com/categories/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
@@ -48,6 +33,58 @@ async function getSubtasks() {
     }
 }
 
+async function postTodo(task) {
+    const data = JSON.stringify(task);
+    console.log('data', data)
+    fetch('https://jonas34.pythonanywhere.com/todos/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+}
+
+async function postSubtask(title, done) {
+    const data = JSON.stringify({
+        "title": title,
+        "color": done
+    });
+    console.log('data', data)
+    fetch('https://jonas34.pythonanywhere.com/subtasks/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+}
+
+async function postCategory(title, color) {
+    const data = JSON.stringify({
+        "title": title,
+        "color": color
+    });
+    console.log(data)
+    fetch('http://127.0.0.1:8000/categories/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+}
+
+
 const dropdown = document.getElementById("dropdown");
 const dropdownUser = document.getElementById("dropdown2");
 
@@ -57,6 +94,8 @@ let priority;
 let subtaskID = 0;
 let subtasks;
 let date;
+let chosenSubtasks = [];
+
 
 async function render() {
     await getSubtasks();
@@ -64,6 +103,14 @@ async function render() {
     loadSubtask();
     loadCategory();
     loadUser();
+}
+
+function checkValdation() {
+    if (isInTheFuture() = true) {
+        createTask();
+    } else if (isInTheFuture() = false) {
+        alert('check if date is in Future')
+    }
 }
 
 function createTask() {
@@ -74,6 +121,7 @@ function createTask() {
     let category = categoryLabels.filter(function(ele) {
         return ele.title == categoryLabel
     })
+
     setDate();
     let task = {
         "title": title.value,
@@ -87,10 +135,10 @@ function createTask() {
         "user": user,
         "due_date": date,
         "status": 1,
-        "subtasks": subtasks
+        "subtasks": chosenSubtasks
     }
     postTodo(task);
-    setBackFormular(title, description)
+    /*  setBackFormular(title, description) */
 }
 
 function setBackFormular(title, description) {
@@ -137,6 +185,7 @@ function createNewCategory() {
     let newColor = categoryLabels[categoryLabels.length - 1].color;
     document.getElementById('selectedLabel').innerHTML = newCategory;
     document.getElementById('selectedColor').style.backgroundColor = newColor;
+    postCategory(newLabel, colorID);
     loadCategory();
 }
 
@@ -211,24 +260,12 @@ function loadUser() {
 
 inputDate.min = new Date().toISOString().split("T")[0];
 
-let today = new Date();
-let future = document.getElementById('inputDate').value;
-let dayInFuture = function() {
-    if (future >= today) {
-        return true;
-    } else {
-        return false;
-    }
-}
-console.log('dayInFuture', dayInFuture)
-
-
 function setDate() {
     let due_date_rev = document.getElementById('inputDate').value;
     let year = due_date_rev.substr(0, 4)
     let month = due_date_rev.substr(5, 2)
     let day = due_date_rev.substr(8, 2)
-    date = day + "/" + month + "/" + year
+    date = month + "/" + day + "/" + year
 }
 
 // choose prio
@@ -278,39 +315,42 @@ function openSubtask() {
 }
 
 function newSubtask() {
-    let newSubtask = document.querySelector('.input_subtask')
-    let newSubtaskvalue = newSubtask.value;
+    let newSubtask = document.querySelector('.input_subtask');
     let status = false;
-    let statusStr = toString(status);
-    if (newSubtaskvalue.length >= 3) {
-        unsetSubtaskHTML();
-        subtasks.push({
-            "title": newSubtaskvalue,
-            "done": statusStr
-        })
-        loadSubtask();
-    }
+    let statusStr = status.toString();
+    subtasks.push({
+        "title": newSubtask.value,
+        "status": statusStr
+    });
+    postSubtask(newSubtask.value, statusStr);
+    loadSubtask();
+    unsetSubtaskHTML();
 }
 
 function loadSubtask() {
     document.getElementById('boxSubtasks').innerHTML = "";
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
-        document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtask);
+
+        document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtask, i);
     }
+    console.log(subtasks)
 }
 
-function checkSubtask(id) {
-    let subtask = subtasks.filter(function(ele) {
-        return ele.id === id;
-    })
-    if (subtask[0].done === false) {
-        subtask[0].done = true
+function checkedSubtask(id) {
+    if (document.getElementById(id).checked) {
+        let subtask = subtasks.filter(function(ele) {
+            return ele.title === document.getElementById('subtask' + id).innerHTML;
+        });
+        chosenSubtasks.push(subtask[0]);
     } else {
-        subtask[0].done = false
+        let chosenSubtask = chosenSubtasks.filter(function(ele) {
+            return ele.title === document.getElementById('subtask' + id).innerHTML;
+        });
+        chosenSubtasks.splice(chosenSubtask);
     }
 
-
+    console.log(chosenSubtasks)
 }
 
 function createInputSubtask() {
@@ -328,15 +368,15 @@ function createInputSubtask() {
 
 function unsetPrioHTML() {
     document.getElementById('containerButtonsTask').innerHTML = `
-    <button id="urgentButton" onclick="selectUrgency('urgent')" class="box_button_task ">
+    <button type="button" id="urgentButton" onclick="selectUrgency('urgent')" class="box_button_task ">
         <p class="text_urgency_task">Urgent</p>
         <div id="prioUrgent" class="urgency_img_u_task urgency_img_task"></div>
     </button>
-    <button id="mediumButton" onclick="selectUrgency('medium')" class="box_button_task  ">
+    <button type="button" id="mediumButton" onclick="selectUrgency('medium')" class="box_button_task  ">
         <p class="text_urgency_task ">Medium</p>
     <div id="prioMedium" class="urgency_img_m_task urgency_img_task"></div>
     </button>
-    <button id="lowButton" onclick="selectUrgency('low')" class="box_button_task ">
+    <button type="button" id="lowButton" onclick="selectUrgency('low')" class="box_button_task ">
         <p class="text_urgency_task ">Low</p>
     <div id="prioLow" class="urgency_img_l_task urgency_img_task"></div>
     </button>   `
@@ -348,11 +388,11 @@ function generateNewCategoryHTML() {
         <div class="box_input_category">
             <div id="BoxInputCategory" class="place_input_category"></div>
             <div class="box_buttons_input_category">
-                <button onclick="unsetNewCategory()"  class="button_input_category">
+                <button type="button" onclick="unsetNewCategory()"  class="button_input_category">
                     <img class="img_button_input_category" src="assets/img/cross_task.png" alt="#">
                 </button>
                 <div class="seperation_buttons_input_category"></div>
-                <button onclick="createNewCategory()" class="button_input_category">
+                <button type="button" onclick="createNewCategory()" class="button_input_category">
                     <img class="img_button_input_category" src="assets/img/check_task.png" alt="#">
                 </button>
             </div>
@@ -365,18 +405,18 @@ function generateNewCategoryHTML() {
 
 function generateBoxButtonsHTML() {
     return `     
-    <button onclick="clickedColor(this.id)" id="blue" class="button_color color_1"></button>
-    <button onclick="clickedColor(this.id)" id="red" class="button_color color_2"></button>
-    <button onclick="clickedColor(this.id)" id="green" class="button_color color_3"></button>
-    <button onclick="clickedColor(this.id)" id="orange" class="button_color color_4"></button>
-    <button onclick="clickedColor(this.id)" id="purple" class="button_color color_5"></button>
-    <button onclick="clickedColor(this.id)" id="yellow" class="button_color color_6"></button>`
+    <button type="button" onclick="clickedColor(this.id)" id="blue" class="button_color color_1"></button>
+    <button type="button" onclick="clickedColor(this.id)" id="red" class="button_color color_2"></button>
+    <button type="button" onclick="clickedColor(this.id)" id="green" class="button_color color_3"></button>
+    <button type="button" onclick="clickedColor(this.id)" id="orange" class="button_color color_4"></button>
+    <button type="button" onclick="clickedColor(this.id)" id="purple" class="button_color color_5"></button>
+    <button type="button" onclick="clickedColor(this.id)" id="yellow" class="button_color color_6"></button>`
 }
 
 
 function unsetNewCategoryHTML() {
     return `    
-    <button onclick="toggleDropdown()" id="selectButtonTask" class="select_button_task">
+    <button type="button" onclick="toggleDropdown()" id="selectButtonTask" class="select_button_task">
         <span class="select_label" id="selectedLabel">Select task category</span>
         <div id="selectedColor" class="button_color"></div>
         <div id="arrow" class="arrow"></div>
@@ -398,11 +438,11 @@ function openSubtaskHTML() {
     <div class="box_input_category">
         <div id="subtaskInput" class="place_input_category"></div>
         <div class="box_buttons_input_category">
-            <button onclick="unsetSubtaskHTML()"  class="button_input_category">
+            <button type="button" onclick="unsetSubtaskHTML()"  class="button_input_category">
                 <img class="img_button_input_category" src="assets/img/cross_task.png" alt="#">
             </button>
             <div class="seperation_buttons_input_category"></div>
-            <button onclick="newSubtask()" class="button_input_category">
+            <button type="button" onclick="newSubtask()" class="button_input_category">
                 <img class="img_button_input_category" src="assets/img/check_task.png" alt="#">
             </button>
         </div>
@@ -411,7 +451,7 @@ function openSubtaskHTML() {
 
 function unsetSubtaskHTML() {
     document.getElementById('containerSubtask').innerHTML = `
-        <button onclick="openSubtask()" id="boxSubtaskInput" class="box_subtask_input">
+        <button type="button" onclick="openSubtask()" id="boxSubtaskInput" class="box_subtask_input">
             <input  disabled="disabled" placeholder="Add new subtask" id="inputSubtask" type="text" class="input_subtask">
             <div  class="button_subtask_input">
                 <img class="img_subtask_task" src="./assets/img/plus_task.png" alt="#">
@@ -420,14 +460,14 @@ function unsetSubtaskHTML() {
    `
 }
 
-function subtasksHTML(subtask) {
+function subtasksHTML(subtask, i) {
     return `  
     <div class="box_create_subtask">
         <label   class="box_checkbox">
-            <input type="checkbox" >
-            <span onclick="checkSubtask(${subtask.id})" class="checkmark"></span>
+            <input onclick="checkedSubtask(this.id)" id="${i}" type="checkbox" >
+            <span  class="checkmark"></span>
         </label>
-        <p class="subtask" id="subtask${subtask.id}">${subtask.title}</p>
+        <p class="subtask" id="subtask${i}">${subtask.title}</p>
     </div> 
     `
 }
