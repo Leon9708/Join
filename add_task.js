@@ -51,7 +51,7 @@ async function postTodo(task) {
 async function postSubtask(title, done) {
     const data = JSON.stringify({
         "title": title,
-        "color": done
+        "done": done
     });
     console.log('data', data)
     fetch('https://jonas34.pythonanywhere.com/subtasks/', {
@@ -72,7 +72,7 @@ async function postCategory(title, color) {
         "color": color
     });
     console.log(data)
-    fetch('http://127.0.0.1:8000/categories/', {
+    fetch('https://jonas34.pythonanywhere.com/categories/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -315,16 +315,31 @@ function openSubtask() {
 }
 
 function newSubtask() {
-    let newSubtask = document.querySelector('.input_subtask');
+    let newSubtask = document.querySelector('.input_subtask').value;
     let status = false;
     let statusStr = status.toString();
     subtasks.push({
-        "title": newSubtask.value,
+        "title": newSubtask,
         "status": statusStr
     });
-    postSubtask(newSubtask.value, statusStr);
-    loadSubtask();
+    postSubtask(newSubtask, statusStr);
+
+    document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtasks[subtasks.length - 1], (subtasks.length - 1));
     unsetSubtaskHTML();
+}
+
+function filterSubtaskDuplicates() {
+    let newSubtask = document.querySelector('.input_subtask').value
+    const filteredSubtask = subtasks.filter((subtask) => {
+        return subtask.title == newSubtask
+    }).length > 0
+    if (filteredSubtask) {
+        alert('Subtask already exsits')
+        unsetSubtaskHTML();
+    } else {
+        newSubtask(newSubtask)
+    }
+
 }
 
 function loadSubtask() {
@@ -338,7 +353,8 @@ function loadSubtask() {
 }
 
 function checkedSubtask(id) {
-    if (document.getElementById(id).checked) {
+    let checkbox = document.getElementById(id);
+    if (checkbox.checked === true) {
         let subtask = subtasks.filter(function(ele) {
             return ele.title === document.getElementById('subtask' + id).innerHTML;
         });
@@ -347,9 +363,9 @@ function checkedSubtask(id) {
         let chosenSubtask = chosenSubtasks.filter(function(ele) {
             return ele.title === document.getElementById('subtask' + id).innerHTML;
         });
-        chosenSubtasks.splice(chosenSubtask);
+        let index = chosenSubtasks.indexOf(chosenSubtask[0])
+        chosenSubtasks.splice(index, 1)
     }
-
     console.log(chosenSubtasks)
 }
 
@@ -442,7 +458,7 @@ function openSubtaskHTML() {
                 <img class="img_button_input_category" src="assets/img/cross_task.png" alt="#">
             </button>
             <div class="seperation_buttons_input_category"></div>
-            <button type="button" onclick="newSubtask()" class="button_input_category">
+            <button type="button" onclick="filterSubtaskDuplicates()" class="button_input_category">
                 <img class="img_button_input_category" src="assets/img/check_task.png" alt="#">
             </button>
         </div>
@@ -461,9 +477,9 @@ function unsetSubtaskHTML() {
 }
 
 function subtasksHTML(subtask, i) {
-    return `  
+    return `    
     <div class="box_create_subtask">
-        <label   class="box_checkbox">
+        <label class="box_checkbox">
             <input onclick="checkedSubtask(this.id)" id="${i}" type="checkbox" >
             <span  class="checkmark"></span>
         </label>
