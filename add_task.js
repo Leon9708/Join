@@ -48,50 +48,12 @@ async function postTodo(task) {
         .then(response => console.log(JSON.stringify(response)))
 }
 
-async function postSubtask(title, done) {
-    const data = JSON.stringify({
-        "title": title,
-        "done": done
-    });
-    console.log('data', data)
-    fetch('https://jonas34.pythonanywhere.com/subtasks/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: data
-        })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
-}
-
-async function postCategory(title, color) {
-    const data = JSON.stringify({
-        "title": title,
-        "color": color
-    });
-    console.log(data)
-    fetch('https://jonas34.pythonanywhere.com/categories/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: data
-        })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
-}
-
-
 const dropdown = document.getElementById("dropdown");
 const dropdownUser = document.getElementById("dropdown2");
 
 let categoryLabels;
 let colorID;
 let priority;
-let subtaskID = 0;
 let subtasks;
 let date;
 let chosenSubtasks = [];
@@ -106,30 +68,33 @@ async function render() {
 }
 
 function checkValdation() {
-    if (isInTheFuture() = true) {
-        createTask();
-    } else if (isInTheFuture() = false) {
-        alert('check if date is in Future')
-    }
-}
-
-function createTask() {
-    let title = document.getElementById('inputTitle');
-    let description = document.getElementById('inputDescription');
     let user = document.getElementById('selectedUser').innerText;
     let categoryLabel = document.getElementById('selectedLabel').innerText;
-    let category = categoryLabels.filter(function(ele) {
-        return ele.title == categoryLabel
+    let filteredLabels = categoryLabels.filter((ele) => {
+        return ele.title === categoryLabel;
+    });
+    let filteredcontact = contacts.filter((ele) => {
+        return user.includes(ele.name)
     })
+    if (filteredLabels.length > 0 && filteredcontact.length > 0 && priority.length > 0 && chosenSubtasks.length > 0) {
+        createTask(user, filteredLabels);
+    } else {
+        alert("unvalid Request, try again.")
+    }
 
+}
+
+function createTask(user, filteredLabels) {
+    let title = document.getElementById('inputTitle');
+    let description = document.getElementById('inputDescription');
     setDate();
     let task = {
         "title": title.value,
         "description": description.value,
         "categories": [{
-            "id": category[0].id,
-            "title": category[0].title,
-            "color": category[0].color
+            "id": filteredLabels[0].id,
+            "title": filteredLabels[0].title,
+            "color": filteredLabels[0].color
         }],
         "priority": priority,
         "user": user,
@@ -138,16 +103,18 @@ function createTask() {
         "subtasks": chosenSubtasks
     }
     postTodo(task);
-    /*  setBackFormular(title, description) */
+    setBackFormular(title, description)
 }
 
 function setBackFormular(title, description) {
     title.value = "";
     description.value = "";
     document.getElementById('inputDate').value = "";
+    document.getElementById('selectedUser').innerHTML = `Select user`;
     unsetPrioHTML();
     unsetNewCategory();
-    document.getElementById('selectedUser').innerHTML = `Select user`;
+    loadSubtask()
+
 }
 
 // category selection
@@ -185,7 +152,6 @@ function createNewCategory() {
     let newColor = categoryLabels[categoryLabels.length - 1].color;
     document.getElementById('selectedLabel').innerHTML = newCategory;
     document.getElementById('selectedColor').style.backgroundColor = newColor;
-    postCategory(newLabel, colorID);
     loadCategory();
 }
 
@@ -217,6 +183,7 @@ function createInput() {
     x.setAttribute('maxLength', '25');
     x.setAttribute('minLength', '3')
     x.setAttribute('id', 'inputCategory')
+    x.setAttribute('name', 'newCategory')
     document.querySelector('.place_input_category').appendChild(x);
 }
 
@@ -314,16 +281,13 @@ function openSubtask() {
     createInputSubtask();
 }
 
-function newSubtask() {
-    let newSubtask = document.querySelector('.input_subtask').value;
+function CreateNewSubtask(newSubtask) {
     let status = false;
     let statusStr = status.toString();
     subtasks.push({
         "title": newSubtask,
         "status": statusStr
     });
-    postSubtask(newSubtask, statusStr);
-
     document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtasks[subtasks.length - 1], (subtasks.length - 1));
     unsetSubtaskHTML();
 }
@@ -337,7 +301,7 @@ function filterSubtaskDuplicates() {
         alert('Subtask already exsits')
         unsetSubtaskHTML();
     } else {
-        newSubtask(newSubtask)
+        CreateNewSubtask(newSubtask)
     }
 
 }
@@ -349,7 +313,6 @@ function loadSubtask() {
 
         document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtask, i);
     }
-    console.log(subtasks)
 }
 
 function checkedSubtask(id) {
@@ -408,7 +371,7 @@ function generateNewCategoryHTML() {
                     <img class="img_button_input_category" src="assets/img/cross_task.png" alt="#">
                 </button>
                 <div class="seperation_buttons_input_category"></div>
-                <button type="button" onclick="createNewCategory()" class="button_input_category">
+                <button type="submit" name="newCategory" onclick="createNewCategory()" class="button_input_category">
                     <img class="img_button_input_category" src="assets/img/check_task.png" alt="#">
                 </button>
             </div>
