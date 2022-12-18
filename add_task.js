@@ -114,7 +114,6 @@ function setBackFormular(title, description) {
     unsetPrioHTML();
     unsetNewCategory();
     loadSubtask()
-
 }
 
 // category selection

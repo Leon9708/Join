@@ -28,6 +28,7 @@ function displayInfo() {
     filterAwaitingFeedback();
     filterDone();
     filterTodo();
+    showDeadline();
 }
 
 function filterDone() {
@@ -75,16 +76,32 @@ function filterInProgress() {
 }
 
 
-
 function showDeadline() {
-    document.getElementById('showDeadline').innerHTML = showDeadlineHTML();
+    const sortafterDate = tasks.sort(function(a, b) {
+        return new Date(b.date) - new Date(a.date);
+    })
+    const months = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+
+    let closestDate = new Date(sortafterDate[sortafterDate.length - 1].due_date);
+    let closestDateMonth = months[closestDate.getMonth()];
+    let closestDateDay = closestDate.getDay()
+    let closestDateYear = closestDate.getFullYear();
+
+    document.getElementById('displayDate').innerHTML = `${closestDateMonth} ${closestDateDay}, ${closestDateYear}`;
+    showPriority(sortafterDate);
 }
 
-/* function showDeadlineHTML() {
-    return ` 
-    <img class="urgency_logo_summary" src="./assets/img/urgency_high.png" alt="">
-    <div class="box_urgency_info_summary">
-        <p id="urgencyNum" class="urgency_num_summary">1</p>
-        <p id="urgencyText" class="urgency_text_summary">Urgent</p>
-    </div>`
-} */
+function showPriority(sortafterDate) {
+    let prio = sortafterDate[sortafterDate.length - 1].priority
+    if (prio === 'M') {
+        prio = "Medium"
+    } else if (prio === 'L') {
+        prio = "Low"
+    } else if (prio === 'H') {
+        prio = "urgent"
+    }
+
+    document.getElementById('urgencyText').innerHTML = prio
+}
