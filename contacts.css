@@ -31,13 +31,26 @@ h3 {
     padding-left: 22.5rem;
     padding-right: 5.5rem;
     padding-top: 7.5rem;
-    /* background-color: whitesmoke; Farbe anpassen */
     box-shadow: 0px 5px 3px -3px rgba(0, 0, 0, 0.127);
     width: 200px;
-    height: 87vh; /* ?? */
+    height: 87vh;
     overflow: auto;
     display: flex;
-    z-index: -2;
+    /* z-index: -2; */
+}
+
+.contact_card_button {
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 0.6rem;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+} 
+
+.contact_card_button:hover {
+    background-color: #29ABE2;
 }
 
 .contact_list_container {
@@ -50,6 +63,7 @@ h3 {
     flex-direction: column;
     padding-top: 10px;
     padding-bottom: 10px;
+    text-align: left;
 }
 
 .contact_list_img {
@@ -59,13 +73,15 @@ h3 {
     padding: 10px;
     border: 1px solid rgb(82, 84, 82);
     margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contact_list_content {
+    display: flex;
+    align-items: center;
     padding-bottom: 5px;
-}
-
-.container_contacts_right {
 }
 
 .container_contacts_card {
@@ -76,7 +92,7 @@ h3 {
 .container_buttons_bottom_task {
     display: flex;
     justify-content: flex-end;
-    margin-top: 50vh;
+    /* margin-top: 50vh; */
 }
 
 .add_button_contacts {
@@ -135,4 +151,51 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     padding-left: 3rem;
+}
+
+.contact_bg {
+    background-color: rgba (0, 0, 0, 0.2);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact_form {
+    height: 50vh;
+    width: 50vh;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.d_none {
+    display: none;
+}
+
+/* Color Codes */
+.bg_media {
+    background-color: #29ABE2;
+}
+
+.bg_design {
+    background-color: #29e232;
+}
+
+.bg_marketing {
+    background-color: #e229e2;
+}
+
+.bg_sales {
+    background-color: #c9e229;
+}
+
+.bg_none {
+    background-color: #e23b29;
 }

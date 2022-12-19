@@ -16,8 +16,9 @@ let todos = [{
     'title': 'Call Designer',
     'description': 'To this or that...',
     'category': 'Design',
-    'priority': 'urgent',
-    'user': 'Name1',
+    'priority': 'low',
+    'image': 'assets/img/low_task.png',
+    'user': 'Aname',
     'due_date': 0,
     'status': 'open',
 }, {
@@ -25,8 +26,9 @@ let todos = [{
     'title': 'Call Sales',
     'description': 'To this or that...',
     'category': 'Sales',
-    'priority': 'urgent',
-    'user': 'Name2',
+    'priority': 'medium',
+    'image': 'assets/img/medium_task.png',
+    'user': 'Bname',
     'due_date': 0,
     'status': 'feedback',
 }, {
@@ -35,7 +37,8 @@ let todos = [{
     'description': 'To this or that...',
     'category': 'Media',
     'priority': 'urgent',
-    'user': 'Name2',
+    'image': 'assets/img/urgent_task.png',
+    'user': 'Cname',
     'due_date': 0,
     'status': 'progress',
 }, {
@@ -43,8 +46,9 @@ let todos = [{
     'title': 'Call Sales',
     'description': 'To this or that...',
     'category': 'Sales',
-    'priority': 'urgent',
-    'user': 'Name3',
+    'priority': 'low',
+    'image': 'assets/img/low_task.png',
+    'user': 'Dname',
     'due_date': 0,
     'status': 'progress',
 }, {
@@ -52,8 +56,9 @@ let todos = [{
     'title': 'Call Marketing',
     'description': 'To this or that...',
     'category': 'Marketing',
-    'priority': 'urgent',
-    'user': 'Name5',
+    'priority': 'low',
+    'image': 'assets/img/low_task.png',
+    'user': 'Ename',
     'due_date': 0,
     'status': 'progress',
 }, {
@@ -61,8 +66,9 @@ let todos = [{
     'title': 'Call Sales',
     'description': 'To this or that...',
     'category': 'Sales',
-    'priority': 'urgent',
-    'user': 'Name6',
+    'priority': 'low',
+    'image': 'assets/img/low_task.png',
+    'user': 'Fname',
     'due_date': 0,
     'status': 'feedback',
 }, {
@@ -70,8 +76,9 @@ let todos = [{
     'title': 'Call Backoffice',
     'description': 'To this or that...',
     'category': 'Backoffice',
-    'priority': 'urgent',
-    'user': 'Name6',
+    'priority': 'medium',
+    'image': 'assets/img/medium_task.png',
+    'user': 'Gname',
     'due_date': 0,
     'status': 'closed',
 }, {
@@ -79,12 +86,16 @@ let todos = [{
     'title': 'Call Media',
     'description': 'To this or that...',
     'category': 'Media',
-    'priority': 'urgent',
-    'user': 'Name3',
+    'priority': 'medium',
+    'image': 'assets/img/medium_task.png',
+    'user': 'Hname',
     'due_date': 0,
     'status': 'closed'
 }];
 
+let priorities = ['Urgent', 'Medium', 'Low'];
+
+let currentCategory = [];
 
 let currentDraggedElement;
 
@@ -94,7 +105,7 @@ function updateHTML() {
     updateHTMLOpenTasks();
     updateHTMLInProgessTasks(); 
     updateHTMLFeedbackTasks();
-    updateHTMLClosedTasks()
+    updateHTMLClosedTasks();
 }
 
 
@@ -104,7 +115,7 @@ function updateHTMLOpenTasks() {
     document.getElementById('open').innerHTML = '';
     for (let index = 0; index < open.length; index++) {
         const element = open[index];
-        document.getElementById('open').innerHTML += generateTodoHTML(element);
+        document.getElementById('open').innerHTML += generateTodoHTML(element, index);
     }
 }
 
@@ -115,7 +126,7 @@ function updateHTMLInProgessTasks() {
     document.getElementById('progress').innerHTML = '';
     for (let index = 0; index < progress.length; index++) {
         const element = progress[index];
-        document.getElementById('progress').innerHTML += generateTodoHTML(element);
+        document.getElementById('progress').innerHTML += generateTodoHTML(element, index);
     }
 }
 
@@ -126,7 +137,7 @@ function updateHTMLFeedbackTasks() {
     document.getElementById('feedback').innerHTML = '';
     for (let index = 0; index < feedback.length; index++) {
         const element = feedback[index];
-        document.getElementById('feedback').innerHTML += generateTodoHTML(element);
+        document.getElementById('feedback').innerHTML += generateTodoHTML(element, index);
     }
 }
 
@@ -137,7 +148,7 @@ function updateHTMLClosedTasks() {
     document.getElementById('closed').innerHTML = '';
     for (let index = 0; index < closed.length; index++) {
         const element = closed[index];
-        document.getElementById('closed').innerHTML += generateTodoHTML(element);
+        document.getElementById('closed').innerHTML += generateTodoHTML(element, index);
     }
 }
 
@@ -148,16 +159,16 @@ currentDraggedElement = id;
 }
 
 
-function generateTodoHTML(element) {
+function generateTodoHTML(element, index) {
 return `
 <div draggable="true" ondragstart="startDragging(${element['id']})" class="todo">
-    <div class="todo_content">
+    <div onclick="openBoardDetails(${index})" class="todo_content">
         <div class="bg_category" id="checkCategory">${element['category']}</div>
         <div class="bg_title" id="checkTitle"><b>${element['title']}</b></div>
         <div class="bg_description" id="checkDescription">${element['description']}</div>
         <div class="todo_user_priority">
-            <div class="todo_contact_img">AB</div>
-            <div class="bg_priority" id="checkPriority">${element['priority']}</div>
+            <div class="todo_contact_img" id="checkCategory">${element['user'].charAt(0)}</div>
+            <img class="priority_icon" src=${element['image']}>
         </div>
     </div>
 </div>
@@ -186,4 +197,46 @@ document.getElementById(id).classList.add('drag_area_highlight');
 
 function removeHighlight(id) {
 document.getElementById(id).classList.remove('drag_area_highlight');
+}
+
+
+// ??? ////////////////////////////////////
+// Show Task Details
+function openBoardDetails(index){
+    document.getElementById('boardDetails').classList.remove('d_none');
+    let boardContent = document.getElementById('boardContent');
+    boardContent.innerHTML = '';
+    let selectedBoard = todos[index];
+    boardContent.innerHTML += openBoardDetailstHTML(selectedBoard);
+}
+
+
+function openBoardDetailstHTML(selectedBoard) {
+    return `
+    <div><h3>${selectedBoard['user'].charAt(0)}</h3></div>
+    <div><h3>${selectedBoard['user']}</h3></div>
+    <div><h3>${selectedBoard['status']}</h3></div>
+    `
+}
+
+
+// Close Board Details
+function closeBoardDetails() {
+    document.getElementById('boardDetails').classList.add('d_none');
+}
+
+
+// If Category == Media --> classlist.add('bg_media'), etc.
+function matchColorWithCategory() {
+    currentCategory = todos[i]; 
+    let colorMatch = currentCategory['category'];  
+    if (colorMatch == 'Media') {
+        document.getElementById('checkCategory').classList.add('bg_media');
+    } else {
+        document.getElementById('checkCategory').classList.add('bg_marketing');
+    } ; 
+    //let category = document.getElementById('checkCategory');
+    //If (category=='Media') {
+      //  document.getElementById('checkCategory').classList.add('bg_media');
+    //};
 }

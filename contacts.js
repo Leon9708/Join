@@ -43,25 +43,67 @@ function showContacts() {
     for (let i = 0; i < contacts.length; i++) {
         const singleContact = contacts[i];
         contactList.innerHTML += showContactsHTML(singleContact, i);
+        /*showFirstLetterName(i);*/
     }
 }
 
 
 function showContactsHTML(singleContact, i) {
     return `
-    <div class="contact_list_container">
-        <div class="contact_list_img">AB</div>
-        <div class="contact_list">
-            <div class="contact_list_content">
-                <div><b>${singleContact['name']}</b></div>
-            </div>
-            <div class="contact_list_content">
-                <div>${singleContact['email']}</div>
-            </div>
-            <div class="contact_list_content">
-                <div>${singleContact['phone']}</div>
+    <button class="contact_card_button" onclick="showSelectedContact(${i})">
+        <div class="contact_list_container">
+            <div class="contact_list_img"><h3>${singleContact['name'].charAt(0)}</h3></div>
+            <div class="contact_list">
+                <div id="contact" class="contact_list_content">
+                    <div><b>${singleContact['name']}</b></div>
+                </div>
+                <div class="contact_list_content">
+                    <div>${singleContact['email']}</div>
+                </div>
             </div>
         </div>
-    </div>    
+    </button>    
+    `
+}
+
+
+// Show Contact Form to enter new Contact
+function openContactForm(text){
+    document.getElementById('contactForm').classList.remove('d_none');
+    document.getElementById('contactContent').innerHTML = text;
+}
+
+
+function closeContactForm() {
+    document.getElementById('contactForm').classList.add('d_none');
+}
+
+
+// Show SELECTED CONTACT
+function showSelectedContact(i) {
+    let contactCard = document.getElementById('contactCard');
+    contactCard.innerHTML = '';
+    let selectedContact = contacts[i];
+    contactCard.innerHTML += showSelectedContactHTML(selectedContact);
+}
+
+
+function showSelectedContactHTML(selectedContact) {
+    return `
+    <div class="contact_list_container">
+        <div class="contact_list">
+            <div class="contact_list_content">
+                <div class="contact_list_img"><h3>${selectedContact['name'].charAt(0)}</h3></div>
+                <div><h3>${selectedContact['name']}</h3></div>
+            </div>
+            <div><h4>Contact Information</h4></div>
+            <div class="contact_list_content">
+                <div><b>Email: </b>${selectedContact['email']}</div>
+            </div>
+            <div class="contact_list_content">
+                <div><b>Phone: </b>${selectedContact['phone']}</div>
+            </div>
+        </div>
+    </div>        
     `
 }
