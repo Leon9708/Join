@@ -46,6 +46,7 @@ function loginContainer() {
                 </div>
             </form>
         </div>
+        <div id="errorLogin" class="userAlert d-none"> User not found - <br> instead use Guest Log in </div>
     `
 }
 
@@ -75,10 +76,15 @@ function signUpContainer() {
 }
 
 function login() {
-    document.getElementById('contentContainer').innerHTML += `
-        <div class="userAlert"> User not found - <br> instead use Guest Log in </div>
-    `
+    document.getElementById('errorLogin').classList.remove('d-none');
+    
+    setTimeout(() => {
+        document.getElementById('errorLogin').classList.add('d-none');
+    }, 4000)
+    document.getElementById('logInInputMail').value = '';
+    document.getElementById('logInInputPassword').value = '';
 }
+
 function onsubmitLogIn() {
     document.getElementById('logInForm').setAttribute("onsubmit", "login(); return false")
 }
