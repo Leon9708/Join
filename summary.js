@@ -14,7 +14,7 @@ let tasksTotal = document.getElementById('tasksTotal');
 let tasksProgress = document.getElementById('tasksProgress');
 let tasksAwaitingFeedback = document.getElementById('tasksAwaitingFeedback');
 let tasksDone = document.getElementById('tasksDone');
-let tasksTodo = document.getElementById('tasksTodo')
+let tasksTodo = document.getElementById('tasksTodo');
 
 
 async function render() {
@@ -75,7 +75,6 @@ function filterInProgress() {
     }
 }
 
-
 function showDeadline() {
     const sortafterDate = tasks.sort(function(a, b) {
         return new Date(b.date) - new Date(a.date);
@@ -100,7 +99,7 @@ function showPriority(sortafterDate) {
     } else if (prio === 'L') {
         prio = "Low"
     } else if (prio === 'H') {
-        prio = "urgent"
+        prio = "Urgent"
     }
 
     document.getElementById('urgencyText').innerHTML = prio

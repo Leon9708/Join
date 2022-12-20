@@ -201,16 +201,15 @@ main {
     border-radius: 10px;
     padding: 5px;
     text-align: center;
+    background-color: #29ABE2;
 }
 
-<<<<<<< HEAD
-.priority_icon {
+<<<<<<< HEAD .priority_icon {
     width: 20px;
     padding: 10px;
 }
-=======
->>>>>>> 2931de834dbda02d046c13e1a5a7cff7dec459d5
 
+=======>>>>>>>2931de834dbda02d046c13e1a5a7cff7dec459d5
 /* Color Codes */
 
 .bg_media {

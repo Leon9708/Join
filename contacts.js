@@ -1,44 +1,44 @@
-function renderContacts() {     
+function renderContacts() {
     showContacts();
-} 
+}
 
 
 // Placeholder!! Needs to be filled with input from 'Add Contact'-field. 
 let contacts = [{
     'id': 0,
-    'name': 'Adam',
-    'firstName': 'Adamadam',
+    'lastName': 'Adamadam',
+    'firstName': 'Adam',
     'email': 'ABC@gmail.com',
     'phone': '123',
 }, {
     'id': 1,
-    'name': 'Berta',
-    'firstName': 'Bertaberta',
+    'lastName': 'Bertaberta',
+    'firstName': 'Berta',
     'email': 'BGI@gmail.com',
     'phone': '257',
 }, {
     'id': 2,
-    'name': 'Charlie',
+    'lastName': 'Charlie',
     'firstName': 'ABC',
     'email': 'CGI@gmail.com',
     'phone': '357',
 }, {
     'id': 3,
-    'name': 'Dora',
-    'firstName': 'Doradora',
+    'lastName': 'Doradora',
+    'firstName': 'Dora',
     'email': 'DGI@gmail.com',
     'phone': '457',
 }, {
     'id': 4,
-    'name': 'Eva',
-    'firstName': 'Evaeva',
+    'lastName': 'Evaeva',
+    'firstName': 'Eva',
     'email': 'EFG@gmail.com',
     'phone': '543',
 }];
 
 
 function showContacts() {
-    let contactList = document.getElementById('contactList'); 
+    let contactList = document.getElementById('contactList');
     contactList.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
         const singleContact = contacts[i];
@@ -68,7 +68,7 @@ function showContactsHTML(singleContact, i) {
 
 
 // Show Contact Form to enter new Contact
-function openContactForm(text){
+function openContactForm(text) {
     document.getElementById('contactForm').classList.remove('d_none');
     document.getElementById('contactContent').innerHTML = text;
 }

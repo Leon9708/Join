@@ -74,7 +74,7 @@ function checkValdation() {
         return ele.title === categoryLabel;
     });
     let filteredcontact = contacts.filter((ele) => {
-        return user.includes(ele.name)
+        return user.includes(ele.lastName)
     })
     if (filteredLabels.length > 0 && filteredcontact.length > 0 && priority.length > 0 && chosenSubtasks.length > 0) {
         createTask(user, filteredLabels);
@@ -205,7 +205,7 @@ function selectUser(e) {
     let selectedUser = contacts.filter(function(ele) {
         return ele.id === +e
     })
-    document.getElementById('selectedUser').innerHTML = `${selectedUser[0].firstName} ${selectedUser[0].name}`;
+    document.getElementById('selectedUser').innerHTML = `${selectedUser[0].firstName} ${selectedUser[0].lastName}`;
     toggleDropdownUser();
 };
 
@@ -216,7 +216,7 @@ function loadUser() {
         document.getElementById('addUser').innerHTML += ` 
         <div id="${contact.id}" onclick="selectUser(this.id)" class="box_categoryelement">
             <input type="radio" name="where" value="internet" class="option">
-            <label id="newCategory2" class="select-item">${contact.firstName} ${contact.name}</label>
+            <label id="newCategory2" class="select-item">${contact.firstName} ${contact.lastName}</label>
         </div>`
     }
 }
