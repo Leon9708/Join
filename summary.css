@@ -308,3 +308,22 @@ main {
     font-size: 3rem;
     color: #29ABE2;
 }
+
+@media (max-width: 1420px) {
+    .container_greeting_summary {
+        right: 6rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container_greeting_summary {
+        top: 45rem;
+        right: 18rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container_greeting_summary {
+        right: 10rem;
+    }
+}
