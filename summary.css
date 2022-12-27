@@ -318,12 +318,61 @@ main {
 @media (max-width: 1200px) {
     .container_greeting_summary {
         top: 45rem;
-        right: 18rem;
+        right: 22rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    main {
+        padding-left: 20rem;
+    }
+
+    .container_heading_summary {
+        padding-left: 20rem;
+        top: 6rem;
+    }
+
+    .container_greeting_summary {
+        top: 45rem;
+        right: 20rem;
     }
 }
 
 @media (max-width: 1000px) {
-    .container_greeting_summary {
-        right: 10rem;
+    main {
+        padding-left: 18rem;
     }
+
+    .container_heading_summary {
+        padding-left: 18rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .container_greeting_summary {
+        display: none;
+    }
+
+    main {
+        padding-left: 0;
+    }
+
+    .container_board_activities_summary {
+        justify-content: center;
+    }
+
+    .container_deadline_summary {
+        max-width: none;
+        justify-content: space-evenly;
+    }
+
+    .container_todo_summary {
+        justify-content: center;
+    }
+
+    .container_heading_summary {
+        padding-left: 8rem;
+        top: 6rem;
+    }
+
 }
