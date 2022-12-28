@@ -65,9 +65,11 @@
 @media (max-width: 900px) {
     .topbar_mobile {
         display:flex;
+        width: 100% !important;
     }
 
     .footer_mobile {
         display: flex;
+        width: 100% !important;
     }
 }
