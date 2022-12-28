@@ -1,5 +1,20 @@
-function renderContacts() {
-    showContacts();
+async function getContacts() {
+    try {
+        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        contacts = await responseServer.json();
+        console.log(contacts);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+async function renderContacts() {
+    await getTodos();
+    await showContacts();
+    console.log('contacts', contacts)
 }
 
 

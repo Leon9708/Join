@@ -27,6 +27,7 @@ let tasks;
 
 
 // Placeholder!! Needs to be filled with input from 'Add Task'-field. 
+/*
 let todos = [{
     'id': 0,
     'title': 'Call Designer',
@@ -114,7 +115,7 @@ let priorities = ['Urgent', 'Medium', 'Low'];
 let currentCategory = [];
 
 let currentDraggedElement;
-
+*/
 
 // Update container with Todo-Tasks based on status ('open', 'in progress', 'awaiting feedback', 'done')
 function updateHTML() {
@@ -253,7 +254,7 @@ function closeBoardDetails() {
     document.getElementById('boardDetails').classList.add('d_none');
 }
 
-
+/*
 // If Category == Media --> classlist.add('bg_media'), etc.
 function matchColorWithCategory() {
     currentCategory = todos[i];
@@ -268,3 +269,4 @@ function matchColorWithCategory() {
     //  document.getElementById('checkCategory').classList.add('bg_media');
     //};
 }
+*/
