@@ -17,19 +17,20 @@
     <div w3-include-html="template.html"></div>
     <div class="main_container_contacts">
         <div class="container_contacts_left">
-            <!-- Render Contact List -->
-            <div id="contactList"></div>   
+            <div class="contact_list" id="contactList">
+
+            </div>
         </div>
         <div class="container_contacts_right">
             <div class="container_heading_summary">
                 <h1 class="heading_summary">Contacts</h1>
                 <div class="heading_separation_summary"></div>
-                <h2 class="subheading_summary">Everything in a nutshell!</h2>
+                <h2 class="subheading_summary">Better with a Team</h2>
             </div>
             <main>
                 <!-- Render Contact Card -->
                 <div class="container_contacts_card">
-                    <div id="contactCard"></div>   
+                    <div id="contactCard"></div>
                 </div>
                 <div class="container_buttons_bottom_task">
                     <button title="Add Contact" onclick="openContactForm()" class="add_button_contacts">
@@ -40,8 +41,8 @@
             </main>
             <section>
                 <!-- Popup "New Contact" -->
-                <div id="contactForm" class="contact_bg d_none" onclick="closeContactForm()"> 
-                    <div class="contact_form"> 
+                <div id="contactForm" class="contact_bg d_none" onclick="closeContactForm()">
+                    <div class="contact_form">
                         <h1>Add Contact</h1>
                         <p id="contactContent">Informationen</p>
                     </div>
