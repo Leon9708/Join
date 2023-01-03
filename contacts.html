@@ -10,10 +10,18 @@
     <link rel="stylesheet" href="assets/font/font.css">
     <script src="contacts.js"></script>
     <script src="template.js"></script>
+    <script src="add_task.js"></script>
 
 </head>
 
 <body onload="renderContacts(); includeHTML()">
+    <!--     <div id="overlayTask" class="background_overlay_add_contact">
+        <div class="overlay_add_task">
+            <div class="place_add_task">
+                <div w3-include-html="add_task.html"></div>
+            </div>
+        </div>
+    </div> -->
     <div id="overlay" class="background_overlay_add_contact d_none">
         <div class="overlay_add_contact">
             <div class="overlay_leftside">
@@ -39,7 +47,10 @@
                             <p>Cancel</p>
                             <p>x</p>
                         </button>
-                        <button type="submit" class="overlay_create_button">Create contact</button>
+                        <button type="submit" class="overlay_create_button">
+                            <p>Create contact</p>
+                            <img src="./assets/img/check_white_task.png " alt="">
+                        </button>
                     </div>
                 </form>
             </div>
