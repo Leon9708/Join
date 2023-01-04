@@ -111,8 +111,8 @@ function createColor() {
 }
 
 function toggleOverlay() {
-    document.getElementById('overlay').classList.toggle("d_none");
-    if (!overlay.classList.contains('d_none')) {
+    document.getElementById('overlay').classList.toggle("none");
+    if (!overlay.classList.contains('none')) {
         createColor();
     }
 }
@@ -128,7 +128,7 @@ function showName() {
 
 
 function closeContactForm() {
-    document.getElementById('contactForm').classList.add('d_none');
+    document.getElementById('contactForm').classList.add('none');
 }
 
 function showSelectedContact(i) {

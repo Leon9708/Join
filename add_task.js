@@ -36,8 +36,7 @@ async function postTodo(task) {
         .then(response => console.log(JSON.stringify(response)))
 }
 
-const dropdown = document.getElementById("dropdown");
-const dropdownUser = document.getElementById("dropdown2");
+
 
 let categoryLabels;
 let colorID;
@@ -53,6 +52,7 @@ async function renderTask() {
     loadSubtask();
     loadCategory();
     loadUser();
+    inputDate.min = new Date().toISOString().split("T")[0];
 }
 
 function checkValdation() {
@@ -151,8 +151,10 @@ function loadCategory() {
 }
 
 function toggleDropdown() {
-    if (dropdownUser.classList.contains('hidden')) {
-        dropdown.classList.toggle("hidden");
+    const dropdown = document.getElementById("dropdown");
+    const dropdownUser = document.getElementById("dropdown2");
+    if (dropdownUser.classList.contains('display_none')) {
+        dropdown.classList.toggle("display_none");
     }
 }
 
@@ -184,8 +186,10 @@ function clickedColor(id) {
 //user selection
 
 function toggleDropdownUser() {
-    if (dropdown.classList.contains('hidden')) {
-        dropdownUser.classList.toggle('hidden');
+    const dropdown = document.getElementById("dropdown");
+    const dropdownUser = document.getElementById("dropdown2");
+    if (dropdown.classList.contains('display_none')) {
+        dropdownUser.classList.toggle('display_none');
     }
 }
 
@@ -211,8 +215,8 @@ function loadUser() {
 
 // input date
 
-/* 
-inputDate.min = new Date().toISOString().split("T")[0]; */
+
+
 
 function setDate() {
     let due_date_rev = document.getElementById('inputDate').value;

@@ -1,5 +1,4 @@
 async function renderSummary() {
-    await getTodoss()
     tasksProgress = document.getElementById('tasksProgress');
     tasksAwaitingFeedback = document.getElementById('tasksAwaitingFeedback');
     tasksDone = document.getElementById('tasksDone');
@@ -8,19 +7,6 @@ async function renderSummary() {
 
 }
 
-async function getTodoss() {
-    try {
-        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        tasks = await responseServer.json();
-    } catch (error) {
-        console.error(error)
-    }
-    taskss = tasks
-}
-
-let taskss;
 let tasksProgress;
 let tasksAwaitingFeedback;
 let tasksDone;
@@ -29,8 +15,8 @@ let tasksTodo;
 
 
 function displayInfo() {
-    console.log(taskss)
-    document.getElementById('tasksTotal').innerHTML = taskss.length;
+    console.log(tasks)
+    document.getElementById('tasksTotal').innerHTML = tasks.length;
     filterInProgress();
     filterAwaitingFeedback();
     filterDone();
@@ -39,7 +25,7 @@ function displayInfo() {
 }
 
 function filterDone() {
-    let filteredtasksDone = taskss.filter(function(task) {
+    let filteredtasksDone = tasks.filter(function(task) {
         return task.status === 'Done';
     });
     if (filteredtasksDone.length === 0) {
@@ -50,7 +36,7 @@ function filterDone() {
 }
 
 function filterTodo() {
-    let filteredTodo = taskss.filter(function(task) {
+    let filteredTodo = tasks.filter(function(task) {
         return task.status === 'To do';
     });
     if (filteredTodo.length === 0) {
@@ -61,7 +47,7 @@ function filterTodo() {
 }
 
 function filterAwaitingFeedback() {
-    let filteredAwaitingFeedback = taskss.filter(function(task) {
+    let filteredAwaitingFeedback = tasks.filter(function(task) {
         return task.status === 'Awaiting Feedback';
     });
     if (filteredAwaitingFeedback.length === 0) {
@@ -72,7 +58,7 @@ function filterAwaitingFeedback() {
 }
 
 function filterInProgress() {
-    let filteredTasksProgress = taskss.filter(function(task) {
+    let filteredTasksProgress = tasks.filter(function(task) {
         return task.status === 'In progress';
     });
     if (filteredTasksProgress.length === 0) {
@@ -83,7 +69,7 @@ function filterInProgress() {
 }
 
 function showDeadline() {
-    const sortafterDate = taskss.sort(function(a, b) {
+    const sortafterDate = tasks.sort(function(a, b) {
         return new Date(b.date) - new Date(a.date);
     })
     const months = ["January", "February", "March", "April", "May", "June",

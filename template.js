@@ -1,6 +1,57 @@
+async function includeHTML() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute("w3-include-html"); // "includes/header.html"
+        let resp = await fetch(file);
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = 'Page not found';
+        }
+    }
+}
+
+async function render() {
+    await getTodos();
+    renderSummary();
+    renderContacts();
+    renderTask();
+    /*  renderBoard(); */
+
+}
+let lastId;
 let tasks;
 
-async function init() {
+function changeHTML(id) {
+    if (id == "s") {
+        id = "summary";
+    } else if (id === "b") {
+        id = "board";
+    } else if (id === "t") {
+        id = "task";
+    } else if (id === "c") {
+        id = "contacts";
+    }
+    if (lastId) {
+        document.getElementById(lastId).classList.add('d-none')
+    }
+    lastId = id;
+    document.getElementById(id).classList.remove('d-none')
+}
+
+async function getTodos() {
+    try {
+        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        tasks = await responseServer.json();
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+/* async function init() {
     await getTodos();
     await loadHTML('content', 'summary.html').then(function() {
         loadScript('summary');
@@ -35,20 +86,13 @@ async function loadHTML(id, filename) {
 }
 
 async function loadScript(id) {
+    const templateJs = document.getElementById("templateJs");
     if (isScriptLoaded(id + '.js')) {
         const script = document.createElement('script')
         script.src = id + '.js'
-        document.head.appendChild(script);
+        document.head.insertBefore(script, templateJs);
     }
-    if (id = "summary") {
-        renderSummary()
-    } else if (id = "board") {
-        renderBoard()
-    } else if (id = "contacts") {
-        renderContacts()
-    } else if (id = "task") {
-        renderTask()
-    }
+
 }
 
 function isScriptLoaded(src) {
@@ -69,16 +113,7 @@ function changeColor(id) {
     document.getElementById(id).parentElement.style.backgroundColor = "#091931"
 }
 
-async function getTodos() {
-    try {
-        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        tasks = await responseServer.json();
-    } catch (error) {
-        console.error(error)
-    }
-}
+
 
 async function checkContent(name, filename, id) {
     let contentBox = document.getElementById("content");
@@ -89,5 +124,14 @@ async function checkContent(name, filename, id) {
             loadScript(id);
         }
     });
+    if (id = "summary") {
+        renderSummary()
+    } else if (id = "board") {
+        renderBoard()
+    } else if (id = "contacts") {
+        renderContacts()
+    } else if (id = "task") {
+        renderTask()
+    }
     changeColor(id);
-}
+} */

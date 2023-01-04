@@ -13,15 +13,14 @@
 </head>
 
 <body>
-    <div onload="renderContacts()"></div>
-    <!--     <div id="overlayTask" class="background_overlay_add_contact">
+    <div id="overlayTask" class="background_overlay_add_contact none ">
         <div class="overlay_add_task">
             <div class="place_add_task">
                 <div w3-include-html="add_task.html"></div>
             </div>
         </div>
-    </div> -->
-    <div id="overlay" class="background_overlay_add_contact d_none">
+    </div>
+    <div id="overlay" class="background_overlay_add_contact none">
         <div class="overlay_add_contact">
             <div class="overlay_leftside">
                 <img class="leftside_img" src="assets/img/logo_sidebar.png" alt="">
@@ -71,21 +70,18 @@
                 <main>
                     <div class="show_contact_box" id="showContactBox"></div>
                     <div class="container_buttons_bottom_task">
-                        <button onclick="toggleOverlay()" title="Add Contact" onclick="openContactForm()" class="add_button_contacts">
-                        <p class="">New Contact</p>
+                        <button onclick="toggleOverlay()" title="Add Contact" class="add_button_contacts">
+                        <p>New Contact</p>
                         <img src="./assets/img/contacts_add.png" alt="#">
                     </button>
                     </div>
                 </main>
-                <section>
-                    <!-- Popup "New Contact" -->
-                    <div id="contactForm" class="contact_bg d_none" onclick="closeContactForm()">
-                        <div class="contact_form">
-                            <h1>Add Contact</h1>
-                            <p id="contactContent">Informationen</p>
-                        </div>
+                <div id="contactForm" class="contact_bg none" onclick="closeContactForm()">
+                    <div class="contact_form">
+                        <h1>Add Contact</h1>
+                        <p id="contactContent">Informationen</p>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     </div>
