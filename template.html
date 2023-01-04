@@ -5,9 +5,7 @@
     <title>Join</title>
     <link rel="stylesheet" href="template.css">
     <script src="template.js"></script>
-    <script src="board.js"></script>
-    <script src="add_task.js"></script>
-    <script src="contacts.js"></script>
+
 </head>
 
 <body onload="init()">
@@ -28,25 +26,25 @@
             <div class="place_nav">
                 <nav>
                     <div class="box_links_aside">
-                        <a id="summary" href="#" onclick="loadHTML('content','summary.html');changeColor(this.id)" class="aside_nav_container">
+                        <a id="summary" href="#" onclick="checkContent('content','summary.html',this.id)" class="aside_nav_container">
                             <img class="aside_icons" src="assets/img/summary.png">
                             <p>Summary</p>
                         </a>
                     </div>
                     <div class="box_links_aside">
-                        <a id="board" href="#" onclick="loadHTML('content','board.html');changeColor(this.id)" class="aside_nav_container">
+                        <a id="board" href="#" onclick="checkContent('content','board.html',this.id)" class="aside_nav_container">
                             <img class="aside_icons" src="assets/img/board.png">
                             <p>Board</p>
                         </a>
                     </div>
                     <div class="box_links_aside">
-                        <a id="task" href="#" onclick="loadHTML('content','add_task.html');changeColor(this.id)" class="aside_nav_container">
+                        <a id="task" href="#" onclick="checkContent('content','add_task.html',this.id)" class="aside_nav_container">
                             <img class="aside_icons" src="assets/img/task.png">
                             <p>Add Task</p>
                         </a>
                     </div>
                     <div class="box_links_aside">
-                        <a id="contacts" href="#" onclick="loadHTML('content','contacts.html');changeColor(this.id)" class="aside_nav_container">
+                        <a id="contacts" href="#" onclick="checkContent('content','contacts.html',this.id)" class="aside_nav_container">
                             <img class="aside_icons" src="assets/img/contacts.png">
                             <p>Contacts</p>
                         </a>

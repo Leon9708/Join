@@ -47,7 +47,7 @@ let date;
 let chosenSubtasks = [];
 
 
-async function render() {
+async function renderTask() {
     await getSubtasks();
     await getCategories();
     loadSubtask();
