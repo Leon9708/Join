@@ -1,12 +1,16 @@
-let tasksProgress = document.getElementById('tasksProgress');
-let tasksAwaitingFeedback = document.getElementById('tasksAwaitingFeedback');
-let tasksDone = document.getElementById('tasksDone');
-let tasksTodo = document.getElementById('tasksTodo');
-renderSummary();
+renderSummary()
 
 function renderSummary() {
+    tasksProgress = document.getElementById('tasksProgress');
+    tasksAwaitingFeedback = document.getElementById('tasksAwaitingFeedback');
+    tasksDone = document.getElementById('tasksDone');
+    tasksTodo = document.getElementById('tasksTodo');
     displayInfo();
 }
+let tasksProgress;
+let tasksAwaitingFeedback;
+let tasksDone;
+let tasksTodo;
 
 
 

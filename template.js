@@ -4,6 +4,7 @@ async function init() {
     await getTodos();
     await loadHTML('content', 'summary.html');
     loadScript();
+    renderSummary();
 }
 
 async function loadHTML(id, filename) {
