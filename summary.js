@@ -1,29 +1,18 @@
-async function getTodos() {
-    try {
-        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        tasks = await responseServer.json();
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-let tasks;
-let tasksTotal = document.getElementById('tasksTotal');
 let tasksProgress = document.getElementById('tasksProgress');
 let tasksAwaitingFeedback = document.getElementById('tasksAwaitingFeedback');
 let tasksDone = document.getElementById('tasksDone');
 let tasksTodo = document.getElementById('tasksTodo');
+renderSummary();
 
-
-async function render() {
-    await getTodos();
+function renderSummary() {
     displayInfo();
 }
 
+
+
 function displayInfo() {
-    tasksTotal.innerHTML = tasks.length;
+    console.log(tasks)
+    document.getElementById('tasksTotal').innerHTML = tasks.length;
     filterInProgress();
     filterAwaitingFeedback();
     filterDone();

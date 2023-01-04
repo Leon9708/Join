@@ -8,13 +8,11 @@
     <title>Add Task</title>
     <link rel="stylesheet" href="assets/font/font.css">
     <link rel="stylesheet" href="add_task.css">
-    <script src="template.js"></script>
     <script src="contacts.js"></script>
 </head>
 
-<body onload="includeHTML(); render()">
-    <div w3-include-html="template.html"></div>
-    <div class="container_heading_task">
+<body>
+    <div onload="render()" class="container_heading_task">
         <h1 class="heading_task">Add Task</h1>
     </div>
     <form>

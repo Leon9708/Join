@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="contacts.css">
     <link rel="stylesheet" href="assets/font/font.css">
     <script src="contacts.js"></script>
-    <script src="template.js"></script>
-    <script src="add_task.js"></script>
 
 </head>
 
-<body onload="renderContacts(); includeHTML()">
+<body>
+    <div onload="renderContacts()"></div>
     <!--     <div id="overlayTask" class="background_overlay_add_contact">
         <div class="overlay_add_task">
             <div class="place_add_task">
@@ -57,7 +56,6 @@
         </div>
     </div>
     <div>
-        <div w3-include-html="template.html"></div>
         <div class="main_container_contacts">
             <div class="container_contacts_left">
                 <div class="contact_list" id="contactList">

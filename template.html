@@ -2,61 +2,66 @@
 <html lang="en">
 
 <head>
-    <title>Document</title>
+    <title>Join</title>
     <link rel="stylesheet" href="template.css">
     <script src="template.js"></script>
+    <script src="board.js"></script>
+    <script src="add_task.js"></script>
+    <script src="contacts.js"></script>
 </head>
 
-<body>
-    <div class="topbar">
-        <div class="topbar_content">
-            <h3>Kanban Project Management Tool</h3>
-        </div>
-        <div class="topbar_content_right">
-            <img class="aside_icons" src="assets/img/question.png">
-            <img class="topbar_profile" src="assets/img/profile_pic.png">
-        </div>
-    </div>
-    <aside class="left_main_container">
-        <div class="aside_logo_container">
-            <img class="aside_logo" src="assets/img/logo_sidebar.png">
-        </div>
-        <div class="place_nav">
-            <nav>
-                <div class="box_links_aside">
-                    <a href="summary.html" class="aside_nav_container">
-                        <img class="aside_icons" src="assets/img/summary.png">
-                        <p>Summary</p>
-                    </a>
-                </div>
-                <div class="box_links_aside">
-                    <a href="board.html" class="aside_nav_container">
-                        <img class="aside_icons" src="assets/img/board.png">
-                        <p>Board</p>
-                    </a>
-                </div>
-                <div class="box_links_aside">
-                    <a href="add_task.html" class="aside_nav_container">
-                        <img class="aside_icons" src="assets/img/task.png">
-                        <p>Add Task</p>
-                    </a>
-                </div>
-                <div class="box_links_aside">
-                    <a href="contacts.html" class="aside_nav_container">
-                        <img class="aside_icons" src="assets/img/contacts.png">
-                        <p>Contacts</p>
-                    </a>
-                </div>
-            </nav>
-            <div class="box_links_aside">
-                <a href="#" class="aside_nav_container aside_legal">
-                    <img class="aside_icons" src="assets/img/legal.png">
-                    <p>Legal notice</p>
-                </a>
+<body onload="init()">
+    <div>
+        <div class="topbar">
+            <div class="topbar_content">
+                <h3>Kanban Board - Project Management Tool</h3>
+            </div>
+            <div class="topbar_content_right">
+                <img class="aside_icons" src="assets/img/question.png">
+                <img class="topbar_profile" src="assets/img/profile_pic.png">
             </div>
         </div>
-    </aside>
-
+        <aside class="left_main_container">
+            <div class="aside_logo_container">
+                <img class="aside_logo" src="assets/img/logo_sidebar.png">
+            </div>
+            <div class="place_nav">
+                <nav>
+                    <div class="box_links_aside">
+                        <a id="summary" href="#" onclick="loadHTML('content','summary.html');changeColor(this.id)" class="aside_nav_container">
+                            <img class="aside_icons" src="assets/img/summary.png">
+                            <p>Summary</p>
+                        </a>
+                    </div>
+                    <div class="box_links_aside">
+                        <a id="board" href="#" onclick="loadHTML('content','board.html');changeColor(this.id)" class="aside_nav_container">
+                            <img class="aside_icons" src="assets/img/board.png">
+                            <p>Board</p>
+                        </a>
+                    </div>
+                    <div class="box_links_aside">
+                        <a id="task" href="#" onclick="loadHTML('content','add_task.html');changeColor(this.id)" class="aside_nav_container">
+                            <img class="aside_icons" src="assets/img/task.png">
+                            <p>Add Task</p>
+                        </a>
+                    </div>
+                    <div class="box_links_aside">
+                        <a id="contacts" href="#" onclick="loadHTML('content','contacts.html');changeColor(this.id)" class="aside_nav_container">
+                            <img class="aside_icons" src="assets/img/contacts.png">
+                            <p>Contacts</p>
+                        </a>
+                    </div>
+                </nav>
+                <div class="box_links_aside">
+                    <a href="#" class="aside_nav_container aside_legal">
+                        <img class="aside_icons" src="assets/img/legal.png">
+                        <p>Legal notice</p>
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <div id="content"></div>
 
 </body>
 

@@ -326,12 +326,10 @@ main {
     main {
         padding-left: 20rem;
     }
-
     .container_heading_summary {
         padding-left: 20rem;
         top: 6rem;
     }
-
     .container_greeting_summary {
         top: 45rem;
         right: 20rem;
@@ -342,7 +340,6 @@ main {
     main {
         padding-left: 18rem;
     }
-
     .container_heading_summary {
         padding-left: 18rem;
     }
@@ -352,24 +349,19 @@ main {
     .container_greeting_summary {
         display: none;
     }
-
     main {
         padding-left: 0;
     }
-
     .container_board_activities_summary {
         justify-content: center;
     }
-
     .container_deadline_summary {
         max-width: none;
         justify-content: space-evenly;
     }
-
     .container_todo_summary {
         justify-content: center;
     }
-
     .container_heading_summary {
         width: 100%;
         padding-left: 0;
@@ -377,7 +369,6 @@ main {
         top: 6rem;
         flex-direction: column;
     }
-    
     .heading_separation_summary {
         width: 5rem;
         height: 0.2rem;
@@ -385,7 +376,6 @@ main {
         margin-bottom: 1rem;
         margin-left: 0;
     }
-
 }
 
 @media (max-width: 700px) {

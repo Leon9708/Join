@@ -1,15 +1,3 @@
-async function getTodos() {
-    try {
-        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        let tasks = await responseServer.json();
-        console.log(tasks);
-    } catch (error) {
-        console.error(error)
-    }
-}
-
 async function getCategories() {
     try {
         let responseServer = await fetch('https://jonas34.pythonanywhere.com/categories/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
@@ -223,8 +211,8 @@ function loadUser() {
 
 // input date
 
-
-inputDate.min = new Date().toISOString().split("T")[0];
+/* 
+inputDate.min = new Date().toISOString().split("T")[0]; */
 
 function setDate() {
     let due_date_rev = document.getElementById('inputDate').value;

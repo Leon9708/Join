@@ -10,14 +10,11 @@
     <link rel="stylesheet" href="board.css">
     <link rel="stylesheet" href="assets/font/font.css">
     <script src="board.js"></script>
-    <script src="template.js"></script>
     <script src="contacts.js"></script>
 </head>
 
-<body onload="renderBoard();includeHTML()">
-
-    <div w3-include-html="template.html"></div>
-    <div class="container_heading_summary">
+<body>
+    <div onload="renderBoard()" class="container_heading_summary">
         <h1 class="heading_summary">Board</h1>
         <div class="search_container">
             <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
