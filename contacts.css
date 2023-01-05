@@ -1,12 +1,10 @@
 body {
     font-family: 'Open Sans';
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    background-color: #F6F7F8;
+    background-color: #ffffff;
 }
 
-p,
+.change_css_contacts p,
 h1,
 h2,
 h3 {

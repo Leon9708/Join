@@ -13,98 +13,101 @@ function renderBoard() {
 
 
 // Placeholder!! Needs to be filled with input from 'Add Task'-field. 
-/*
-let todos = [{
-    'id': 0,
-    'title': 'Call Designer',
-    'description': 'To this or that...',
-    'category': 'Design',
-    'priority': 'low',
-    'image': 'assets/img/low_task.png',
-    'user': 'Aname',
-    'due_date': 0,
-    'status': 'open',
-}, {
-    'id': 1,
-    'title': 'Call Sales',
-    'description': 'To this or that...',
-    'category': 'Sales',
-    'priority': 'medium',
-    'image': 'assets/img/medium_task.png',
-    'user': 'Bname',
-    'due_date': 0,
-    'status': 'feedback',
-}, {
-    'id': 2,
-    'title': 'Call Media',
-    'description': 'To this or that...',
-    'category': 'Media',
-    'priority': 'urgent',
-    'image': 'assets/img/urgent_task.png',
-    'user': 'Cname',
-    'due_date': 0,
-    'status': 'progress',
-}, {
-    'id': 3,
-    'title': 'Call Sales',
-    'description': 'To this or that...',
-    'category': 'Sales',
-    'priority': 'low',
-    'image': 'assets/img/low_task.png',
-    'user': 'Dname',
-    'due_date': 0,
-    'status': 'progress',
-}, {
-    'id': 4,
-    'title': 'Call Marketing',
-    'description': 'To this or that...',
-    'category': 'Marketing',
-    'priority': 'low',
-    'image': 'assets/img/low_task.png',
-    'user': 'Ename',
-    'due_date': 0,
-    'status': 'progress',
-}, {
-    'id': 5,
-    'title': 'Call Sales',
-    'description': 'To this or that...',
-    'category': 'Sales',
-    'priority': 'low',
-    'image': 'assets/img/low_task.png',
-    'user': 'Fname',
-    'due_date': 0,
-    'status': 'feedback',
-}, {
-    'id': 6,
-    'title': 'Call Backoffice',
-    'description': 'To this or that...',
-    'category': 'Backoffice',
-    'priority': 'medium',
-    'image': 'assets/img/medium_task.png',
-    'user': 'Gname',
-    'due_date': 0,
-    'status': 'closed',
-}, {
-    'id': 7,
-    'title': 'Call Media',
-    'description': 'To this or that...',
-    'category': 'Media',
-    'priority': 'medium',
-    'image': 'assets/img/medium_task.png',
-    'user': 'Hname',
-    'due_date': 0,
-    'status': 'closed'
-}];
+
+let todos = [
+    /* {
+        'id': 0,
+        'title': 'Call Designer',
+        'description': 'To this or that...',
+        'category': 'Design',
+        'priority': 'low',
+        'image': 'assets/img/low_task.png',
+        'user': 'Aname',
+        'due_date': 0,
+        'status': 'open',
+    }, {
+        'id': 1,
+        'title': 'Call Sales',
+        'description': 'To this or that...',
+        'category': 'Sales',
+        'priority': 'medium',
+        'image': 'assets/img/medium_task.png',
+        'user': 'Bname',
+        'due_date': 0,
+        'status': 'feedback',
+    }, {
+        'id': 2,
+        'title': 'Call Media',
+        'description': 'To this or that...',
+        'category': 'Media',
+        'priority': 'urgent',
+        'image': 'assets/img/urgent_task.png',
+        'user': 'Cname',
+        'due_date': 0,
+        'status': 'progress',
+    }, {
+        'id': 3,
+        'title': 'Call Sales',
+        'description': 'To this or that...',
+        'category': 'Sales',
+        'priority': 'low',
+        'image': 'assets/img/low_task.png',
+        'user': 'Dname',
+        'due_date': 0,
+        'status': 'progress',
+    }, {
+        'id': 4,
+        'title': 'Call Marketing',
+        'description': 'To this or that...',
+        'category': 'Marketing',
+        'priority': 'low',
+        'image': 'assets/img/low_task.png',
+        'user': 'Ename',
+        'due_date': 0,
+        'status': 'progress',
+    }, {
+        'id': 5,
+        'title': 'Call Sales',
+        'description': 'To this or that...',
+        'category': 'Sales',
+        'priority': 'low',
+        'image': 'assets/img/low_task.png',
+        'user': 'Fname',
+        'due_date': 0,
+        'status': 'feedback',
+    }, {
+        'id': 6,
+        'title': 'Call Backoffice',
+        'description': 'To this or that...',
+        'category': 'Backoffice',
+        'priority': 'medium',
+        'image': 'assets/img/medium_task.png',
+        'user': 'Gname',
+        'due_date': 0,
+        'status': 'closed',
+    }, {
+        'id': 7,
+        'title': 'Call Media',
+        'description': 'To this or that...',
+        'category': 'Media',
+        'priority': 'medium',
+        'image': 'assets/img/medium_task.png',
+        'user': 'Hname',
+        'due_date': 0,
+        'status': 'closed'
+    } */
+];
 
 let priorities = ['Urgent', 'Medium', 'Low'];
 
 let currentCategory = [];
 
 let currentDraggedElement;
-*/
+
 
 // Update container with Todo-Tasks based on status ('open', 'in progress', 'awaiting feedback', 'done')
 function updateHTML() {
+
     updateHTMLOpenTasks();
     updateHTMLInProgessTasks();
     updateHTMLFeedbackTasks();
@@ -114,12 +117,14 @@ function updateHTML() {
 
 // Update container with status == 'open'.
 function updateHTMLOpenTasks() {
-    let open = tasks.filter(t => t['status'] == '1');
+    let openTasks = tasks.filter((task) => {
+        return task['status'] == '1'
+    });
     document.getElementById('open').innerHTML = '';
-    for (let index = 0; index < open.length; index++) {
-        const element = open[index];
+    for (let index = 0; index < openTasks.length; index++) {
+        const element = openTasks[index];
         document.getElementById('open').innerHTML += generateTodoHTML(element, index);
-        GetName(element, index)
+        /*   GetName(element, index) */
     }
 }
 
@@ -165,13 +170,13 @@ function startDragging(id) {
     currentDraggedElement = id;
 }
 
-function GetName(task, index) {
+/* function GetName(task, index) {
     let filteredcontact = contacts.filter((ele) => {
         return task.user.includes(ele.lastName)
     })
     let firstLetterLastName = filteredcontact[0].lastName.substring(0, 1)
-    document.getElementById('checkUser' + index).innerHTML += firstLetterLastName
-}
+    document.getElementById('checkUser' + index).innerHTML += firstLetterLastName;
+} */
 
 
 function generateTodoHTML(element, index) {
@@ -199,7 +204,14 @@ function allowDrop(ev) {
 
 // Change status when element is moved (E.g. todo-task with id 1: the status field is changed from 'open' to 'closed'.).
 function moveTo(status) {
-    todos[currentDraggedElement]['status'] = status;
+    let filteredTask = tasks.filter((task) => {
+        return task['id'] === currentDraggedElement
+    });
+
+    console.log(filteredTask);
+    console.log(filteredTask[0]);
+    console.log(filteredTask[0]['status']);
+    filteredTask[0]['status'] = status;
     updateHTML();
 }
 
@@ -221,7 +233,7 @@ function openBoardDetails(index) {
     document.getElementById('boardDetails').classList.remove('d_none');
     let boardContent = document.getElementById('boardContent');
     boardContent.innerHTML = '';
-    let selectedBoard = todos[index];
+    let selectedBoard = tasks[index];
     boardContent.innerHTML += openBoardDetailstHTML(selectedBoard);
 }
 

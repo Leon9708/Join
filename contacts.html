@@ -12,80 +12,81 @@
 
 </head>
 
-<body>
-    <div id="overlayTask" class="background_overlay_add_contact none ">
-        <div class="overlay_add_task">
-            <div class="place_add_task">
-                <div w3-include-html="add_task.html"></div>
+<body onload="includeHTML()">
+    <div class="change_css_contacts">
+        <div id="overlayTask" class="background_overlay_add_contact none ">
+            <div class="overlay_add_task">
+                <div class="place_add_task">
+                    <div w3-include-html="add_task.html"></div>
+                </div>
             </div>
         </div>
-    </div>
-    <div id="overlay" class="background_overlay_add_contact none">
-        <div class="overlay_add_contact">
-            <div class="overlay_leftside">
-                <img class="leftside_img" src="assets/img/logo_sidebar.png" alt="">
-                <p class="leftside_Add">Add contact</p>
-                <p class="leftside_text">Task are better with a team !</p>
-            </div>
-            <div class="overlay_rightside">
-                <button onclick="toggleOverlay()" class="close_overlay">
+        <div id="overlay" class="background_overlay_add_contact none">
+            <div class="overlay_add_contact">
+                <div class="overlay_leftside">
+                    <img class="leftside_img" src="assets/img/logo_sidebar.png" alt="">
+                    <p class="leftside_Add">Add contact</p>
+                    <p class="leftside_text">Task are better with a team !</p>
+                </div>
+                <div class="overlay_rightside">
+                    <button onclick="toggleOverlay()" class="close_overlay">
                     <img class="img_close_overlay" src="assets\img\cross.png" alt="">
                 </button>
-                <div class="rightside_place_circle">
-                    <div id="showContactImg" class="show_contact_img">
+                    <div class="rightside_place_circle">
+                        <div id="showContactImg" class="show_contact_img">
 
+                        </div>
                     </div>
-                </div>
-                <form class="rightside_form" onsubmit="createNewContact(event); return false">
-                    <input onblur="showName()" pattern=".*\s+.*" required minlength="6" placeholder="Name" class="overlay_input name" type="text" id="name">
-                    <input required placeholder="Email" class="overlay_input email" type="email" id="email">
-                    <input required placeholder="Phone" class="overlay_input phone" type="tel" id="phone">
-                    <div class="place_buttons_overlay">
-                        <button onclick="toggleOverlay()" type="button" class="box_cancel">
+                    <form class="rightside_form" onsubmit="createNewContact(event); return false">
+                        <input onblur="showName()" pattern=".*\s+.*" required minlength="6" placeholder="Name" class="overlay_input name" type="text" id="name">
+                        <input required placeholder="Email" class="overlay_input email" type="email" id="email">
+                        <input required placeholder="Phone" class="overlay_input phone" type="tel" id="phone">
+                        <div class="place_buttons_overlay">
+                            <button onclick="toggleOverlay()" type="button" class="box_cancel">
                             <p>Cancel</p>
                             <p>x</p>
                         </button>
-                        <button type="submit" class="overlay_create_button">
+                            <button type="submit" class="overlay_create_button">
                             <p>Create contact</p>
                             <img src="./assets/img/check_white_task.png " alt="">
                         </button>
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div>
-        <div class="main_container_contacts">
-            <div class="container_contacts_left">
-                <div class="contact_list" id="contactList">
+        <div>
+            <div class="main_container_contacts">
+                <div class="container_contacts_left">
+                    <div class="contact_list" id="contactList">
 
+                    </div>
                 </div>
-            </div>
-            <div class="container_contacts_right">
-                <div class="container_heading_summary">
-                    <h1 class="heading_summary">Contacts</h1>
-                    <div class="heading_separation_summary"></div>
-                    <h2 class="subheading_summary">Better with a Team</h2>
-                </div>
-                <main>
-                    <div class="show_contact_box" id="showContactBox"></div>
-                    <div class="container_buttons_bottom_task">
-                        <button onclick="toggleOverlay()" title="Add Contact" class="add_button_contacts">
+                <div class="container_contacts_right">
+                    <div class="container_heading_summary">
+                        <h1 class="heading_summary">Contacts</h1>
+                        <div class="heading_separation_summary"></div>
+                        <h2 class="subheading_summary">Better with a Team</h2>
+                    </div>
+                    <main>
+                        <div class="show_contact_box" id="showContactBox"></div>
+                        <div class="container_buttons_bottom_task">
+                            <button onclick="toggleOverlay()" title="Add Contact" class="add_button_contacts">
                         <p>New Contact</p>
                         <img src="./assets/img/contacts_add.png" alt="#">
                     </button>
-                    </div>
-                </main>
-                <div id="contactForm" class="contact_bg none" onclick="closeContactForm()">
-                    <div class="contact_form">
-                        <h1>Add Contact</h1>
-                        <p id="contactContent">Informationen</p>
+                        </div>
+                    </main>
+                    <div id="contactForm" class="contact_bg none" onclick="closeContactForm()">
+                        <div class="contact_form">
+                            <h1>Add Contact</h1>
+                            <p id="contactContent">Informationen</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

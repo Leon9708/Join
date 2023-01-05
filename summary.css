@@ -14,6 +14,11 @@ h3 {
     margin: 0;
 }
 
+.change_css_summary {
+    padding-left: 17.5rem;
+    font-size: 10px;
+}
+
 .container_heading_summary {
     display: flex;
     align-items: center;

@@ -4,7 +4,6 @@ async function getCategories() {
         if (!responseServer.ok)
             throw new Error("Response not ok")
         categoryLabels = await responseServer.json();
-        console.log(categoryLabels);
     } catch (error) {
         console.error(error)
     }
@@ -15,7 +14,6 @@ async function getSubtasks() {
         if (!responseServer.ok)
             throw new Error("Response not ok")
         subtasks = await responseServer.json();
-        console.log(subtasks);
     } catch (error) {
         console.error(error)
     }
@@ -23,7 +21,6 @@ async function getSubtasks() {
 
 async function postTodo(task) {
     const data = JSON.stringify(task);
-    console.log('data', data)
     fetch('https://jonas34.pythonanywhere.com/todos/', {
             method: 'POST',
             headers: {
@@ -320,7 +317,6 @@ function checkedSubtask(id) {
         let index = chosenSubtasks.indexOf(chosenSubtask[0])
         chosenSubtasks.splice(index, 1)
     }
-    console.log(chosenSubtasks)
 }
 
 function createInputSubtask() {

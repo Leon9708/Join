@@ -6,42 +6,7 @@ async function renderContacts() {
 
 
 // Placeholder!! Needs to be filled with input from 'Add Contact'-field. 
-let contacts = [{
-    'id': 0,
-    'lastName': 'Adamadam',
-    'firstName': 'Adam',
-    'email': 'ABC@gmail.com',
-    'phone': '123',
-    'color': 'red'
-}, {
-    'id': 1,
-    'lastName': 'Bertaberta',
-    'firstName': 'Berta',
-    'email': 'BGI@gmail.com',
-    'phone': '257',
-    'color': 'blue'
-}, {
-    'id': 2,
-    'lastName': 'Charlie',
-    'firstName': 'ABC',
-    'email': 'CGI@gmail.com',
-    'phone': '357',
-    'color': 'aqua'
-}, {
-    'id': 3,
-    'lastName': 'Doradora',
-    'firstName': 'Dora',
-    'email': 'DGI@gmail.com',
-    'phone': '457',
-    'color': 'brown'
-}, {
-    'id': 4,
-    'lastName': 'Evaeva',
-    'firstName': 'Eva',
-    'email': 'EFG@gmail.com',
-    'phone': '543',
-    'color': 'orange'
-}];
+
 
 let colors = ['orange', 'purple', 'blue', 'red', 'aqua', 'brown', 'grey', 'green'];
 let letters = [];
@@ -103,7 +68,9 @@ function createNewContact(event) {
     toggleOverlay();
 }
 
-
+function toggleTask() {
+    document.getElementById('overlayTask').classList.toggle("none");
+}
 
 function createColor() {
     let randomColor = colors[Math.floor(Math.random() * colors.length)]
@@ -174,6 +141,19 @@ function showContactsHTML(singleContact, i) {
     `
 }
 
+async function includeHTML() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute("w3-include-html"); // "includes/header.html"
+        let resp = await fetch(file);
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = 'Page not found';
+        }
+    }
+}
 
 function generateLetters(letter) {
     return `   
@@ -190,7 +170,7 @@ function showSelectedContactHTML(selectedContact, i) {
             <div id="showContactCircle" class="show_contact_img">${selectedContact['firstName'].charAt(0)}${selectedContact['lastName'].charAt(0)}</div>
             <div class="show_contact_box_name_add_task">
                 <p class="show_contact_name">${selectedContact['firstName']} ${selectedContact['lastName']}</p>
-                <button class="button_plus_add_task">
+                <button onclick="toggleTask()" class="button_plus_add_task">
                     <p class="show_contact_plus">+</p>
                     <p class="show_contact_add_task">Add Task</p>
                 </button>

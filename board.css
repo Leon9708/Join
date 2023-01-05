@@ -14,6 +14,10 @@ h3 {
     margin: 0;
 }
 
+.change_css_board {
+    padding-left: 13rem;
+}
+
 .h2_padding {
     padding-left: 1rem;
 }

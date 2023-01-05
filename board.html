@@ -14,55 +14,57 @@
 </head>
 
 <body>
-    <div onload="renderBoard()" class="container_heading_summary">
-        <h1 class="heading_summary">Board</h1>
-        <div class="search_container">
-            <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
-            <button title="Add Task" class="add_button_task">
+    <div class="change_css_board">
+        <div onload="renderBoard()" class="container_heading_summary">
+            <h1 class="heading_summary">Board</h1>
+            <div class="search_container">
+                <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
+                <button title="Add Task" class="add_button_task">
                 <p class="">Add Task</p>
                 <img src="./assets/img/plus.png" alt="#">
             </button>
+            </div>
         </div>
+        <main>
+            <div class="drag_area_container">
+                <div>
+                    <div class="board_header_container">
+                        <h2 class="h2_padding">To Do</h2>
+                        <img class="todo_icon" src="assets/img/plus_button.png">
+                    </div>
+                    <div class="drag_area" id="open" ondrop="moveTo('1')" ondragleave="removeHighlight('1')" ondragover="allowDrop(event); highlight('1')"></div>
+                </div>
+                <div>
+                    <div class="board_header_container">
+                        <h2 class="h2_padding">In Progress</h2>
+                        <img class="todo_icon" src="assets/img/plus_button.png">
+                    </div>
+                    <div class="drag_area" id="progress" ondrop="moveTo('2')" ondragleave="removeHighlight('2')" ondragover="allowDrop(event); highlight('2')"></div>
+                </div>
+                <div>
+                    <div class="board_header_container">
+                        <h2 class="h2_padding">Awaiting Feedback</h2>
+                        <img class="todo_icon" src="assets/img/plus_button.png">
+                    </div>
+                    <div class="drag_area" id="feedback" ondrop="moveTo('3')" ondragleave="removeHighlight('3')" ondragover="allowDrop(event); highlight('3')"></div>
+                </div>
+                <div>
+                    <div class="board_header_container">
+                        <h2 class="h2_padding">Done</h2>
+                        <img class="todo_icon" src="assets/img/plus_button.png">
+                    </div>
+                    <div class="drag_area" id="closed" ondrop="moveTo('4')" ondragleave="removeHighlight('4')" ondragover="allowDrop(event); highlight('4')"></div>
+                </div>
+            </div>
+        </main>
+        <section>
+            <div id="boardDetails" class="board_details_bg d_none" onclick="closeBoardDetails()">
+                <div class="board">
+                    <div id="boardContent"></div>
+                </div>
+            </div>
+        </section>
     </div>
-    <main>
-        <div class="drag_area_container">
-            <div>
-                <div class="board_header_container">
-                    <h2 class="h2_padding">To Do</h2>
-                    <img class="todo_icon" src="assets/img/plus_button.png">
-                </div>
-                <div class="drag_area" id="open" ondrop="moveTo('open')" ondragleave="removeHighlight('open')" ondragover="allowDrop(event); highlight('open')"></div>
-            </div>
-            <div>
-                <div class="board_header_container">
-                    <h2 class="h2_padding">In Progress</h2>
-                    <img class="todo_icon" src="assets/img/plus_button.png">
-                </div>
-                <div class="drag_area" id="progress" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')" ondragover="allowDrop(event); highlight('progress')"></div>
-            </div>
-            <div>
-                <div class="board_header_container">
-                    <h2 class="h2_padding">Awaiting Feedback</h2>
-                    <img class="todo_icon" src="assets/img/plus_button.png">
-                </div>
-                <div class="drag_area" id="feedback" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"></div>
-            </div>
-            <div>
-                <div class="board_header_container">
-                    <h2 class="h2_padding">Done</h2>
-                    <img class="todo_icon" src="assets/img/plus_button.png">
-                </div>
-                <div class="drag_area" id="closed" ondrop="moveTo('closed')" ondragleave="removeHighlight('closed')" ondragover="allowDrop(event); highlight('closed')"></div>
-            </div>
-        </div>
-    </main>
-    <section>
-        <div id="boardDetails" class="board_details_bg d_none" onclick="closeBoardDetails()">
-            <div class="board">
-                <div id="boardContent"></div>
-            </div>
-        </div>
-    </section>
 </body>
 
 </html>
