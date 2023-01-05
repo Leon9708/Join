@@ -4,6 +4,25 @@ async function renderContacts() {
     showContacts();
 }
 
+function loadHTML(id, filename) {
+    let xhttp;
+    let element = document.getElementById(id)
+    let file = filename;
+    if (file) {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) { element.innerHTML = this.responseText; }
+                if (this.status == 400) { element.innerHTML = "<p>Page not found</p>" }
+            }
+        }
+        xhttp.open("Get", file, true);
+        xhttp.send();
+
+
+    }
+    return;
+}
 
 // Placeholder!! Needs to be filled with input from 'Add Contact'-field. 
 
@@ -70,6 +89,7 @@ function createNewContact(event) {
 
 function toggleTask() {
     document.getElementById('overlayTask').classList.toggle("none");
+    loadHTML('content', 'add_task.html')
 }
 
 function createColor() {
