@@ -18,7 +18,6 @@ async function render() {
     renderContacts();
     renderTask();
     /*  renderBoard(); */
-
 }
 let lastId;
 let tasks;
