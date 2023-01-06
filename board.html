@@ -33,28 +33,28 @@
                         <h2 class="h2_padding">To Do</h2>
                         <img class="todo_icon" src="assets/img/plus_button.png">
                     </div>
-                    <div class="drag_area" id="open" ondrop="moveTo('1')" ondragleave="removeHighlight('1')" ondragover="allowDrop(event); highlight('1')"></div>
+                    <div class="drag_area" id="open" ondrop="moveTo('1')" ondragleave="removeHighlight('open')" ondragover="allowDrop(event); highlight('open')"></div>
                 </div>
                 <div>
                     <div class="board_header_container">
                         <h2 class="h2_padding">In Progress</h2>
                         <img class="todo_icon" src="assets/img/plus_button.png">
                     </div>
-                    <div class="drag_area" id="progress" ondrop="moveTo('2')" ondragleave="removeHighlight('2')" ondragover="allowDrop(event); highlight('2')"></div>
+                    <div class="drag_area" id="progress" ondrop="moveTo('2')" ondragleave="removeHighlight('progress')" ondragover="allowDrop(event); highlight('progress')"></div>
                 </div>
                 <div>
                     <div class="board_header_container">
                         <h2 class="h2_padding">Awaiting Feedback</h2>
                         <img class="todo_icon" src="assets/img/plus_button.png">
                     </div>
-                    <div class="drag_area" id="feedback" ondrop="moveTo('3')" ondragleave="removeHighlight('3')" ondragover="allowDrop(event); highlight('3')"></div>
+                    <div class="drag_area" id="feedback" ondrop="moveTo('3')" ondragleave="removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"></div>
                 </div>
                 <div>
                     <div class="board_header_container">
                         <h2 class="h2_padding">Done</h2>
                         <img class="todo_icon" src="assets/img/plus_button.png">
                     </div>
-                    <div class="drag_area" id="closed" ondrop="moveTo('4')" ondragleave="removeHighlight('4')" ondragover="allowDrop(event); highlight('4')"></div>
+                    <div class="drag_area" id="closed" ondrop="moveTo('4')" ondragleave="removeHighlight('closed')" ondragover="allowDrop(event); highlight('closed')"></div>
                 </div>
             </div>
         </main>
