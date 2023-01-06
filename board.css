@@ -31,20 +31,19 @@ h3 {
     background-color: #2A3647;
 }
 
-.container_heading_summary {
+.container_heading_board {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 22.5rem;
     padding-right: 6rem;
     padding-top: 7.5rem;
 }
 
-.heading_summary {
+.heading_board {
     font-size: 3.25rem;
 }
 
-.heading_separation_summary {
+.heading_separation_board {
     content: "";
     display: block;
     width: 0.2rem;
@@ -54,7 +53,7 @@ h3 {
     background-color: #29ABE2;
 }
 
-.subheading_summary {
+.subheading_board {
     font-size: 1.75rem;
     font-weight: 500;
     padding-left: 2rem;

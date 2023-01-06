@@ -15,17 +15,18 @@
 
 <body>
     <div class="change_css_board">
-        <div onload="renderBoard()" class="container_heading_summary">
-            <h1 class="heading_summary">Board</h1>
-            <div class="search_container">
-                <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
-                <button title="Add Task" class="add_button_task">
-                <p class="">Add Task</p>
-                <img src="./assets/img/plus.png" alt="#">
-            </button>
-            </div>
-        </div>
+
         <main>
+            <div onload="renderBoard()" class="container_heading_board">
+                <h1 class="heading_board">Board</h1>
+                <div class="search_container">
+                    <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
+                    <button title="Add Task" class="add_button_task">
+                    <p class="">Add Task</p>
+                    <img src="./assets/img/plus.png" alt="#">
+                </button>
+                </div>
+            </div>
             <div class="drag_area_container">
                 <div>
                     <div class="board_header_container">

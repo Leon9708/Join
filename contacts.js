@@ -86,6 +86,7 @@ function toggleOverlay() {
     }
 }
 
+
 function showName() {
     let circle = document.getElementById('showContactImg');
     let fullName = document.getElementById('name').value;

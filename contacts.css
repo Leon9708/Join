@@ -161,6 +161,7 @@ h3 {
     border: none;
     background-color: transparent;
     padding: 0;
+    gap: 0.5rem;
 }
 
 .show_contact_add_task {

@@ -96,6 +96,7 @@ async function render() {
     renderTask();
     renderTasks();
     renderBoard();
+    changeHTML('s')
 
 }
 let lastId;
@@ -128,6 +129,15 @@ async function getTodos() {
         console.error(error)
     }
 }
+
+function changeColor(id) {
+    const elemnts = document.querySelectorAll('.box_links_aside');
+    elemnts.forEach(element => {
+        element.style.backgroundColor = "#2A3647"
+    });
+    document.getElementById(id).parentElement.style.backgroundColor = "#091931"
+}
+
 
 /* async function init() {
     await getTodos();
@@ -183,13 +193,6 @@ function isScriptLoaded(src) {
     return true;
 }
 
-function changeColor(id) {
-    const elemnts = document.querySelectorAll('.box_links_aside');
-    elemnts.forEach(element => {
-        element.style.backgroundColor = "#2A3647"
-    });
-    document.getElementById(id).parentElement.style.backgroundColor = "#091931"
-}
 
 
 
