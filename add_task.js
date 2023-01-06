@@ -1,51 +1,10 @@
-async function getCategories() {
-    try {
-        let responseServer = await fetch('https://jonas34.pythonanywhere.com/categories/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        categoryLabels = await responseServer.json();
-    } catch (error) {
-        console.error(error)
-    }
-}
-async function getSubtasks() {
-    try {
-        let responseServer = await fetch('https://jonas34.pythonanywhere.com/subtasks/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        subtasks = await responseServer.json();
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-async function postTodo(task) {
-    const data = JSON.stringify(task);
-    fetch('https://jonas34.pythonanywhere.com/todos/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: data
-        })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
-}
-
-
-
-let categoryLabels;
 let colorID;
 let priority;
-let subtasks;
 let date;
 let chosenSubtasks = [];
 
 
 async function renderTask() {
-    await getSubtasks();
-    await getCategories();
     loadSubtask();
     loadCategory();
     loadUser();
@@ -183,6 +142,7 @@ function clickedColor(id) {
 //user selection
 
 function toggleDropdownUser() {
+
     const dropdown = document.getElementById("dropdown");
     const dropdownUser = document.getElementById("dropdown2");
     if (dropdown.classList.contains('display_none')) {
