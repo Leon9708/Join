@@ -73,6 +73,7 @@ h3 {
         padding-right: 0.3rem;
         padding-bottom: 0.3rem;
     }
+
     to {
         padding: 0;
         padding-bottom: 0;
@@ -94,6 +95,7 @@ h3 {
         padding: 0;
         padding-bottom: 0;
     }
+
     to {
         padding-right: 0.3rem;
         padding-bottom: 0.3rem;
@@ -321,9 +323,11 @@ h3 {
 }
 
 @media (max-width: 900px) {
+
     .container_greeting_summary {
         display: none;
     }
+
     .change_css_summary {
         padding-left: 0 !important;
         padding-bottom: 20% !important;
@@ -336,29 +340,37 @@ h3 {
 
     .main_summary {
         padding-left: 6rem !important;
-        padding-right: 6rem !important;
-        height: 100%;
         align-items: center;
-        margin-top: 10%;
+        position: absolute;
+        top: 10%;
+        padding: 0;
+        width: 100%;
+        justify-content: center;
+        bottom: 15%;
+        padding-left: 0 !important;
     }
 
     .container_board_activities_summary {
         justify-content: center;
     }
+
     .container_deadline_summary {
         max-width: none;
         justify-content: space-evenly;
     }
+
     .container_todo_summary {
         justify-content: center;
     }
+
     .container_heading_summary {
         width: 100%;
         padding-left: 0;
-        padding-top: 6rem !important;
+        padding-top: 0 !important;
         justify-content: center;
         flex-direction: column;
     }
+
     .heading_separation_summary {
         width: 5rem !important;
         height: 0.2rem !important;
@@ -369,7 +381,13 @@ h3 {
 }
 
 @media (max-width: 700px) {
-    .heading_summary {
-        font-size: 40px;
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 500px) {
+    html {
+        font-size: 12px;
     }
 }
