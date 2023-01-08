@@ -369,4 +369,53 @@ main {
         height: 30px !important;
         width: 30px !important;
     }
+
+    .footer_mobile {
+        height: 12% !important;
+    }
 }
+
+@media (max-width: 575px) {
+    .board_header_container {
+        width: 7.5rem;
+        font-size: 8px !important;
+    }
+
+    .heading_board {
+        font-size: 24px !important;
+    }
+
+    .container_heading_board {
+        padding-top: 8rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .todo_content {
+        gap: 0 !important;
+    }
+
+    .todo {
+        margin-top: 12px !important;
+        width: 7rem !important;
+    }
+}
+
+@media (max-width: 450px) {
+    .container_heading_board {
+        padding-right: 0 !important;
+    }
+
+    .board_header_container {
+        width: 12rem;
+        font-size: 10px !important;
+    }
+
+    .drag_area_container {
+        justify-content: center;
+    }
+
+    .todo {
+        width: 9rem !important;
+    }
+}
+
