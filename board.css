@@ -256,84 +256,117 @@ main {
     display: none;
 }
 
-@media (max-width: 1430px){
-    html {
-        font-size: 14px;
+@media (max-width: 1410px) {
+    .board_header_container {
+        width: 12.5rem;
     }
 
-    main {
-        padding-left: 6rem !important;
+    .container_heading_board {
+        padding-top: 6rem;
     }
 
-    .drag_area {
-        gap: 10px;
+    .todo {
+        width: 10.5rem;
     }
 }
 
-@media (max-width: 1275px) {
-    html {
-        font-size: 12px;
-    }
-
-    main {
-        padding-left: 9rem !important;
-        padding-top: 2rem !important;
-    }
-
+@media (max-width: 1214px) {
     .board_header_container {
-        margin-bottom: 10px !important;
+        width: 10.5rem;
+    }
+
+    .todo {
+        width: 8.5rem;
+        height: 7.5rem;
+        margin-top: 18px;
     }
 
     .todo_content {
-        font-size: 12px !important;
+        gap: 6px !important;
+    }
+
+    .search_container {
+        height: 2.5rem;
+    }
+
+    .heading_board {
+        font-size: 2.5rem;
+    }
+
+    .container_heading_board {
+        padding-top: 5.5rem;
+    }
+
+    main {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 1025px) {
+    .board_header_container {
+        width: 9.5rem;
+    }
+
+    .todo {
+        width: 7.5rem;
+        height: 6.5rem;
+        margin-top: 22px;
+    }
+
+    .drag_area {
         gap: 4px !important;
     }
 
-}
-
-@media (max-width: 1140px) {
-    html {
-        font-size: 10px;
+    .todo_content {
+        font-size: 14px !important;
     }
 
-    main {
-        padding-left: 13rem !important;
-        padding-top: 3rem !important;
+    .search_container {
+        height: 2.2rem;
     }
 
-    .topbar {
-        padding-left: 16px !important;
+    .heading_board {
+        font-size: 2.2rem;
     }
 }
 
-@media (max-width: 1000px) {
-    html {
-        font-size: 9px;
+@media (max-width: 940px) {
+    .change_css_board {
+        padding-left: 10.5rem;
     }
 
-    main {
-        padding-left: 13.4rem !important;
-    }
-
-    .topbar {
-        justify-content: space-around;
-    }
-
-    .board_header_container {
-        margin-top: 12px;
+    .topbar_content {
+        padding-left: 18rem;
     }
 }
 
 @media (max-width: 900px) {
-    .change_css_board {
-        padding-left: 0;
-        display: flex;
+    .main_board {
+        align-items: center;
+        top: 10%;
+        padding: 0;
+        width: 100%;
         justify-content: center;
+        bottom: 15%;
+        padding-left: 0 !important;
     }
 
-    main {
-        padding: 0 !important;
-        padding-top: 8px !important;
+    .change_css_board {
+        padding-left: 0 !important;
     }
 
+    .container_heading_board {
+        gap: 24px !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .todo_content {
+        font-size: 12px !important;
+    }
+
+    .topbar_profile_mobile {
+        height: 30px !important;
+        width: 30px !important;
+    }
 }
