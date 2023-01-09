@@ -419,3 +419,9 @@ main {
     }
 }
 
+@media (min-height: 1000px) {
+    .container_heading_board {
+        padding-top: 8rem;
+    }
+}
+

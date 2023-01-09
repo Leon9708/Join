@@ -692,17 +692,9 @@ select {
     }
 }
 
-@media (min-height: 850px) {
-    html {
-        font-size: 13px;
-    }
-}
 
 @media (min-height: 1100px) {
     .container_heading_task {
         padding-top: 14rem;
-    }
-    html {
-        font-size: 17px;
     }
 }

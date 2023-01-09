@@ -260,18 +260,18 @@ h3 {
     width: 0.75rem;
 }
 
-.container_heading_summary {
+.container_heading_contacts {
     display: flex;
     align-items: center;
     padding-left: 3rem;
     padding-top: 7.5rem;
 }
 
-.heading_summary {
+.heading_contacts {
     font-size: 3.25rem;
 }
 
-.heading_separation_summary {
+.heading_separation_contacts {
     content: "";
     display: block;
     width: 0.2rem;
@@ -281,7 +281,7 @@ h3 {
     background-color: #29ABE2;
 }
 
-.subheading_summary {
+.subheading_contacts {
     font-size: 1.75rem;
     font-weight: 500;
     padding-left: 2rem;
@@ -566,4 +566,43 @@ main {
 
 .place_add_task .place_input_left_task {
     padding-left: 10rem;
+}
+
+@media (max-width: 1225px) {
+    .heading_contacts {
+        font-size: 2.5rem;
+    } 
+
+    .subheading_contacts {
+        font-size: 1.25rem;
+    }
+
+    .show_contact_img {
+        height: 5.5rem;
+        width: 5.5rem;
+    }
+
+    .show_contact_name {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 1055px) {
+    .container_heading_contacts {
+        padding-left: 2rem;
+    }
+
+    .subheading_contacts {
+        padding-left: 1rem;
+    }
+
+    .heading_separation_contacts {
+        margin-left: 2rem;
+    }
+
+    .show_contact_name {
+        font-size: 1.5rem;
+    }
+
+    
 }
