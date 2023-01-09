@@ -573,3 +573,136 @@ select {
 .create_button_task img {
     width: 0.75rem;
 }
+
+@media (max-width: 1190px) {
+    .place_input_left_task {
+        padding-left: 17rem;
+    }
+
+    .container_heading_task {
+        padding-left: 17rem;
+    }
+
+    .heading_task {
+        font-size: 2.75rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    .main {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 1025px) {
+    .place_input_left_task {
+        padding-left: 16rem;
+    }
+
+    .container_heading_task {
+        padding-left: 16rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .place_input_left_task {
+        padding-left: 0;
+    }
+
+    .main {
+        justify-content: center;
+    }
+
+    .container_heading_task {
+        padding-left: 0;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 760px) {
+    .seperation_task {
+        display: none;
+    }
+
+    .main {
+        flex-direction: column;
+        align-items: center;
+        overflow: scroll;
+        gap: 0.3rem;
+        padding-top: 7rem;
+    }
+
+    .place_input_left_task {
+        width: 26rem;
+        align-items: center;
+    }
+
+    .input_task {
+        width: 100%;
+    }
+
+    .input_task_description {
+        width: 100%;
+        height: 2rem;
+    }
+
+    .container_input_task {
+        width: 100%;
+        align-items: center;
+        padding-bottom: 0.3rem;
+    }
+
+    .select_group {
+        width: 100%;
+    }
+
+    .select_group_2 {
+        width: 100%;
+        padding-top: 0.3rem;
+    }
+
+    .place_input_right_task {
+        width: 26rem;
+        align-items: center;
+    }
+
+    .box_input_date {
+        width: 100%;
+    }
+
+    .container_heading_task {
+        display: none;
+    }
+
+    .heading_task {
+        font-size: 2.25rem;
+    }
+
+    .container_buttons_bottom_task {
+        position: absolute; 
+        top: 2.5%;
+        left: 0;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .main {
+        padding-top: 9rem;
+    }
+}
+
+@media (min-height: 850px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+@media (min-height: 1100px) {
+    .container_heading_task {
+        padding-top: 14rem;
+    }
+    html {
+        font-size: 17px;
+    }
+}
