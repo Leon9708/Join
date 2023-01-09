@@ -139,6 +139,22 @@ select {
     z-index: 3;
 }
 
+.dropdown::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.dropdown::-webkit-scrollbar {
+    width: 6px;
+    background-color: #ffffff;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #c8c8c8;
+}
+
 .add_category {
     width: 100%;
     box-sizing: border-box;
@@ -152,7 +168,7 @@ select {
 
 .box_categoryelement {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
     padding: 0.6rem;
@@ -166,6 +182,15 @@ select {
 
 .box_categoryelement:hover {
     background-color: #f2f2f2;
+}
+
+.checkbox_user {
+    accent-color: rgb(2, 95, 152);
+    color: white;
+    border-radius: 100%;
+    border: none;
+    width: 10px;
+    height: 10px;
 }
 
 .categoryelement_color {
@@ -196,7 +221,7 @@ select {
     border-radius: 0.3rem;
     box-shadow: 0px 0px 2px 0.5px rgb(0 0 0 / 9%);
     width: 20rem;
-    padding: 0.6rem;
+    padding: 0.5rem;
     background-color: white;
 }
 
@@ -246,11 +271,11 @@ select {
 }
 
 .color_1 {
-    background-color: blue;
+    background-color: burlywood;
 }
 
 .color_2 {
-    background-color: red;
+    background-color: maroon;
 }
 
 .color_3 {
@@ -262,11 +287,11 @@ select {
 }
 
 .color_5 {
-    background-color: purple;
+    background-color: lightskyblue;
 }
 
 .color_6 {
-    background-color: yellow;
+    background-color: darkcyan;
 }
 
 .seperation_buttons_input_category {
@@ -436,6 +461,22 @@ select {
     overflow: auto;
     width: 100%;
     padding-bottom: 2rem;
+}
+
+.place_subtasks::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.place_subtasks::-webkit-scrollbar {
+    width: 6px;
+    background-color: #ffffff;
+}
+
+.place_subtasks::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #c8c8c8;
 }
 
 .box_create_subtask {

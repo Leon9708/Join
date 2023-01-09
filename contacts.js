@@ -70,9 +70,7 @@ function createNewContact(event) {
     toggleOverlay();
 }
 
-function toggleTask() {
-    document.getElementById('overlayTask').classList.toggle("none");
-}
+
 
 function createColor() {
     let randomColor = colors[Math.floor(Math.random() * colors.length)]

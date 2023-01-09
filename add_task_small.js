@@ -124,7 +124,7 @@ function unsetNewCategorys() {
 
 function createInputs() {
     x = document.createElement('INPUT');
-    x.setAttribute('class', 'input_categorys');
+    x.setAttribute('class', 'input_category');
     x.setAttribute('type', 'text');
     x.setAttribute('placeHolder', 'Enter your category');
     x.setAttribute('maxLength', '25');
@@ -393,7 +393,7 @@ function subtasksHTMLs(subtask, i) {
     return `    
     <div class="box_create_subtask">
         <label class="box_checkbox">
-            <input onclick="checkedSubtasks(this.id)" id="${i}" type="checkbox" >
+            <input onclick="checkedSubtasks(this.id)" id="${i}s" type="checkbox" >
             <span  class="checkmark"></span>
         </label>
         <p class="subtask" id="subtasks${i}">${subtask.title}</p>

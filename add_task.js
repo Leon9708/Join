@@ -25,7 +25,6 @@ function checkValdation() {
     } else {
         alert("unvalid Request, try again.")
     }
-
 }
 
 function createTask(user, filteredLabels) {
@@ -80,13 +79,13 @@ function selectedCategory(id) {
 }
 
 function openInputCategory() {
-    document.querySelector('.place_select_category').innerHTML = generateNewCategoryHTML();
-    document.querySelector('.box_buttons_color').innerHTML = generateBoxButtonsHTML();
+    document.getElementById('placeSelectCategory').innerHTML = generateNewCategoryHTML();
+    document.getElementById('boxButtonsColor').innerHTML = generateBoxButtonsHTML();
     createInput();
 }
 
 function createNewCategory() {
-    let newLabel = document.querySelector('.input_category').value;
+    let newLabel = document.getElementById('inputCategory').value;
     let id = categoryLabels.length + 1;
     categoryLabels.push({ "id": id, "title": newLabel, "color": colorID });
     unsetNewCategory();
@@ -115,7 +114,7 @@ function toggleDropdown() {
 }
 
 function unsetNewCategory() {
-    document.querySelector('.place_select_category').innerHTML = unsetNewCategoryHTML();
+    document.getElementById('placeSelectCategory').innerHTML = unsetNewCategoryHTML();
     document.getElementById('selectedLabel').innerHTML = "select task category"
 }
 
@@ -129,7 +128,7 @@ function createInput() {
     x.setAttribute('minLength', '3')
     x.setAttribute('id', 'inputCategory')
     x.setAttribute('name', 'newCategory')
-    document.querySelector('.place_input_category').appendChild(x);
+    document.getElementById('BoxInputCategory').appendChild(x);
 }
 
 
@@ -142,37 +141,46 @@ function clickedColor(id) {
 //user selection
 
 function toggleDropdownUser() {
-
     const dropdown = document.getElementById("dropdown");
     const dropdownUser = document.getElementById("dropdown2");
     if (dropdown.classList.contains('display_none')) {
         dropdownUser.classList.toggle('display_none');
     }
 }
+let usersInTask = []
 
 function selectUser(e) {
-    let selectedUser = contacts.filter(function(ele) {
-        return ele.id === +e
-    })
-    document.getElementById('selectedUser').innerHTML = `${selectedUser[0].firstName} ${selectedUser[0].lastName}`;
-    toggleDropdownUser();
-};
+    let id = document.getElementById(e);
+    let numberId = e[e.length - 1]
+    let NameId = "newCategory2" + numberId
+    let lastNameUser = document.getElementById(NameId).innerHTML;
+
+    if (id.checked === true) {
+        let selectedUser = contacts.filter(function(ele) {
+            return lastNameUser.includes(ele.lastName)
+        })
+        usersInTask.push(selectedUser[0]);
+    } else {
+        let userInTask = usersInTask.filter((ele) => {
+            return lastNameUser.includes(ele.lastName)
+        });
+        let index = usersInTask.indexOf(userInTask[0])
+        usersInTask.splice(index, 1)
+    }
+    console.log(usersInTask);
+
+
+}
 
 function loadUser() {
     document.getElementById('addUser').innerHTML = "";
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-        document.getElementById('addUser').innerHTML += ` 
-        <div id="${contact.id}" onclick="selectUser(this.id)" class="box_categoryelement">
-            <input type="radio" name="where" value="internet" class="option">
-            <label id="newCategory2" class="select-item">${contact.firstName} ${contact.lastName}</label>
-        </div>`
+        document.getElementById('addUser').innerHTML += loadUserHTML(contact, i);
     }
 }
 
 // input date
-
-
 
 
 function setDate() {
@@ -241,7 +249,7 @@ function CreateNewSubtask(newSubtask) {
 }
 
 function filterSubtaskDuplicates() {
-    let newSubtask = document.querySelector('.input_subtask').value
+    let newSubtask = document.getElementById('inputSubtask').value
     const filteredSubtask = subtasks.filter((subtask) => {
         return subtask.title == newSubtask
     }).length > 0
@@ -318,7 +326,7 @@ function generateNewCategoryHTML() {
                     <img class="img_button_input_category" src="assets/img/cross_task.png" alt="#">
                 </button>
                 <div class="seperation_buttons_input_category"></div>
-                <button type="submit" name="newCategory" onclick="createNewCategory()" class="button_input_category">
+                <button type="button" name="newCategory" onclick="createNewCategory()" class="button_input_category">
                     <img class="img_button_input_category" src="assets/img/check_task.png" alt="#">
                 </button>
             </div>
@@ -331,12 +339,12 @@ function generateNewCategoryHTML() {
 
 function generateBoxButtonsHTML() {
     return `     
-    <button type="button" onclick="clickedColor(this.id)" id="blue" class="button_color color_1"></button>
-    <button type="button" onclick="clickedColor(this.id)" id="red" class="button_color color_2"></button>
+    <button type="button" onclick="clickedColor(this.id)" id="burlywood" class="button_color color_1"></button>
+    <button type="button" onclick="clickedColor(this.id)" id="maroon" class="button_color color_2"></button>
     <button type="button" onclick="clickedColor(this.id)" id="green" class="button_color color_3"></button>
     <button type="button" onclick="clickedColor(this.id)" id="orange" class="button_color color_4"></button>
-    <button type="button" onclick="clickedColor(this.id)" id="purple" class="button_color color_5"></button>
-    <button type="button" onclick="clickedColor(this.id)" id="yellow" class="button_color color_6"></button>`
+    <button type="button" onclick="clickedColor(this.id)" id="lightskyblue" class="button_color color_5"></button>
+    <button type="button" onclick="clickedColor(this.id)" id="darkcyan" class="button_color color_6"></button>`
 }
 
 
@@ -396,4 +404,13 @@ function subtasksHTML(subtask, i) {
         <p class="subtask" id="subtask${i}">${subtask.title}</p>
     </div> 
     `
+}
+
+function loadUserHTML(contact, i) {
+    return ` 
+    <div   class="box_categoryelement">
+        <input type="radio" name="where" value="internet" class="option">
+        <label id="newCategory2${i}" class="select-item">${contact.firstName} ${contact.lastName}</label>
+        <input type="checkbox" onclick="selectUser(this.id)" class="checkbox_user" id="User${contact.id}">
+    </div>`
 }

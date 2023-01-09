@@ -122,6 +122,7 @@ main {
     height: 2.5rem;
     width: 15.625rem;
     font-size: 9px;
+    margin-bottom: 2rem;
 }
 
 .drag_area_container {
@@ -135,11 +136,11 @@ main {
 
 .drag_area {
     min-height: 12.5rem;
+    width: 13.125rem;
     display: flex;
+    gap: 15px;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin: 0px;
+    margin: 0;
 }
 
 .drag_area_highlight {
@@ -148,24 +149,23 @@ main {
 
 .todo {
     background-color: white;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-    box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.092);
+    border-radius: 20px;
+    padding: 0.8rem;
+    padding-left: 1rem;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
     cursor: pointer;
     font-size: 16px;
-    width: 13.125rem;
-    height: 9.375rem;
+    width: 100%;
+    height: 9rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .todo_content {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 10px;
+    justify-content: flex-start;
+    gap: 0.35rem;
 }
 
 .todo_icon {
@@ -183,26 +183,44 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0.25rem;
 }
 
 .todo_contact_img {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 0.8rem;
+    height: 0.8rem;
     border-radius: 100%;
-    padding: 10px;
-    border: 1px solid rgb(82, 84, 82);
-    margin-right: 20px;
+    border: none;
+    padding: 0.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    font-size: 0.75rem;
+}
+
+.bg_title {
+    font-size: 0.9rem;
 }
 
 .bg_category {
-    border: 1px solid rgb(82, 84, 82);
-    border-radius: 10px;
-    padding: 5px;
+    width: fit-content;
+    border: none;
+    border-radius: 7.5px;
+    padding: 0.15rem 1rem 0.15rem 1rem;
     text-align: center;
     background-color: #29ABE2;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.bg_description {
+    font-size: 0.75rem;
+    color: rgb(152, 152, 152);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .priority_icon {
@@ -256,69 +274,76 @@ main {
     display: none;
 }
 
-@media (max-width: 1430px){
-    html {
-        font-size: 14px;
-    }
+.overlay_add_task {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 90%;
+    border-radius: 2rem;
+    background-color: rgb(255, 255, 255);
+    z-index: 11;
+    display: flex;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border: none;
+}
 
+.place_add_task {
+    width: 100%;
+    height: 100%;
+}
+
+.place_add_task .container_heading_task {
+    padding-left: 10rem;
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+}
+
+.place_add_task .place_input_left_task {
+    padding-left: 10rem;
+}
+
+@media (max-width: 1430px) {
     main {
         padding-left: 6rem !important;
     }
-
     .drag_area {
         gap: 10px;
     }
 }
 
 @media (max-width: 1275px) {
-    html {
-        font-size: 12px;
-    }
-
     main {
         padding-left: 9rem !important;
         padding-top: 2rem !important;
     }
-
     .board_header_container {
         margin-bottom: 10px !important;
     }
-
     .todo_content {
         font-size: 12px !important;
         gap: 4px !important;
     }
-
 }
 
 @media (max-width: 1140px) {
-    html {
-        font-size: 10px;
-    }
-
     main {
         padding-left: 13rem !important;
         padding-top: 3rem !important;
     }
-
     .topbar {
         padding-left: 16px !important;
     }
 }
 
 @media (max-width: 1000px) {
-    html {
-        font-size: 9px;
-    }
-
     main {
         padding-left: 13.4rem !important;
     }
-
     .topbar {
         justify-content: space-around;
     }
-
     .board_header_container {
         margin-top: 12px;
     }
@@ -330,10 +355,8 @@ main {
         display: flex;
         justify-content: center;
     }
-
     main {
         padding: 0 !important;
         padding-top: 8px !important;
     }
-
 }

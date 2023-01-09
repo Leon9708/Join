@@ -124,7 +124,7 @@ function updateHTMLOpenTasks() {
     for (let index = 0; index < openTasks.length; index++) {
         const element = openTasks[index];
         document.getElementById('open').innerHTML += generateTodoHTML(element, index);
-        /*   GetName(element, index) */
+        GetName(element, index)
     }
 }
 
@@ -160,7 +160,6 @@ function updateHTMLClosedTasks() {
     for (let index = 0; index < closed.length; index++) {
         const element = closed[index];
         document.getElementById('closed').innerHTML += generateTodoHTML(element, index);
-
     }
 }
 
@@ -170,30 +169,19 @@ function startDragging(id) {
     currentDraggedElement = id;
 }
 
-/* function GetName(task, index) {
+function GetName(task, index) {
     let filteredcontact = contacts.filter((ele) => {
         return task.user.includes(ele.lastName)
-    })
+    });
     let firstLetterLastName = filteredcontact[0].lastName.substring(0, 1)
     document.getElementById('checkUser' + index).innerHTML += firstLetterLastName;
-} */
+    document.getElementById('checkUser' + index).style.backgroundColor = filteredcontact[0].color
+    document.getElementById('checkCategory' + index).style.backgroundColor = task.categories[0].color
 
-
-function generateTodoHTML(element, index) {
-    return `
-<div draggable="true" ondragstart="startDragging(${element['id']})" class="todo">
-    <div onclick="openBoardDetails(${index})" class="todo_content">
-        <div class="bg_category" id="checkCategory">${element['categories'][0]['title']}</div>
-        <div class="bg_title" id="checkTitle"><b>${element['title']}</b></div>
-        <div class="bg_description" id="checkDescription">${element['description']}</div>x
-        <div class="todo_user_priority">
-            <div class="todo_contact_img" id="checkUser${index}">${element['user'].charAt(0)}</div>
-            <img class="priority_icon" src=${element['image']}>
-        </div>
-    </div>
-</div>
-`;
 }
+
+
+
 
 
 // Needed to make dropping elements possible. 
@@ -252,6 +240,10 @@ function closeBoardDetails() {
     document.getElementById('boardDetails').classList.add('d_none');
 }
 
+function toggleTask() {
+    document.getElementById('overlayTask').classList.toggle("none");
+}
+
 /*
 // If Category == Media --> classlist.add('bg_media'), etc.
 function matchColorWithCategory() {
@@ -268,3 +260,19 @@ function matchColorWithCategory() {
     //};
 }
 */
+
+function generateTodoHTML(element, index) {
+    return `
+<div draggable="true" ondragstart="startDragging(${element['id']})" class="todo">
+    <div onclick="openBoardDetails(${index})" class="todo_content">
+        <div class="bg_category" id="checkCategory${index}">${element['categories'][0]['title']}</div>
+        <div class="bg_title" id="checkTitle"><b>${element['title']}</b></div>
+        <div class="bg_description" id="checkDescription">${element['description']}</div>
+        <div class="todo_user_priority">
+            <div class="todo_contact_img" id="checkUser${index}">${element['user'].charAt(0)}</div>
+            <img class="priority_icon" src=${element['image']}>
+        </div>
+    </div>
+</div>
+`;
+}

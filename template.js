@@ -46,8 +46,7 @@ async function postTodo(task) {
         .then(response => response.json())
         .then(response => console.log(JSON.stringify(response)))
 }
-let categoryLabels;
-let subtasks;
+
 
 let contacts = [{
     'id': 0,
@@ -101,6 +100,9 @@ async function render() {
 }
 let lastId;
 let tasks;
+let categoryLabels;
+let subtasks;
+
 
 function changeHTML(id) {
     if (id == "s") {
