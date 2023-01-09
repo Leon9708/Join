@@ -603,6 +603,43 @@ main {
     .show_contact_name {
         font-size: 1.5rem;
     }
-
-    
 }
+
+@media (max-width: 1000px) {
+    .main_container_contacts {
+        left: 0;
+        right: 0;
+        width: 100%;
+        top: 11%;
+        bottom: 15%;
+        height: auto;
+        justify-content: center;
+    }
+
+    .container_contacts_right {
+        display: none;
+    }
+
+    .container_contacts_left {
+        box-shadow: none;
+        width:40rem;
+        position: absolute;
+        top: 0;
+    }
+
+    .contact_list {
+        margin-top: 0;
+        overflow: auto;
+    }
+
+    .contact_letter {
+        align-items: center;
+    }
+
+    .box_contact {
+        align-items: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
