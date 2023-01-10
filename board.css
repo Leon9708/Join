@@ -274,7 +274,6 @@ main {
     display: none;
 }
 
-<<<<<<< HEAD
 .overlay_add_task {
     position: absolute;
     top: 50%;
@@ -319,7 +318,6 @@ main {
         padding-left: 9rem !important;
         padding-top: 2rem !important;
     }
-=======
 @media (max-width: 1410px) {
     .board_header_container {
         width: 12.5rem;
@@ -335,7 +333,6 @@ main {
 }
 
 @media (max-width: 1214px) {
->>>>>>> dadb2f9733eb49ce4da5ec0ee4187b74cb35fdfc
     .board_header_container {
         width: 10.5rem;
     }
@@ -380,7 +377,6 @@ main {
     .drag_area {
         gap: 4px !important;
     }
-<<<<<<< HEAD
 }
 
 @media (max-width: 1140px) {
@@ -402,7 +398,6 @@ main {
     }
     .board_header_container {
         margin-top: 12px;
-=======
 
     .todo_content {
         font-size: 14px !important;
@@ -424,7 +419,6 @@ main {
 
     .topbar_content {
         padding-left: 18rem;
->>>>>>> dadb2f9733eb49ce4da5ec0ee4187b74cb35fdfc
     }
 }
 
@@ -501,13 +495,11 @@ main {
     .drag_area_container {
         justify-content: center;
     }
-<<<<<<< HEAD
     main {
         padding: 0 !important;
         padding-top: 8px !important;
     }
 }
-=======
 
     .todo {
         width: 9rem !important;
@@ -520,4 +512,3 @@ main {
     }
 }
 
->>>>>>> dadb2f9733eb49ce4da5ec0ee4187b74cb35fdfc
