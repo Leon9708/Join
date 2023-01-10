@@ -305,19 +305,14 @@ main {
 }
 
 @media (max-width: 1430px) {
-    main {
-        padding-left: 6rem !important;
-    }
     .drag_area {
         gap: 10px;
     }
 }
 
 @media (max-width: 1275px) {
-    main {
-        padding-left: 9rem !important;
-        padding-top: 2rem !important;
-    }
+    
+
 @media (max-width: 1410px) {
     .board_header_container {
         width: 12.5rem;
@@ -380,24 +375,18 @@ main {
 }
 
 @media (max-width: 1140px) {
-    main {
-        padding-left: 13rem !important;
-        padding-top: 3rem !important;
-    }
     .topbar {
         padding-left: 16px !important;
     }
 }
 
 @media (max-width: 1000px) {
-    main {
-        padding-left: 13.4rem !important;
-    }
     .topbar {
         justify-content: space-around;
     }
     .board_header_container {
         margin-top: 12px;
+    }
 
     .todo_content {
         font-size: 14px !important;
