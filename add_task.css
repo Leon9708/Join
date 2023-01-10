@@ -668,14 +668,19 @@ select {
     .main {
         flex-direction: column;
         align-items: center;
-        overflow: scroll;
+        justify-content: flex-start;
+        overflow: auto;
         gap: 0.3rem;
-        padding-top: 7rem;
+        position: absolute;
+        bottom: 15%;
+        top: 10%;
+        width: 100%;
     }
 
     .place_input_left_task {
         width: 26rem;
         align-items: center;
+        padding-top: 4rem;
     }
 
     .input_task {
