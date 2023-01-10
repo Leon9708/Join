@@ -320,6 +320,12 @@ h3 {
     }
 }
 
+@media (max-height: 700px) {
+    .container_greeting_summary {
+        display: none;
+    }
+}
+
 @media (max-width: 900px) {
     .container_greeting_summary {
         display: none;
@@ -366,17 +372,5 @@ h3 {
         margin-top: 1rem;
         margin-bottom: 1rem;
         margin-left: 0 !important;
-    }
-}
-
-@media (max-width: 700px) {
-    html {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 500px) {
-    html {
-        font-size: 12px;
     }
 }

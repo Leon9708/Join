@@ -167,9 +167,6 @@ function selectUser(e) {
         let index = usersInTask.indexOf(userInTask[0])
         usersInTask.splice(index, 1)
     }
-    console.log(usersInTask);
-
-
 }
 
 function loadUser() {
