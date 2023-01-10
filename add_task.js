@@ -4,7 +4,7 @@ let date;
 let chosenSubtasks = [];
 
 
-async function renderTask() {
+function renderTask() {
     loadSubtask();
     loadCategory();
     loadUser();
