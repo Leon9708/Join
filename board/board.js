@@ -49,7 +49,7 @@ function updateHTMLOpenTasks() {
     for (let index = 0; index < openTasks.length; index++) {
         const element = openTasks[index];
         document.getElementById('open').innerHTML += generateTodoHTML(element, index);
-        GetName(element, index)
+        /*    GetName(element, index) */
     }
 }
 
@@ -94,7 +94,7 @@ function startDragging(id) {
     currentDraggedElement = id;
 }
 
-function GetName(task, index) {
+/* function GetName(task, index) {
     let filteredcontact = contacts.filter((ele) => {
         return task.user.includes(ele.lastName)
     });
@@ -104,7 +104,7 @@ function GetName(task, index) {
     document.getElementById('checkCategory' + index).style.backgroundColor = task.categories[0].color
 
 }
-
+ */
 
 
 
@@ -120,25 +120,31 @@ function moveTo(status) {
     let filteredTask = tasks.filter((task) => {
         return task['id'] === currentDraggedElement
     });
-
-    console.log(filteredTask);
-    console.log(filteredTask[0]);
-    console.log(filteredTask[0]['status']);
     filteredTask[0]['status'] = status;
-    updateHTML();
+
+    removeDragBackground()
+    renderBoard();
 }
 
+function removeDragBackground() {
+    const dragBackground = document.querySelectorAll('.drag_area_highlight');
+    dragBackground.forEach(element => {
+        element.parentNode.removeChild(element);
+    });
+}
 
 // Change background color when element is dragged.
 function highlight(id) {
-    document.getElementById(id).classList.add('drag_area_highlight');
+    let category = document.getElementById(id).querySelector('.drag_area_highlight');
+    if (category == null) {
+        document.getElementById(id).innerHTML += `
+        <div class="drag_area_highlight" ></div>`
+    }
 }
-
-
+/* 
 function removeHighlight(id) {
-    document.getElementById(id).classList.remove('drag_area_highlight');
-}
-
+    document.getElementById(id).lastChild.removeChild();
+} */
 
 // ??? ////////////////////////////////////
 // Show Task Details

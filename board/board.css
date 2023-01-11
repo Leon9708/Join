@@ -9,34 +9,19 @@ body {
 p,
 h1,
 h2,
-h3 {
+h3,
+button {
     padding: 0;
     margin: 0;
 }
 
-.change_css_board {
-    padding-left: 13rem;
-}
-
-.h2_padding {
-    padding-left: 1rem;
-}
-
-.sidebar {
-    position: absolute;
-    left: 0;
-    z-index: 0;
-    width: 15%;
-    height: 100vh;
-    background-color: #2A3647;
-}
-
 .container_heading_board {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 6rem;
     padding-top: 7.5rem;
+    padding-bottom: 4rem;
 }
 
 .heading_board {
@@ -53,6 +38,11 @@ h3 {
     background-color: #29ABE2;
 }
 
+.heading_categories {
+    padding-left: 1rem;
+    font-size: 1.25rem;
+}
+
 .subheading_board {
     font-size: 1.75rem;
     font-weight: 500;
@@ -61,11 +51,9 @@ h3 {
 
 main {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding-left: 22.5rem;
-    padding-right: 6rem;
+    flex-direction: column;
+    width: calc(95% - 17.5rem);
+    margin-left: 17.5rem;
 }
 
 .search_container {
@@ -120,28 +108,37 @@ main {
     align-items: center;
     justify-content: space-between;
     height: 2.5rem;
-    width: 15.625rem;
-    font-size: 9px;
+    width: 100%;
+    font-size: 0.6rem;
     margin-bottom: 2rem;
+}
+
+.place_categorys {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 .drag_area_container {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 10px;
-    height: 70vh;
+    gap: 1.5rem;
+    height: 24rem;
     overflow: auto;
+    width: 100%;
 }
 
 .drag_area_container::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: #ffffff;
+    margin-top: 40px;
+    background-color: #ffffff00;
+    margin-bottom: 1rem;
 }
 
 .drag_area_container::-webkit-scrollbar {
     width: 6px;
-    background-color: #ffffff;
+    background-color: #ffffff00;
 }
 
 .drag_area_container::-webkit-scrollbar-thumb {
@@ -151,16 +148,18 @@ main {
 }
 
 .drag_area {
-    min-height: 12.5rem;
-    width: 13.125rem;
-    display: flex;
     gap: 15px;
+    display: flex;
     flex-direction: column;
-    margin: 0;
+    width: 22.5%;
+    padding-bottom: 1rem;
 }
 
 .drag_area_highlight {
-    background-color: rgb(222, 229, 232);
+    height: 10rem;
+    border: dotted 2px grey;
+    border-radius: 1.5rem;
+    width: 100%;
 }
 
 .todo {
@@ -170,17 +169,21 @@ main {
     padding-left: 1rem;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
     cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    height: 9rem;
+    width: calc(100% - 1.7rem);
+    min-height: 7.5rem;
+    max-height: 12rem;
+    height: fit-content;
     display: flex;
 }
 
 .todo_content {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
+    margin: 0;
     gap: 0.35rem;
 }
 
@@ -192,7 +195,7 @@ main {
 
 .todo_icon:hover {
     outline: 0.1px solid #29ABE2;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 .todo_user_priority {
@@ -200,6 +203,7 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-top: 0.25rem;
+    width: 100%;
 }
 
 .todo_contact_img {
@@ -290,7 +294,9 @@ main {
     display: none;
 }
 
-.overlay_add_task {
+
+/* 
+/* .overlay_add_task {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -315,19 +321,13 @@ main {
     padding-top: 2.5rem;
     padding-bottom: 3rem;
 }
+ 
 
 .place_add_task .place_input_left_task {
     padding-left: 10rem;
-}
+} */
 
-@media (max-width: 1430px) {
-    main {
-        padding-left: 6rem !important;
-    }
-    .drag_area {
-        gap: 10px;
-    }
-}
+@media (max-width: 1430px) {}
 
 @media (max-width: 1275px) {
     main {
