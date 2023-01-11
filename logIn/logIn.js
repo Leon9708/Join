@@ -90,11 +90,11 @@ function onsubmitLogIn() {
 }
 
 function submitSignUp() {
-    window.location.href = "./summary.html ";
+    window.location.href = "./summary/summary.html ";
 }
 
 function guestLogIn() {
-    window.location.href = "./summary.html";
+    window.location.href = "./summary/summary.html";
 }
 
 function onsubmitGuestLogIn() {
