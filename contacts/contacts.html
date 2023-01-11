@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link rel="stylesheet" href="contacts.css">
-    <link rel="stylesheet" href="assets/font/font.css">
+    <link rel="stylesheet" href="../assets/font/font.css">
     <link rel="stylesheet" href="../navigation/navigation.css">
     <script src="../navigation/navigation.js"></script>
     <script src="./contacts.js"></script>
+    <script src="../globalVariables.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); render('contacts')">
     <div w3-include-html="../navigation/navigation.html"></div>
     <div class="change_css_contacts">
         <!--      <div class="overlay_add_contact">

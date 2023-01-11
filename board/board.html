@@ -8,14 +8,15 @@
     <title>Board</title>
     <!--<link rel="stylesheet" href="board.css">-->
     <link rel="stylesheet" href="board.css">
-    <link rel="stylesheet" href="assets/font/font.css">
+    <link rel="stylesheet" href="../assets/font/font.css">
     <link rel="stylesheet" href="../navigation/navigation.css">
     <script src="./board.js"></script>
     <script src="../contacts.js"></script>
     <script src="../navigation/navigation.js"></script>
+    <script src="../globalVariables.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML();render('board')">
     <div w3-include-html="../navigation/navigation.html"></div>
     <div class="change_css_board">
         <!--   <div id="overlayTask" class="background_overlay_add_contact none ">

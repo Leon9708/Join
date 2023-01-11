@@ -12,13 +12,12 @@ async function includeHTML() {
     }
 }
 
-async function renderSummary() {
+function renderSummary() {
     tasksProgress = document.getElementById('tasksProgress');
     tasksAwaitingFeedback = document.getElementById('tasksAwaitingFeedback');
     tasksDone = document.getElementById('tasksDone');
     tasksTodo = document.getElementById('tasksTodo');
     displayInfo();
-
 }
 
 let tasksProgress;
@@ -105,15 +104,15 @@ function showPriority(sortafterDate) {
     let colorBackground;
     if (prio === 'M') {
         prio = "Medium"
-        imgPrio = "./assets/img/medium_clicked_task.png"
+        imgPrio = "../assets/img/medium_clicked_task.png"
         colorBackground = "#FFA800"
     } else if (prio === 'L') {
         prio = "Low"
-        imgPrio = "./assets/img/low_clicked_task.png"
+        imgPrio = "../assets/img/low_clicked_task.png"
         colorBackground = "#FFA800"
     } else if (prio === 'H') {
         prio = "Urgent"
-        imgPrio = "./assets/img/urgent_clicked_task.png"
+        imgPrio = "../assets/img/urgent_clicked_task.png"
         colorBackground = "#7AE229"
     }
     document.getElementById('boxPrioImg').style.backgroundColor = colorBackground

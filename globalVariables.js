@@ -33,6 +33,16 @@ async function postTodo(task) {
         .then(response => console.log(JSON.stringify(response)))
 }
 
+async function getTodos() {
+    try {
+        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
+        if (!responseServer.ok)
+            throw new Error("Response not ok")
+        tasks = await responseServer.json();
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 let contacts = [{
     'id': 0,
@@ -72,29 +82,25 @@ let contacts = [{
 }];
 
 
-async function render() {
+async function render(id) {
     await getTodos();
     await getSubtasks();
     await getCategories();
-    renderSummary();
+    if (id === 'summary') {
+        renderSummary();
+    } else if (id === "board") {
+        renderBoard();
+    } else if (id === "task") {
+        renderTask();
+    } else if (id === "contacts") {
+        renderContacts()
+    }
+
 }
 let lastId;
 let tasks;
 let categoryLabels;
 let subtasks;
-
-async function getTodos() {
-    try {
-        let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
-        if (!responseServer.ok)
-            throw new Error("Response not ok")
-        tasks = await responseServer.json();
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-
 
 /* async function init() {
     await getTodos();

@@ -380,29 +380,29 @@ select {
 }
 
 .urgency_img_l_task {
-    background-image: url('assets/img/low_task.png');
+    background-image: url('../assets/img/low_task.png');
 }
 
 .urgency_img_l_clicked_task {
-    background-image: url('assets/img/low_clicked_task.png');
+    background-image: url('../assets/img/low_clicked_task.png');
 }
 
 .urgency_img_u_task {
-    background-image: url('assets/img/urgent_task.png');
+    background-image: url('../assets/img/urgent_task.png');
 }
 
 .urgency_img_m_task {
-    background-image: url('assets/img/medium_task.png');
+    background-image: url('../assets/img/medium_task.png');
     height: 0.45rem;
 }
 
 .urgency_img_m_clicked_task {
-    background-image: url('assets/img/medium_clicked_task.png');
+    background-image: url('../assets/img/medium_clicked_task.png');
     height: 0.45rem;
 }
 
 .urgency_img_u_clicked_task {
-    background-image: url('assets/img/urgent_clicked_task.png');
+    background-image: url('../assets/img/urgent_clicked_task.png');
 }
 
 .box_subtask_input {
@@ -578,7 +578,7 @@ select {
 }
 
 .img_clear_task {
-    background-image: url('./assets/img/cross_task.png');
+    background-image: url('../assets/img/cross_task.png');
     width: 0.5rem;
     height: 0.5rem;
     background-repeat: no-repeat;
@@ -587,7 +587,7 @@ select {
 }
 
 .clear_button_task:hover>.img_clear_task {
-    background-image: url('./assets/img/cross_blue.png');
+    background-image: url('../assets/img/cross_blue.png');
 }
 
 .create_button_task {

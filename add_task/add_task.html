@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
-    <link rel="stylesheet" href="assets/font/font.css">
+    <link rel="stylesheet" href="../assets/font/font.css">
     <link rel="stylesheet" href="add_task.css">
     <link rel="stylesheet" href="../navigation/navigation.css">
     <script src="../navigation/navigation.js"></script>
     <script src="./add_task.js"></script>
+    <script src="../globalVariables.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); render('task')">
     <div w3-include-html="../navigation/navigation.html"></div>
     <div class="change_css_task">
         <div onload="render()" class="container_heading_task">

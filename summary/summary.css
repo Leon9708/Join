@@ -15,8 +15,7 @@ h3 {
 }
 
 .change_css_summary {
-    font-size: 10px;
-    padding-left: 17.5rem;
+    padding-left: 22.5rem;
 }
 
 .container_heading_summary {
@@ -244,19 +243,19 @@ h3 {
 }
 
 .todo_icon_pen_summary {
-    background-image: url('./assets/img/pencil_white.png');
+    background-image: url('../assets/img/pencil_white.png');
 }
 
 .todo_icon_done_summary {
-    background-image: url('./assets/img/done_white.png');
+    background-image: url('../assets/img/done_white.png');
 }
 
 .box_todo_summary:hover>.todo_icon_done_summary {
-    background-image: url('./assets/img/done_blue.png');
+    background-image: url('../assets/img/done_blue.png');
 }
 
 .box_todo_summary:hover>.todo_icon_pen_summary {
-    background-image: url('./assets/img/pencil_blue.png');
+    background-image: url('../assets/img/pencil_blue.png');
 }
 
 .todo_content_summary {
