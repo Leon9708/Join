@@ -108,14 +108,14 @@ main {
     align-items: center;
     justify-content: space-between;
     height: 2.5rem;
-    width: 100%;
+    width: 23.75%;
     font-size: 0.6rem;
     margin-bottom: 2rem;
 }
 
 .place_categorys {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     width: 100%;
 }
 
@@ -127,11 +127,11 @@ main {
     height: 24rem;
     overflow: auto;
     width: 100%;
+    padding-left: 1rem;
 }
 
 .drag_area_container::-webkit-scrollbar-track {
     border-radius: 10px;
-    margin-top: 40px;
     background-color: #ffffff00;
     margin-bottom: 1rem;
 }
@@ -151,7 +151,7 @@ main {
     gap: 15px;
     display: flex;
     flex-direction: column;
-    width: 22.5%;
+    width: 23%;
     padding-bottom: 1rem;
 }
 
@@ -176,6 +176,10 @@ main {
     display: flex;
 }
 
+.todo:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .todo_content {
     width: 100%;
     height: 100%;
@@ -194,8 +198,46 @@ main {
 }
 
 .todo_icon:hover {
-    outline: 0.1px solid #29ABE2;
-    border-radius: 0.5rem;
+    backdrop-filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.23));
+}
+
+.box_subcategories {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.6rem;
+}
+
+.box_subtask_bar {
+    width: 11rem;
+    height: 0.45rem;
+    background-color: rgba(148, 148, 148, 0.46);
+    border: none;
+    border-radius: 2rem;
+}
+
+.subtask_bar {
+    width: 20%;
+    height: 100%;
+    background-color: #29ABE2;
+    border-radius: 2rem;
+}
+
+.box_subtask_num {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.subtask_text {
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+
+.subtask_num {
+    font-size: 0.7rem;
+    font-weight: bold;
 }
 
 .todo_user_priority {
