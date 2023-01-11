@@ -321,13 +321,15 @@ main {
 }
 
 @media (max-width: 1430px) {
+    main {
+        padding-left: 6rem !important;
+    }
     .drag_area {
         gap: 10px;
     }
 }
 
 @media (max-width: 1275px) {
-<<<<<<< HEAD:Group-385-Join/board/board.css
     main {
         padding-left: 9rem !important;
         padding-top: 2rem !important;
@@ -342,13 +344,6 @@ main {
         .todo {
             width: 10.5rem;
         }
-=======
-    
-
-@media (max-width: 1410px) {
-    .board_header_container {
-        width: 12.5rem;
->>>>>>> 5e2c2ad8fe7ef2bd868b5345201e676f9ca30e36:board.css
     }
     @media (max-width: 1214px) {
         .board_header_container {
@@ -490,143 +485,6 @@ main {
             padding-top: 8px !important;
         }
     }
-<<<<<<< HEAD:Group-385-Join/board/board.css
-=======
-}
-
-@media (max-width: 1025px) {
-    .board_header_container {
-        width: 9.5rem;
-    }
-
-    .todo {
-        width: 7.5rem;
-        height: 6.5rem;
-        margin-top: 22px;
-    }
-
-    .drag_area {
-        gap: 4px !important;
-    }
-}
-
-@media (max-width: 1140px) {
-    .topbar {
-        padding-left: 16px !important;
-    }
-}
-
-@media (max-width: 1000px) {
-    .topbar {
-        justify-content: space-around;
-    }
-    .board_header_container {
-        margin-top: 12px;
-    }
-
-    .todo_content {
-        font-size: 14px !important;
-    }
-
-    .search_container {
-        height: 2.2rem;
-    }
-
-    .heading_board {
-        font-size: 2.2rem;
-    }
-}
-
-@media (max-width: 940px) {
-    .change_css_board {
-        padding-left: 10.5rem;
-    }
-
-    .topbar_content {
-        padding-left: 18rem;
-    }
-}
-
-@media (max-width: 900px) {
-    .main_board {
-        align-items: center;
-        top: 10%;
-        padding: 0;
-        width: 100%;
-        justify-content: center;
-        bottom: 15%;
-        padding-left: 0 !important;
-    }
-
-    .change_css_board {
-        padding-left: 0 !important;
-    }
-
-    .container_heading_board {
-        gap: 24px !important;
-    }
-}
-
-@media (max-width: 700px) {
-    .todo_content {
-        font-size: 12px !important;
-    }
-
-    .topbar_profile_mobile {
-        height: 30px !important;
-        width: 30px !important;
-    }
-
-    .footer_mobile {
-        height: 12% !important;
-    }
-}
-
-@media (max-width: 575px) {
-    .board_header_container {
-        width: 7.5rem;
-        font-size: 8px !important;
-    }
-
-    .heading_board {
-        font-size: 24px !important;
-    }
-
-    .container_heading_board {
-        padding-top: 8rem !important;
-        margin-bottom: 0.5rem !important;
-    }
-
-    .todo_content {
-        gap: 0 !important;
-    }
-
-    .todo {
-        margin-top: 12px !important;
-        width: 7rem !important;
-    }
-}
-
-@media (max-width: 450px) {
-    .container_heading_board {
-        padding-right: 0 !important;
-    }
-
-    .board_header_container {
-        width: 12rem;
-        font-size: 10px !important;
-    }
-
-    .drag_area_container {
-        justify-content: center;
-    }
-    main {
-        padding: 0 !important;
-        padding-top: 8px !important;
-    }
-}
-
->>>>>>> 5e2c2ad8fe7ef2bd868b5345201e676f9ca30e36:board.css
     .todo {
         width: 9rem !important;
     }

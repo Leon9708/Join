@@ -302,13 +302,21 @@ h3 {
 
 @media (max-width: 1200px) {
     .container_greeting_summary {
-        right: 1.5rem;
+        top: 45rem;
+        right: 22rem;
     }
 }
 
-@media (max-width: 1130px) {
-    .container_greeting_summary {
-        display: none;
+@media (max-width: 1170px) {
+    .container_heading_summary {
+        padding-left: 0 !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .main_summary {
+        padding-left: 2rem !important;
     }
 }
 
@@ -318,7 +326,7 @@ h3 {
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
     .container_greeting_summary {
         display: none;
     }
@@ -334,46 +342,29 @@ h3 {
         padding-left: 6rem !important;
         align-items: center;
         position: absolute;
+        top: 10%;
+        padding: 0;
         width: 100%;
         justify-content: center;
         bottom: 15%;
-        top: 10%;
-        padding: 0 !important;
+        padding-left: 0 !important;
     }
     .container_board_activities_summary {
         justify-content: center;
-        padding-top: 1.5rem;
-    }
-    .box_board_activities_summary {
-        height: 7rem;
-        width: 7rem;
-    }
-    .content_number_summary {
-        font-size: 2.5rem;
     }
     .container_deadline_summary {
         max-width: none;
         justify-content: space-evenly;
-        margin-top: 1.5rem;
-        height: 6rem;
     }
     .container_todo_summary {
         justify-content: center;
-        padding-top: 1.5rem;
     }
     .container_heading_summary {
         width: 100%;
         padding-left: 0;
-        padding-top: 0.1rem;
+        padding-top: 0 !important;
         justify-content: center;
         flex-direction: column;
-    }
-    .heading_summary {
-        font-size: 2.5rem;
-    }
-    .subheading_summary {
-        font-size: 1.25rem;
-        padding-left: 0;
     }
     .heading_separation_summary {
         width: 5rem !important;
@@ -381,13 +372,5 @@ h3 {
         margin-top: 1rem;
         margin-bottom: 1rem;
         margin-left: 0 !important;
-    }
-    .box_todo_summary {
-        height: 6rem;
-        width: 11rem;
-    }
-
-    .todo_num_summary {
-        font-size: 2.5rem;
     }
 }
