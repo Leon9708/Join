@@ -1,3 +1,16 @@
+// Titles:
+//('M', 'Media'),
+//('D', 'Design'),
+//('MA', 'Marketing'),
+//('B', 'Backoffice'),
+//('S', 'Sales'),
+//('-', 'None')
+
+
+// Placeholder!! Needs to be filled with input from 'Add Task'-field. 
+
+
+
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -12,116 +25,14 @@ async function includeHTML() {
     }
 }
 
-function renderBoard() {
-    updateHTML();
-}
-
-
-// Titles:
-//('M', 'Media'),
-//('D', 'Design'),
-//('MA', 'Marketing'),
-//('B', 'Backoffice'),
-//('S', 'Sales'),
-//('-', 'None')
-
-
-// Placeholder!! Needs to be filled with input from 'Add Task'-field. 
-
-let todos = [
-    /* {
-        'id': 0,
-        'title': 'Call Designer',
-        'description': 'To this or that...',
-        'category': 'Design',
-        'priority': 'low',
-        'image': 'assets/img/low_task.png',
-        'user': 'Aname',
-        'due_date': 0,
-        'status': 'open',
-    }, {
-        'id': 1,
-        'title': 'Call Sales',
-        'description': 'To this or that...',
-        'category': 'Sales',
-        'priority': 'medium',
-        'image': 'assets/img/medium_task.png',
-        'user': 'Bname',
-        'due_date': 0,
-        'status': 'feedback',
-    }, {
-        'id': 2,
-        'title': 'Call Media',
-        'description': 'To this or that...',
-        'category': 'Media',
-        'priority': 'urgent',
-        'image': 'assets/img/urgent_task.png',
-        'user': 'Cname',
-        'due_date': 0,
-        'status': 'progress',
-    }, {
-        'id': 3,
-        'title': 'Call Sales',
-        'description': 'To this or that...',
-        'category': 'Sales',
-        'priority': 'low',
-        'image': 'assets/img/low_task.png',
-        'user': 'Dname',
-        'due_date': 0,
-        'status': 'progress',
-    }, {
-        'id': 4,
-        'title': 'Call Marketing',
-        'description': 'To this or that...',
-        'category': 'Marketing',
-        'priority': 'low',
-        'image': 'assets/img/low_task.png',
-        'user': 'Ename',
-        'due_date': 0,
-        'status': 'progress',
-    }, {
-        'id': 5,
-        'title': 'Call Sales',
-        'description': 'To this or that...',
-        'category': 'Sales',
-        'priority': 'low',
-        'image': 'assets/img/low_task.png',
-        'user': 'Fname',
-        'due_date': 0,
-        'status': 'feedback',
-    }, {
-        'id': 6,
-        'title': 'Call Backoffice',
-        'description': 'To this or that...',
-        'category': 'Backoffice',
-        'priority': 'medium',
-        'image': 'assets/img/medium_task.png',
-        'user': 'Gname',
-        'due_date': 0,
-        'status': 'closed',
-    }, {
-        'id': 7,
-        'title': 'Call Media',
-        'description': 'To this or that...',
-        'category': 'Media',
-        'priority': 'medium',
-        'image': 'assets/img/medium_task.png',
-        'user': 'Hname',
-        'due_date': 0,
-        'status': 'closed'
-    } */
-];
-
 let priorities = ['Urgent', 'Medium', 'Low'];
-
+let todos = [];
 let currentCategory = [];
-
 let currentDraggedElement;
 
 
 // Update container with Todo-Tasks based on status ('open', 'in progress', 'awaiting feedback', 'done')
-function updateHTML() {
-
+function renderBoard() {
     updateHTMLOpenTasks();
     updateHTMLInProgessTasks();
     updateHTMLFeedbackTasks();

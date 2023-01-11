@@ -3,12 +3,6 @@ html {
     user-select: none;
 }
 
-body {
-    font-family: 'Open-Sans';
-    box-sizing: border-box;
-    background-color: rgb(255, 255, 255);
-}
-
 .topbar {
     position: absolute;
     top: 0;

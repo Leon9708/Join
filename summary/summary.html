@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>summary-page</title>
     <link rel="stylesheet" href="summary.css">
-    <link rel="stylesheet" href="assets/font/font.css">
+    <link rel="stylesheet" href="../assets/font/font.css">
     <link rel="stylesheet" href="../navigation/navigation.css">
     <script src="../navigation/navigation.js"></script>
     <script src="./summary.js"></script>
+    <script src="../globalVariables.js"></script>
 </head>
 
-<body onload="includeHTML();render();">
+<body onload="includeHTML();render('summary')">
     <div w3-include-html="../navigation/navigation.html"></div>
     <div class="change_css_summary">
         <div class="place_summary">
