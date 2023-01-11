@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/font/font.css">
+    <script src="./logIn/logIn.js"></script>
+    <script src="./logIn/logIn.css"></script>
+    <script src="backend.js"></script>
+    <title>Join</title>
+</head>
+
+<body onload="render()">
+    <div id="logInHeader" class="logInHeader">
+        <span>Not a Join user?</span> <button onclick="signUp()" class="signUpBtn">Sign up</button>
+    </div>
+
+    <div class="divLogo">
+        <img src="assets/img/Logo.png">
+    </div>
+
+    <div id="contentContainer" class="contentContainer">
+
+        <div class="divLogIn">
+            <form id="logInForm" class="logInForm" onsubmit="return false">
+                <h1 class="logInHeadline">Log In</h1>
+                <hr class="underlineHeadline">
+                <input required id="logInInputMail" class="logInInputMail" type="email" placeholder="Email" />
+                <input required id="logInInputPassword" class="logInInputPassword" type="text" placeholder="Password" />
+                <div class="belowPassword">
+                    <input type="checkbox">
+                    <span>Remember me</span>
+                    <a onclick="newPassword()">Forgot my password</a>
+                </div>
+                <div class="logInButtons">
+                    <button onclick="onsubmitLogIn()" class="logInBtn">Log in</button>
+                    <button onclick="onsubmitGuestLogIn()" class="guestLogInBtn">Guest Log in</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="errorLogin" class="userAlert d-none"> User not found - <br> instead use Guest Log in </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
