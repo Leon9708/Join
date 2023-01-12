@@ -647,17 +647,27 @@ select {
     }
     .main {
         position: fixed;
-        top: 10%;
+        top: 15%;
         bottom: 15%;
         right: 0;
         left: 0;
         width: 100%;
         justify-content: center;
         align-items: flex-start;
-        padding-top: 2rem;
+        padding-top: 1rem;
     }
     .container_heading_task {
-        display: none;
+        justify-content: center;
+        align-items: flex-start;
+        position:absolute;
+        top: 11%;
+        padding: 0;
+        right: 0;
+        left: 0;
+    }
+
+    .heading_task {
+        font-size: 1.75rem;
     }
 
     .container_buttons_bottom_task {
@@ -675,7 +685,7 @@ select {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        overflow: auto;
+        overflow:scroll;
     }
     
     .container_buttons_bottom_task {
