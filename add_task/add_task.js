@@ -2,6 +2,9 @@ let colorID;
 let priority;
 let date;
 let chosenSubtasks = [];
+let usersInTask = []
+let StringArrayUser = []
+let user;
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -26,7 +29,9 @@ function renderTask() {
 }
 
 function checkValdation() {
-    let user = document.getElementById('selectedUser').innerText;
+    user = StringArrayUser.toString();
+    console.log(user)
+    console.log(chosenSubtasks)
     let categoryLabel = document.getElementById('selectedLabel').innerText;
     let filteredLabels = categoryLabels.filter((ele) => {
         return ele.title === categoryLabel;
@@ -161,7 +166,7 @@ function toggleDropdownUser() {
         dropdownUser.classList.toggle('display_none');
     }
 }
-let usersInTask = []
+
 
 function selectUser(e) {
     let id = document.getElementById(e);
@@ -181,6 +186,8 @@ function selectUser(e) {
         let index = usersInTask.indexOf(userInTask[0])
         usersInTask.splice(index, 1)
     }
+    console.log(usersInTask)
+    UsersToString();
 }
 
 function loadUser() {
@@ -191,8 +198,14 @@ function loadUser() {
     }
 }
 
-// input date
-
+function UsersToString() {
+    StringArrayUser = []
+    usersInTask.forEach(user => {
+        StringArrayUser.push(user.firstName)
+        StringArrayUser.push(user.lastName + '/')
+    });
+    console.log(StringArrayUser)
+}
 
 function setDate() {
     let due_date_rev = document.getElementById('inputDate').value;

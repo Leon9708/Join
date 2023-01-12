@@ -79,8 +79,6 @@ function createNewContact(event) {
     }
     contacts.push(contact)
     renderContacts();
-    renderTask();
-    renderTasks();
     toggleOverlay();
 }
 
@@ -92,10 +90,14 @@ function createColor() {
 }
 
 function toggleOverlay() {
-    document.getElementById('overlay').classList.toggle("none");
-    if (!overlay.classList.contains('none')) {
+    document.getElementById('overlay').classList.toggle("d_none");
+    if (!overlay.classList.contains('d_none')) {
         createColor();
     }
+}
+
+function toggleTask() {
+    document.getElementById('overlayTask').classList.toggle("d_none");
 }
 
 

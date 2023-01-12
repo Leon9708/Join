@@ -39,7 +39,7 @@ function displayInfo() {
 
 function filterDone() {
     let filteredtasksDone = tasks.filter(function(task) {
-        return task.status === 'Done';
+        return task.status === '4';
     });
     if (filteredtasksDone.length === 0) {
         tasksDone.innerHTML = 0;
@@ -50,7 +50,7 @@ function filterDone() {
 
 function filterTodo() {
     let filteredTodo = tasks.filter(function(task) {
-        return task.status === 'To do';
+        return task.status === '1';
     });
     if (filteredTodo.length === 0) {
         tasksTodo.innerHTML = 0;
@@ -61,7 +61,7 @@ function filterTodo() {
 
 function filterAwaitingFeedback() {
     let filteredAwaitingFeedback = tasks.filter(function(task) {
-        return task.status === 'Awaiting Feedback';
+        return task.status === '3';
     });
     if (filteredAwaitingFeedback.length === 0) {
         tasksAwaitingFeedback.innerHTML = 0;
@@ -72,7 +72,7 @@ function filterAwaitingFeedback() {
 
 function filterInProgress() {
     let filteredTasksProgress = tasks.filter(function(task) {
-        return task.status === 'In progress';
+        return task.status === '2';
     });
     if (filteredTasksProgress.length === 0) {
         tasksProgress.innerHTML = 0;
@@ -91,7 +91,8 @@ function showDeadline() {
 
     let closestDate = new Date(sortafterDate[sortafterDate.length - 1].due_date);
     let closestDateMonth = months[closestDate.getMonth()];
-    let closestDateDay = closestDate.getDay()
+    let closestDateDayString = closestDate.toDateString()
+    let closestDateDay = closestDateDayString.substring(8, 10)
     let closestDateYear = closestDate.getFullYear();
 
     document.getElementById('displayDate').innerHTML = `${closestDateMonth} ${closestDateDay}, ${closestDateYear}`;
@@ -109,11 +110,11 @@ function showPriority(sortafterDate) {
     } else if (prio === 'L') {
         prio = "Low"
         imgPrio = "../assets/img/low_clicked_task.png"
-        colorBackground = "#FFA800"
+        colorBackground = "#7AE229"
     } else if (prio === 'H') {
         prio = "Urgent"
         imgPrio = "../assets/img/urgent_clicked_task.png"
-        colorBackground = "#7AE229"
+        colorBackground = "#FF3D00"
     }
     document.getElementById('boxPrioImg').style.backgroundColor = colorBackground
     document.getElementById('prioImg').src = imgPrio

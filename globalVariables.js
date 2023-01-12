@@ -44,26 +44,7 @@ async function postTodo(task) {
         .then(response => console.log(JSON.stringify(response)))
 }
 
-/* async function putToDo(task, url) {
-    // Make a PUT request to the backend with the specified ID and data
-    fetch(url, {
-            method: 'PUT',
-            body: JSON.stringify(task),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(task => {
-            // Do something with the returned data
-            console.log(task);
-        })
-        .catch(error => {
-            // Handle any errors that occurred
-            console.error(error);
-        });
-        
-}  */
+
 async function putToDo(task, url) {
     const data = JSON.stringify(task);
     fetch(url, {
@@ -78,29 +59,21 @@ async function putToDo(task, url) {
         .then(response => console.log(JSON.stringify(response)))
 }
 
-/* function saveJSONToServer() {
-    return new Promise(function(resolve, reject) {
-        let xhttp = new XMLHttpRequest();
-        let proxy = determineProxySettings();
-        let serverURL = proxy + BASE_SERVER_URL + '/save_json.php';
-        xhttp.open('POST', serverURL);
-
-        xhttp.onreadystatechange = function(oEvent) {
-            if (xhttp.readyState === 4) {
-                if (xhttp.status >= 200 && xhttp.status <= 399) {
-                    resolve(xhttp.responseText);
-                } else {
-                    reject(xhttp.statusText);
-                }
-            }
-        };
-
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xhttp.send(JSON.stringify(jsonFromServer));
-
-    });
+async function deleteToDo(task, url) {
+    const data = JSON.stringify(task);
+    fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
 }
- */
+
+
 
 let contacts = [{
     'id': 0,

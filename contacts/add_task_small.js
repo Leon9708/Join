@@ -318,11 +318,11 @@ function generateNewCategoryHTMLs() {
             <div id="BoxInputCategorys" class="place_input_category"></div>
             <div class="box_buttons_input_category">
                 <button type="button" onclick="unsetNewCategorys()"  class="button_input_category">
-                    <img class="img_button_input_category" src="assets/img/cross_task.png" alt="#">
+                    <img class="img_button_input_category" src="../assets/img/cross_task.png" alt="#">
                 </button>
                 <div class="seperation_buttons_input_category"></div>
                 <button type="submit" name="newCategory" onclick="createNewCategorys()" class="button_input_category">
-                    <img class="img_button_input_category" src="assets/img/check_task.png" alt="#">
+                    <img class="img_button_input_category" src="../assets/img/check_task.png" alt="#">
                 </button>
             </div>
         </div>
@@ -368,11 +368,11 @@ function openSubtaskHTMLs() {
         <div id="subtaskInputs" class="place_input_category"></div>
         <div class="box_buttons_input_category">
             <button type="button" onclick="unsetSubtaskHTMLs()"  class="button_input_category">
-                <img class="img_button_input_category" src="assets/img/cross_task.png" alt="#">
+                <img class="img_button_input_category" src="../assets/img/cross_task.png" alt="#">
             </button>
             <div class="seperation_buttons_input_category"></div>
             <button type="button" onclick="filterSubtaskDuplicatess()" class="button_input_category">
-                <img class="img_button_input_category" src="assets/img/check_task.png" alt="#">
+                <img class="img_button_input_category" src="../assets/img/check_task.png" alt="#">
             </button>
         </div>
     </div>`
@@ -383,7 +383,7 @@ function unsetSubtaskHTMLs() {
         <button type="button" onclick="openSubtasks()" id="boxSubtaskInputs" class="box_subtask_input">
             <input  disabled="disabled" placeholder="Add new subtask" id="inputSubtasks" type="text" class="input_subtask">
             <div  class="button_subtask_input">
-                <img class="img_subtask_task" src="./assets/img/plus_task.png" alt="#">
+                <img class="img_subtask_task" src="../assets/img/plus_task.png" alt="#">
             </div>
         </button>
    `

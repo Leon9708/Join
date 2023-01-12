@@ -20,7 +20,7 @@
         <div onload="render()" class="container_heading_task">
             <h1 class="heading_task">Add Task</h1>
         </div>
-        <form onsubmit="checkValdation()">
+        <form>
             <div class="main">
                 <div class="place_input_left_task">
                     <div class="container_input_task">
@@ -108,7 +108,7 @@
                         <p class="text_clear_task ">Clear</p>
                         <div class="img_clear_task "></div>
                         </button>
-                        <button type="submit" value="submit" class="create_button_task ">
+                        <button onclick="checkValdation()" type="button" value="submit" class="create_button_task ">
                         <p class=" ">Create Task</p>
                         <img src="../assets/img/check_white_task.png " alt="# ">
                     </button>
