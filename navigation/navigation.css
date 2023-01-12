@@ -111,6 +111,12 @@ nav {
     height: 22px;
 }
 
+@media (min-width: 1000px) {
+    .aside_nav_container {
+        font-size: 16px;
+    }
+}
+
 @media (max-width: 1000px) {
     .topbar {
         display: none;
@@ -187,8 +193,14 @@ nav {
     height: 28px;
 }
 
+.footerDiv_mobile a {
+    text-decoration: none;
+    color: white;
+}
+
 .footerDiv_mobile:hover {
     background-color: rgb(9, 25, 49);
+    cursor: pointer;
 }
 
 @media (max-width: 1000px) {

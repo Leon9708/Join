@@ -438,3 +438,13 @@ function loadUserHTML(contact, i) {
         <input type="checkbox" onclick="selectUser(this.id)" class="checkbox_user" id="User${contact.id}">
     </div>`
 }
+
+// Clear input fields
+function clearInputAddTask() {
+    document.getElementById('inputDate').value = '';
+    document.getElementById('inputTitle').value = '';
+    document.getElementById('inputDescription').value = '';
+    document.getElementById('inputSubtask').value = '';
+    document.getElementById('selectedLabel').innerHTML = 'Select task category';
+    document.getElementById('selectedColor').style.backgroundColor = '';
+}
