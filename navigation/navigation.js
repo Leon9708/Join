@@ -1,18 +1,14 @@
 function changeHTML(id) {
     if (id == "s") {
-        id = "summary";
+        location.href = "../summary/summary.html"
     } else if (id === "b") {
-        id = "board";
+        location.href = "../board/board.html"
     } else if (id === "t") {
-        id = "task";
+        location.href = "../add_task/add_task.html"
     } else if (id === "c") {
-        id = "contacts";
+        location.href = "../contacts/contacts.html"
     }
-    if (lastId) {
-        document.getElementById(lastId).classList.add('d-none')
-    }
-    lastId = id;
-    document.getElementById(id).classList.remove('d-none')
+    
 }
 
 function changeColor(id) {
