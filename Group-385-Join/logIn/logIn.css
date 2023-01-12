@@ -235,9 +235,15 @@ body {
     display: none;
 }
 
+@media (max-width: 1030px) {
+    .contentContainer {
+        padding-top: 3rem;
+    }
+}
+
 @media (max-width: 850px) {
     .logInHeader {
-        bottom: 16px !important;
+        bottom: 2px !important;
         right: 0 !important;
         justify-content: center;
         padding-right: 0 !important;

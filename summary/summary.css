@@ -299,77 +299,82 @@ h3 {
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1210px) {
     .container_greeting_summary {
-        top: 45rem;
-        right: 22rem;
+        right: 4rem;
+    }
+    .greeting_summary {
+        font-size: 1.25rem;
+    }
+    .greeting_name_summary {
+        font-size: 2.25rem;
     }
 }
 
-@media (max-width: 1170px) {
-    .container_heading_summary {
-        padding-left: 0 !important;
-        font-size: 0.8rem !important;
+@media (max-width: 1115px) {
+    .change_css_summary {
+        padding-left: 19rem;
+    }
+}
+
+@media (max-width: 1050px) {
+    .container_greeting_summary {
+        right: 1rem;
     }
 }
 
 @media (max-width: 1000px) {
-    .main_summary {
-        padding-left: 2rem !important;
+    .change_css_summary {
+        padding-left: 0;
     }
-}
 
-@media (max-height: 700px) {
+    .main_summary {
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        right: 0;
+        left: 0;
+        top: 10%;
+        bottom: 15%;
+    }
+
+    .container_heading_summary {
+        padding-top: 0;
+    }
+
     .container_greeting_summary {
         display: none;
     }
 }
 
 @media (max-width: 900px) {
-    .container_greeting_summary {
-        display: none;
+    html {
+        font-size: 14px;
     }
-    .change_css_summary {
-        padding-left: 0 !important;
-        padding-bottom: 20% !important;
-        height: 100%;
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 12px;
     }
-    .place_summary {
-        height: 100%;
-    }
+
     .main_summary {
-        padding-left: 6rem !important;
-        align-items: center;
-        position: absolute;
-        top: 10%;
-        padding: 0;
-        width: 100%;
-        justify-content: center;
-        bottom: 15%;
-        padding-left: 0 !important;
+        bottom: 12%;
     }
-    .container_board_activities_summary {
-        justify-content: center;
-    }
-    .container_deadline_summary {
-        max-width: none;
-        justify-content: space-evenly;
-    }
-    .container_todo_summary {
-        justify-content: center;
-    }
+
     .container_heading_summary {
-        width: 100%;
-        padding-left: 0;
-        padding-top: 0 !important;
-        justify-content: center;
         flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
     }
+
+    .subheading_summary {
+        padding: 0;
+    }
+
     .heading_separation_summary {
-        width: 5rem !important;
-        height: 0.2rem !important;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        margin-left: 0 !important;
+        height: 0.2rem;
+        width: 5rem;
+        margin-left: 0;
     }
 }
