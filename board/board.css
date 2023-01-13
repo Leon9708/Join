@@ -71,7 +71,7 @@ main {
     width: 15.625rem;
     border-radius: 0.3rem;
     border: 1px solid #a8a8a8;
-    padding: 13px, 21px, 13px, 21px;
+    padding: 0.85rem, 1.3rem;
     gap: 0.625rem;
     outline: none;
     box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.092);
@@ -137,7 +137,7 @@ main {
 }
 
 .drag_area_container::-webkit-scrollbar {
-    width: 6px;
+    width: 0.4rem;
     background-color: #ffffff00;
 }
 
@@ -148,7 +148,7 @@ main {
 }
 
 .drag_area {
-    gap: 15px;
+    gap: 1rem;
     display: flex;
     flex-direction: column;
     width: 23%;
@@ -207,6 +207,7 @@ main {
     align-items: center;
     width: 100%;
     margin-top: 0.6rem;
+    gap: 0.25rem;
 }
 
 .box_subtask_bar {
@@ -296,7 +297,7 @@ main {
 
 .priority_icon {
     width: 1.25rem;
-    padding: 10px;
+    padding: 0.65;
 }
 
 .bg_media {
@@ -337,8 +338,8 @@ main {
     width: 50vh;
     background-color: white;
     border: 1px solid lightgray;
-    border-radius: 10px;
-    padding: 24px;
+    border-radius: 0.65rem;
+    padding: 2rem;
 }
 
 .d_none {
@@ -402,14 +403,12 @@ main {
 }
 
 @media (max-width: 1125px) {
-    html{
+    html {
         font-size: 12px;
     }
-
     main {
         margin-left: 20rem;
     }
-
     .drag_area_container {
         height: 32rem;
     }
@@ -425,13 +424,11 @@ main {
         margin: 5%;
         width: 90%;
     }
-
     .container_heading_board {
         justify-content: space-evenly;
         padding-top: 0;
         padding-bottom: 2rem;
     }
-
     .drag_area_container {
         height: 100%;
     }
