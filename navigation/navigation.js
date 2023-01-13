@@ -26,3 +26,16 @@ function changeColors(id) {
     });
     document.getElementById(id).parentElement.style.backgroundColor = "#091931"
 }
+
+// click on profile opens log-out popup, if popup is shown and profile gets clicked again, popup gets closed
+function openLogOut() {
+    if(document.getElementById('logOutButton').classList.contains('d-none')) {
+        document.getElementById('logOutButton').classList.remove('d-none');
+    } else {
+        document.getElementById('logOutButton').classList.add('d-none');
+    }
+}
+
+function logOut() {
+    location.href = "../index.html"
+}

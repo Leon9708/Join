@@ -203,6 +203,28 @@ nav {
     cursor: pointer;
 }
 
+.d-none {
+    display: none !important;
+}
+
+.logOutButton {
+    position: absolute;
+    top: 10%;
+    right: 5rem;
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: #091931;
+    padding: 6px;
+    height: 26px;
+    width: 90px;
+    border-radius: 10px 0px 10px 10px;
+}
+
+.logOutButton:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 1000px) {
     .topbar_mobile {
         display: flex;

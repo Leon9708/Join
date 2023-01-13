@@ -5,7 +5,7 @@
         </div>
         <div class="topbar_content_right">
             <img class="aside_icons" src="../assets/img/question.png">
-            <img class="topbar_profile" src="../assets/img/profile_pic.png">
+            <img onclick="openLogOut()" class="topbar_profile" src="../assets/img/profile_pic.png">
         </div>
     </div>
     <aside class="left_main_container">
@@ -48,6 +48,9 @@
         </div>
     </aside>
 </div>
+
+<div onclick="logOut()" id="logOutButton" class="logOutButton d-none">Log Out</div>
+
 <div>
     <header class="topbar_mobile">
         <img class="topbar_logo_mobile" src="../assets/img/logo.png">
