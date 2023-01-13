@@ -39,3 +39,7 @@ function openLogOut() {
 function logOut() {
     location.href = "../index.html"
 }
+
+function openInfos() {
+    location.href="../join-info/join-info.html"
+}
