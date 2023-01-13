@@ -106,6 +106,7 @@ function updateHTMLClosedTasks() {
 function updateToDo(element, index) {
     getName(element, index);
     getSubtask(element, index);
+    getPrio(element, index);
 }
 
 // Dragging elements based on IDs. 
@@ -116,7 +117,7 @@ function startDragging(id) {
 function getName(task, index) {
     let splitUsers = task.user.split('/');
     splitUsers.splice(-1)
-    let placeUser = 0;
+
     for (let i = 0; i < splitUsers.length; i++) {
         const splitUser = splitUsers[i];
         let Characters = "";
@@ -129,37 +130,14 @@ function getName(task, index) {
         }
         let letters = Characters.replace(/[^\w\s!?]/g, '')
 
-        document.getElementById('checkUsers' + index).innerHTML += `<div class="todo_contact_img" id="checkUser${index}${i}">${letters[0]}${letters[1]}</div>`
-
-        placeUser = 1.75 * i;
-        if (i > 0) {
-            document.getElementById('checkUser' + index + i).style.left = placeUser + 'rem'
-        }
-
-        addUserToBoard(index, splitUser, i, task)
+        addUserToBoard(index, splitUser, i, task, letters)
     }
 }
 
-function addUserToBoard(index, splitUser, i, task) {
-    let filteredcontacts = contacts.filter((contact) => {
-        if (splitUser.includes(contact.lastName))
-            return contact
-    });
-    document.getElementById('checkUser' + index + i).style.backgroundColor = filteredcontacts[0].color;
-    document.getElementById('checkCategory' + index).style.backgroundColor = task.categories[0].color
-}
-
-
-/*    
-
-   
-*/
-
-
-function getSubtask(element, index) {
+function getSubtask(task, index) {
     let doneTasks = 0;
-    let TaskTotal = element.subtasks.length
-    element.subtasks.forEach(subtask => {
+    let TaskTotal = task.subtasks.length
+    task.subtasks.forEach(subtask => {
         if (subtask.done === true) {
             doneTasks + 1;
         }
@@ -171,6 +149,33 @@ function getSubtask(element, index) {
         document.getElementById('subtaskBar' + index).style.width = taskPercentDone;
     }
 }
+
+function getPrio(task, index) {
+    if (task.priority === 'H') {
+        document.getElementById('prio' + index).src = "../assets/img/urgent_task.png"
+    } else if (task.priority === "M") {
+        document.getElementById('prio' + index).src = "../assets/img/medium_task.png"
+    } else if (task.priority === 'L') {
+        document.getElementById('prio' + index).src = "../assets/img/low_task.png"
+    }
+}
+
+function addUserToBoard(index, splitUser, i, task, letters) {
+    let placeUser = 0;
+    document.getElementById('checkUsers' + index).innerHTML += `<div class="todo_contact_img" id="checkUser${index}${i}">${letters[0]}${letters[1]}</div>`
+
+    placeUser = 1.75 * i;
+    if (i > 0) {
+        document.getElementById('checkUser' + index + i).style.left = placeUser + 'rem'
+    }
+    let filteredcontacts = contacts.filter((contact) => {
+        if (splitUser.includes(contact.lastName))
+            return contact
+    });
+    document.getElementById('checkUser' + index + i).style.backgroundColor = filteredcontacts[0].color;
+    document.getElementById('checkCategory' + index).style.backgroundColor = task.categories[0].color
+}
+
 
 // Needed to make dropping elements possible. 
 function allowDrop(ev) {
@@ -187,11 +192,14 @@ function moveTo(status) {
 }
 
 function setDate(date) {
-    let year = date.substr(0, 4)
-    let month = date.substr(5, 2)
-    let day = date.substr(8, 2)
-    date = month + "/" + day + "/" + year
+    if (!date.includes('/')) {
+        let year = date.substr(0, 4)
+        let month = date.substr(5, 2)
+        let day = date.substr(8, 2)
+        date = month + "/" + day + "/" + year
+    }
     return date
+
 }
 
 function removeDragBackground() {
@@ -275,7 +283,7 @@ function generateTodoHTML(element, index) {
             </div>
             <div class="todo_user_priority">
                 <div class="box_todo_contact_img" id="checkUsers${index}"></div>
-                <img class="priority_icon" src=${element['image']}>
+                <img id="prio${index}" class="priority_icon" src=${element['image']}>
             </div>
         </div>
     </div>
