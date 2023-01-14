@@ -1,6 +1,7 @@
 let colorID;
 let priority;
 let date;
+let status = 1;
 let chosenSubtasks = [];
 let usersInTask = []
 let StringArrayUser = []
@@ -28,10 +29,11 @@ function renderTask() {
     inputDate.min = new Date().toISOString().split("T")[0];
 }
 
-function checkValdation() {
+function checkValdation(newStatus) {
+    if (newStatus) {
+        status = newStatus
+    }
     user = StringArrayUser.toString();
-    console.log(user)
-    console.log(chosenSubtasks)
     let categoryLabel = document.getElementById('selectedLabel').innerText;
     let filteredLabels = categoryLabels.filter((ele) => {
         return ele.title === categoryLabel;
@@ -40,13 +42,19 @@ function checkValdation() {
         return user.includes(ele.lastName)
     })
     if (filteredLabels.length > 0 && filteredcontact.length > 0 && priority.length > 0 && chosenSubtasks.length > 0) {
-        createTask(user, filteredLabels);
+        createTask(user, filteredLabels, status);
+        if (window.location.href.indexOf('task')) {
+            window.location.href = "../board/board.html";
+        } else if (window.location.href.indexOf('board')) {
+            renderBoard();
+            toggleTask();
+        }
     } else {
         alert("unvalid Request, try again.")
     }
 }
 
-function createTask(user, filteredLabels) {
+function createTask(user, filteredLabels, status) {
     let title = document.getElementById('inputTitle');
     let description = document.getElementById('inputDescription');
     setDate();
@@ -61,21 +69,21 @@ function createTask(user, filteredLabels) {
         "priority": priority,
         "user": user,
         "due_date": date,
-        "status": 1,
+        "status": status,
         "subtasks": chosenSubtasks
     }
     postTodo(task);
-    setBackFormular(title, description)
+    /*   setBackFormular(title, description) */
 }
 
-function setBackFormular(title, description) {
-    title.value = "";
-    description.value = "";
-    document.getElementById('inputDate').value = "";
-    document.getElementById('selectedUser').innerHTML = `Select user`;
-    unsetPrioHTML();
-    unsetNewCategory();
-    loadSubtask()
+// Clear input fields
+function clearInputAddTask() {
+    document.getElementById('inputDate').value = '';
+    document.getElementById('inputTitle').value = '';
+    document.getElementById('inputDescription').value = '';
+    document.getElementById('inputSubtask').value = '';
+    document.getElementById('selectedLabel').innerHTML = 'Select task category';
+    document.getElementById('selectedColor').style.backgroundColor = '';
 }
 
 // category selection
@@ -186,7 +194,6 @@ function selectUser(e) {
         let index = usersInTask.indexOf(userInTask[0])
         usersInTask.splice(index, 1)
     }
-    console.log(usersInTask)
     UsersToString();
 }
 
@@ -437,14 +444,4 @@ function loadUserHTML(contact, i) {
         <label id="newCategory2${i}" class="select-item">${contact.firstName} ${contact.lastName}</label>
         <input type="checkbox" onclick="selectUser(this.id)" class="checkbox_user" id="User${contact.id}">
     </div>`
-}
-
-// Clear input fields
-function clearInputAddTask() {
-    document.getElementById('inputDate').value = '';
-    document.getElementById('inputTitle').value = '';
-    document.getElementById('inputDescription').value = '';
-    document.getElementById('inputSubtask').value = '';
-    document.getElementById('selectedLabel').innerHTML = 'Select task category';
-    document.getElementById('selectedColor').style.backgroundColor = '';
 }

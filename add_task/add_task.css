@@ -659,17 +659,15 @@ select {
     .container_heading_task {
         justify-content: center;
         align-items: flex-start;
-        position:absolute;
+        position: absolute;
         top: 11%;
         padding: 0;
         right: 0;
         left: 0;
     }
-
     .heading_task {
         font-size: 1.75rem;
     }
-
     .container_buttons_bottom_task {
         width: 100%;
         position: absolute;
@@ -685,15 +683,13 @@ select {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        overflow:scroll;
+        overflow: scroll;
     }
-    
     .container_buttons_bottom_task {
         top: 2% !important;
         position: relative;
         padding-bottom: 3rem;
     }
-
     html {
         font-size: 14px;
     }

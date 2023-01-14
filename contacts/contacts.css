@@ -340,7 +340,7 @@ main {
     background-color: #e23b29;
 }
 
-.background_overlay_add_contact {
+.background_overlay {
     position: fixed;
     left: 0;
     right: 0;

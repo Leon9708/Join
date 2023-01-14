@@ -14,127 +14,21 @@
     <script src="./board.js"></script>
     <script src="../navigation/navigation.js"></script>
     <script src="../globalVariables.js"></script>
-    <script src="../contacts/add_task_small.js"></script>
+    <script src="../add_task/add_task.js"></script>
 
 </head>
 
 <body onload="includeHTML();render('board')">
     <div w3-include-html="../navigation/navigation.html"></div>
     <div id="overlayTask" class="d_none">
-        <div class="overlay_add_task">
-            <div class="place_add_task">
-                <button onclick="toggleTask()" class="close_overlay_task">
-                    <img class="img_close_overlay_task" src="../assets/img/cross.png" alt="">
-                </button>
-                <div class="container_heading_task">
-                    <h1 class="heading_task">Add Task</h1>
-                </div>
-                <div>
-                    <div class="main">
-                        <div class="place_input_left_task">
-                            <div class="container_input_task">
-                                <label>Title</label>
-                                <input id="inputTitles" required class="input_task" minlength="3" maxlength="30" type="text" placeholder="Enter a title">
-                            </div>
-                            <div class="container_input_task">
-                                <label>Description</label>
-                                <textarea id="inputDescriptions" class="input_task_description" type="text" placeholder="Enter a Description"></textarea>
-                            </div>
-                            <div class="select_group">
-                                <label class="label_select" for="button">Category</label>
-                                <div id="placeSelectCategorys" class="place_select_category">
-                                    <button type='button' onclick="toggleDropdowns()" id="selectButtonTasks" class="select_button_task">
-                                    <span class="select_label" id="selectedLabels">Select task category</span>
-                                    <div id="selectedColors" class="button_color selected_category_color"></div>
-                                    <div id="arrows" class="arrow"></div>
-                            </button>
-                                </div>
-                                <div class="dropdown display_none" id="dropdowns">
-                                    <div id="newCategorys" onclick="selectTitles(this.id)" class="box_categoryelement">
-                                        <input type="radio" name="where" value="internet" class="option">
-                                        <label id="newCategorys" class="select-item">New category</label>
-                                    </div>
-                                    <div id="addCategorys">
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="select_group_2">
-                                <label class="label_select " for="button">Assigned to</label>
-                                <div id="placeSelectCategory2s" class="place_select_category">
-                                    <button type='button' onclick="toggleDropdownUsers()" id="selectButtonTask2s" class="select_button_task ">
-                                    <span class="select_label" id="selectedUsers">Select user</span>
-                                    <div id="arrows" class="arrow "></div>
-                                </button>
-                                </div>
-                                <div class="dropdown display_none" id="dropdown2s">
-                                    <div id="addUsers">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="seperation_task "></div>
-                        <div class="place_input_right_task ">
-                            <div class="container_input_task ">
-                                <label>Due date</label>
-                                <div class="box_input_date ">
-                                    <input id="inputDates" type="date" class="input_task" required>
-                                </div>
-                            </div>
-                            <div class="container_input_task ">
-                                <label>Prio</label>
-                                <div id="containerButtonsTasks" class="container_buttons_task ">
-                                    <button type='button' id="urgentButtons" onclick="selectUrgencys( 'urgent') " class="box_button_task ">
-                                        <p class="text_urgency_task ">Urgent</p>
-                                        <div id="prioUrgent" class="urgency_img_u_task urgency_img_task "></div>
-                                    </button>
-                                    <button type='button' id="mediumButtons" onclick="selectUrgencys( 'medium') " class="box_button_task ">
-                                        <p class="text_urgency_task ">Medium</p>
-                                        <div id="prioMedium" class="urgency_img_m_task urgency_img_task "></div>
-                                    </button>
-                                    <button type='button' id="lowButtons" onclick="selectUrgencys( 'low') " class="box_button_task ">
-                                        <p class="text_urgency_task ">Low</p>
-                                        <div id="prioLow" class="urgency_img_l_task urgency_img_task "></div>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="container_input_task">
-                                <label>Subtasks</label>
-                                <div class="container_subtask" id="containerSubtasks">
-                                    <button type='button' onclick="openSubtasks()" id="boxSubtaskInputs" class="box_subtask_input">
-                                        <input required minlength="3" disabled="disabled" placeholder="Add new subtask" id="inputSubtasks" type="text" class="input_subtask_fake">
-                                        <div  class="button_subtask_input">
-                                        <img class="img_subtask_task" src="../assets/img/plus_task.png" alt="#">
-                                        </div>
-                                    </button>
-                                </div>
-                                <div id="boxSubtaskss" class="place_subtasks">
-
-                                </div>
-                            </div>
-                            <div class="container_buttons_bottom_task ">
-                                <button type='button' class="clear_button_task ">
-                                    <p class="text_clear_task ">Clear</p>
-                                    <div class="img_clear_task "></div>
-                                </button>
-                                <button type="button" value="submit" onclick="checkValdations()" class="create_button_task ">
-                                    <p class=" ">Create Task</p>
-                                    <img src="../assets/img/check_white_task.png " alt="# ">
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <main>
         <div class="container_heading_board">
             <h1 class="heading_board">Board</h1>
             <div class="search_container">
                 <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
-                <button onclick="toggleTask()" title="Add Task" class="add_button_task">
+                <button onclick="toggleTask(); renderTask()" title="Add Task" class="add_button_task">
                         <p class="">Add Task</p>
                         <img src="../assets/img/plus.png" alt="#">
                 </button>
@@ -144,28 +38,28 @@
             <div class="box_category">
                 <div class="board_header_container">
                     <h2 class="heading_categories">To Do</h2>
-                    <img class="todo_icon" onclick="toggleTask()" src="../assets/img/plus_button.png">
+                    <img class="todo_icon" onclick="toggleTask('1'); renderTask()" src="../assets/img/plus_button.png">
                 </div>
                 <div class="drag_area" id="open" ondrop="moveTo('1')" ondragover="allowDrop(event)" ondragenter="highlight('open')"></div>
             </div>
             <div class="box_category">
                 <div class="board_header_container">
                     <h2 class="heading_categories">In Progress</h2>
-                    <img class="todo_icon" onclick="toggleTask()" src="../assets/img/plus_button.png">
+                    <img class="todo_icon" onclick="toggleTask('2'); renderTask()" src="../assets/img/plus_button.png">
                 </div>
                 <div class="drag_area" id="progress" ondrop="moveTo('2')" ondragover="allowDrop(event)" ondragenter="highlight('progress')"></div>
             </div>
             <div class="box_category">
                 <div class="board_header_container">
                     <h2 class="heading_categories">Awaiting Feedback</h2>
-                    <img class="todo_icon" onclick="toggleTask()" src="../assets/img/plus_button.png">
+                    <img class="todo_icon" onclick="toggleTask('3'); renderTask()" src="../assets/img/plus_button.png">
                 </div>
                 <div class="drag_area" id="feedback" ondrop="moveTo('3')" ondragover="allowDrop(event)" ondragenter="highlight('feedback')"></div>
             </div>
             <div class="box_category">
                 <div class="board_header_container">
                     <h2 class="heading_categories">Done</h2>
-                    <img class="todo_icon" onclick="toggleTask()" src="../assets/img/plus_button.png">
+                    <img class="todo_icon" onclick="toggleTask('4'); renderTask()" src="../assets/img/plus_button.png">
                 </div>
                 <div class="drag_area" id="closed" ondrop="moveTo('4')" ondragover="allowDrop(event)" ondragenter="highlight('closed')"></div>
             </div>

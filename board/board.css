@@ -23,6 +23,7 @@ button {
     justify-content: space-between;
     padding-top: 7.5rem;
     padding-bottom: 4rem;
+    padding-left: 1rem;
 }
 
 .heading_board {
@@ -56,6 +57,7 @@ main {
     width: calc(95% - 17.5rem);
     margin-left: 17.5rem;
     padding-left: 1rem;
+    height: calc(100vh - 1.5rem);
 }
 
 .search_container {
@@ -110,16 +112,17 @@ main {
     justify-content: flex-start;
     gap: 1rem;
     flex-wrap: wrap;
-    overflow: scroll;
+    overflow: auto;
     max-width: 100%;
-    height: fit-content;
+    flex: 1;
+    padding-left: 1rem;
 }
 
 .place_categories::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: #ffffff00;
-    margin-bottom: 1rem;
+    background-color: #ffffff;
     margin-top: 40px;
+    margin-bottom: 1rem;
 }
 
 .place_categories::-webkit-scrollbar {
@@ -138,7 +141,6 @@ main {
 }
 
 .board_header_container {
-    position: fixed;
     background-color: #F6F7F8;
     display: flex;
     align-items: center;
@@ -149,13 +151,13 @@ main {
 }
 
 .drag_area {
-    margin-top: 3rem;
     gap: 1rem;
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem;
     width: 100%;
-    height: 100%;
+    padding-top: 1rem;
+    min-height: 10rem;
+    height: calc(100% - 4rem);
 }
 
 .drag_area_highlight {
@@ -197,16 +199,18 @@ main {
 }
 
 .todo_icon {
-    width: 1.375rem;
-    height: 1.375rem;
+    width: 1.35rem;
+    height: 1.35rem;
     cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
+    transition: all 0.25s ease-in-out;
 }
 
-
-/* .todo_icon:hover {} */
+.todo_icon:hover {
+    transform: scale(1.1);
+}
 
 .box_subcategories {
     display: flex;
@@ -302,6 +306,7 @@ main {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    padding-bottom: 0.1rem;
 }
 
 .priority_icon {
@@ -353,6 +358,16 @@ main {
 
 .d_none {
     display: none;
+}
+
+.background_overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #7d7d7d86;
+    z-index: 10;
 }
 
 .overlay_add_task {
