@@ -110,8 +110,9 @@ main {
     justify-content: flex-start;
     gap: 1rem;
     flex-wrap: wrap;
-    overflow: auto;
+    overflow: scroll;
     max-width: 100%;
+    height: fit-content;
 }
 
 .place_categories::-webkit-scrollbar-track {
@@ -143,7 +144,7 @@ main {
     align-items: center;
     justify-content: space-between;
     height: 2.5rem;
-    min-width: 18%;
+    min-width: 18.5%;
     font-size: 0.6rem;
 }
 
