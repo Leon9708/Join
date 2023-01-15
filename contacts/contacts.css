@@ -33,6 +33,7 @@ button {
     width: 500px;
     justify-content: center;
     box-shadow: 5px 0 3px -3px rgb(0 0 0 / 13%);
+    background-color: white;
 }
 
 .contact_list {

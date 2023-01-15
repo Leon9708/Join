@@ -41,9 +41,9 @@ function checkValdation(newStatus) {
     let filteredcontact = contacts.filter((ele) => {
         return user.includes(ele.lastName)
     })
-    if (filteredLabels.length > 0 && filteredcontact.length > 0 && priority.length > 0 && chosenSubtasks.length > 0) {
+    if (filteredLabels.length > 0 && filteredcontact.length > 0 && typeof priority !== 'undefined' > 0 && chosenSubtasks.length > 0) {
         createTask(user, filteredLabels, status);
-        if (window.location.href.indexOf('task')) {
+        if (window.location.href.indexOf('task') > -1) {
             window.location.href = "../board/board.html";
         } else if (window.location.href.indexOf('board')) {
             renderBoard();

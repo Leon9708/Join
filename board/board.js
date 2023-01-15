@@ -81,7 +81,6 @@ function updateHTMLFeedbackTasks() {
         const element = feedback[index];
         let feedbackIndex = index + "f";
         document.getElementById('feedback').innerHTML += generateTodoHTML(element, feedbackIndex);
-        7
         updateToDo(element, feedbackIndex);
 
     }
@@ -109,10 +108,7 @@ function updateToDo(element, index) {
     getPrio(element, index);
 }
 
-// Dragging elements based on IDs. 
-function startDragging(id) {
-    currentDraggedElement = id;
-}
+
 
 function getName(task, index) {
     let splitUsers = task.user.split('/');
@@ -176,10 +172,26 @@ function addUserToBoard(index, splitUser, i, task, letters) {
     document.getElementById('checkCategory' + index).style.backgroundColor = task.categories[0].color
 }
 
+function correctDate(date) {
+    if (!date.includes('/')) {
+        let year = date.substr(0, 4)
+        let month = date.substr(5, 2)
+        let day = date.substr(8, 2)
+        date = month + "/" + day + "/" + year
+    }
+    return date
+
+}
+
 
 // Needed to make dropping elements possible. 
 function allowDrop(ev) {
     ev.preventDefault();
+}
+
+// Dragging elements based on IDs. 
+function startDragging(id) {
+    currentDraggedElement = id;
 }
 
 // Change status when element is moved (E.g. todo-task with id 1: the status field is changed from 'open' to 'closed'.).
@@ -191,16 +203,7 @@ function moveTo(status) {
     requestStatus(filteredTask)
 }
 
-function correctDate(date) {
-    if (!date.includes('/')) {
-        let year = date.substr(0, 4)
-        let month = date.substr(5, 2)
-        let day = date.substr(8, 2)
-        date = month + "/" + day + "/" + year
-    }
-    return date
 
-}
 
 function removeDragBackground() {
     const dragBackground = document.querySelectorAll('.drag_area_highlight');
@@ -271,7 +274,7 @@ function generateTodoHTML(element, index) {
             </div>
             <div class="todo_user_priority">
                 <div class="box_todo_contact_img" id="checkUsers${index}"></div>
-                <img id="prio${index}" class="priority_icon" src=${element['image']}>
+                <img id="prio${index}" class="priority_icon" src="">
             </div>
         </div>
     </div>

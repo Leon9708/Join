@@ -60,10 +60,16 @@ function showContacts() {
     }
 }
 
-function createNewContact(event) {
+function checkValdationContact(event) {
     event.preventDefault();
-    let fullName = document.getElementById('name').value;
+    let fullName = document.getElementById(id).value;
     let [first, last] = fullName.split(' ');
+    if (checkNamelength('name') == 2) {
+        createNewContact(last, first)
+    }
+}
+
+function createNewContact(lastName, firstName) {
     let phone = document.getElementById('phone').value;
     let email = document.getElementById('email').value;
     let id = contacts.length + 1;
@@ -71,8 +77,8 @@ function createNewContact(event) {
 
     let contact = {
         'id': id,
-        'lastName': last,
-        'firstName': first,
+        'lastName': lastName,
+        'firstName': firstName,
         'email': email,
         'phone': phone,
         'color': color
@@ -113,6 +119,14 @@ function showName() {
     circle.innerHTML = "";
     circle.innerHTML += first.charAt(0)
     circle.innerHTML += last.charAt(0)
+}
+
+function checkNamelength(id) {
+    text = text.split(" ");
+
+    if (text.length === 2) {
+        return false
+    }
 }
 
 
@@ -161,20 +175,6 @@ function showContactsHTML(singleContact, i) {
         </button>
     </div>
     `
-}
-
-async function includeHTML() {
-    let includeElements = document.querySelectorAll('[w3-include-html]');
-    for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
-        file = element.getAttribute("w3-include-html"); // "includes/header.html"
-        let resp = await fetch(file);
-        if (resp.ok) {
-            element.innerHTML = await resp.text();
-        } else {
-            element.innerHTML = 'Page not found';
-        }
-    }
 }
 
 function generateLetters(letter) {
@@ -343,10 +343,10 @@ function newContactOverlayHTML() {
 
             </div>
         </div>
-        <form class="rightside_form" onsubmit="createNewContact(event); return false">
-            <input onblur="showName()" pattern=".*\s+.*" required minlength="6" placeholder="Name" class="overlay_input name" type="text" id="name">
+        <form class="rightside_form" onsubmit="checkValdationContact(event); return false">
+            <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="name">
             <input required placeholder="Email" class="overlay_input email" type="email" id="email">
-            <input required placeholder="Phone" class="overlay_input phone" type="tel" id="phone">
+            <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="tel" id="phone">
             <div class="place_buttons_overlay">
                 <button onclick="toggleOverlayNewContact()" type="button" class="box_cancel">
                     <p>Cancel</p>
