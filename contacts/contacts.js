@@ -62,10 +62,12 @@ function showContacts() {
 
 function checkValdationContact(event) {
     event.preventDefault();
-    let fullName = document.getElementById(id).value;
-    let [first, last] = fullName.split(' ');
-    if (checkNamelength('name') == 2) {
+    let fullName = document.getElementById('name').value;
+    if (checkNamelength(fullName)) {
+        let [first, last] = fullName.split(' ');
         createNewContact(last, first)
+    } else {
+        alert('invalid Name')
     }
 }
 
@@ -110,8 +112,6 @@ function toggleTask() {
     }
 }
 
-
-
 function showName() {
     let circle = document.getElementById('showContactImg');
     let fullName = document.getElementById('name').value;
@@ -121,11 +121,11 @@ function showName() {
     circle.innerHTML += last.charAt(0)
 }
 
-function checkNamelength(id) {
-    text = text.split(" ");
+function checkNamelength(name) {
+    name = name.split(" ");
 
-    if (text.length === 2) {
-        return false
+    if (name.length === 2) {
+        return true
     }
 }
 

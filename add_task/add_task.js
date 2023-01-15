@@ -43,12 +43,12 @@ function checkValdation(newStatus) {
     })
     if (filteredLabels.length > 0 && filteredcontact.length > 0 && typeof priority !== 'undefined' > 0 && chosenSubtasks.length > 0) {
         createTask(user, filteredLabels, status);
-        if (window.location.href.indexOf('task') > -1) {
-            window.location.href = "../board/board.html";
-        } else if (window.location.href.indexOf('board')) {
-            renderBoard();
-            toggleTask();
-        }
+        /*    if (window.location.href.indexOf('task') > -1) { */
+        window.location.href = "../board/board.html";
+        /*   } else if (window.location.href.indexOf('board')) {
+              renderBoard();
+              toggleTask();
+          } */
     } else {
         alert("unvalid Request, try again.")
     }
