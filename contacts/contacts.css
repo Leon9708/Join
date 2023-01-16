@@ -641,22 +641,27 @@ main {
         left: 0;
         right: 0;
         width: 100%;
-        top: 11%;
+        top: 10.5%;
         bottom: 15%;
         height: auto;
+        overflow: auto;
         justify-content: center;
     }
     .container_heading_contacts {
         display: none;
     }
     .add_button_contacts {
-        bottom: 2rem;
+        bottom: auto;
+        top: 1rem;
     }
     .container_contacts_left {
         box-shadow: none;
         width: 40rem;
         position: absolute;
         top: 0;
+    }
+    .container_buttons_bottom_task {
+        position: inherit !important;;
     }
     .contact_list {
         margin-top: 0;
@@ -669,5 +674,21 @@ main {
         align-items: center;
         margin-top: 1rem;
         margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .main_container_contacts {
+        bottom: 12%;
+    }
+
+    .container_contacts_left {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .contact_letter {
+        align-items: flex-start;
     }
 }
