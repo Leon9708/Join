@@ -332,7 +332,7 @@ function newContactOverlayHTML() {
     <div class="overlay_leftside">
         <img class="leftside_img" src="../assets/img/logo_sidebar.png" alt="">
         <p class="leftside_Add">Add contact</p>
-        <p class="leftside_text">Task are better with a team !</p>
+        <p class="leftside_text">Tasks are better with a team !</p>
     </div>
     <div class="overlay_rightside">
         <button onclick="toggleOverlayNewContact()" class="close_overlay">

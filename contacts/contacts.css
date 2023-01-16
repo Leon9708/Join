@@ -637,6 +637,43 @@ main {
 }
 
 @media (max-width: 1000px) {
+    .overlay_add_contact {
+        flex-direction: column;
+        width: 55%;
+        height: 75%;
+    }
+    .overlay_leftside {
+        width: auto;
+        border-top-right-radius: 2rem;
+        border-bottom-left-radius: 0;
+        height: 40%;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0;
+        gap: 0.5rem;
+    }
+    .overlay_rightside {
+        width: auto;
+        padding-left: 0;
+        height: 60%;
+        justify-content: center;
+        align-items: center;
+    }
+    .img_close_overlay {
+        display: none;
+    }
+    .overlay_input {
+        margin: 0;
+    }
+    .rightside_form {
+        width: auto;
+    }
+    .rightside_place_circle {
+        display: none;
+    }
+    .leftside_img {
+        padding: 0;
+    }
     .main_container_contacts {
         left: 0;
         right: 0;
@@ -681,14 +718,19 @@ main {
     .main_container_contacts {
         bottom: 12%;
     }
-
     .container_contacts_left {
         width: 100%;
+    }
+    .overlay_add_contact {
+        width: 65%;
     }
 }
 
 @media (max-width: 500px) {
     .contact_letter {
         align-items: flex-start;
+    }
+    .overlay_add_contact {
+        width: 80%;
     }
 }
