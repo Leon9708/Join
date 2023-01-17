@@ -424,6 +424,22 @@ main {
     html {
         font-size: 14px;
     }
+    .overlay_add_task {
+        height: auto;
+    }
+    .place_add_task .container_heading_task {
+        padding-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .main {
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 1.5rem;
+    }
+    .place_add_task .place_input_left_task {
+        padding: 0;
+    }
 }
 
 @media (max-width: 1165px) {
@@ -445,15 +461,28 @@ main {
         padding-left: 0;
         position: absolute;
     }
-
+    .overlay_add_task {
+        height: 80%;
+    }
     .container_heading_board {
         padding-left: 0;
         padding-top: 1.5rem;
         padding-bottom: 2rem;
     }
-
+    .place_add_task {
+        padding-bottom: 0;
+        display: flex;
+    }
     .place_categories {
         padding-left: 0;
+    }
+    .place_add_task .container_heading_task {
+        position:unset;
+        width: 100%;
+        align-items: unset;
+    }
+    .place_add_task .container_buttons_bottom_task {
+        position: unset;
     }
 }
 

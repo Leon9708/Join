@@ -245,6 +245,13 @@ function openBoardDetailstHTML(selectedBoard) {
     `
 }
 
+function toAddTaskPage() {
+    let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width <= 880) {
+        location.href = "../add_task/add_task.html"
+    }
+}
+
 
 // Close Board Details
 function closeBoardDetails() {
@@ -252,13 +259,21 @@ function closeBoardDetails() {
 }
 
 function toggleTask() {
-    document.getElementById('overlayTask').classList.toggle("d_none");
+    let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width > 880) {
+        document.getElementById('overlayTask').classList.toggle("d_none");
+    }
 }
 
 function toggleTask(id) {
-    document.getElementById('overlayTask').classList.toggle("d_none");
-    if (!overlayTask.classList.contains('d_none')) {
-        document.getElementById('overlayTask').innerHTML = taskOverlayHTML(id);
+    let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width > 880) {
+        document.getElementById('overlayTask').classList.toggle("d_none");
+        if (!overlayTask.classList.contains('d_none')) {
+            document.getElementById('overlayTask').innerHTML = taskOverlayHTML(id);
+        }
+    } else {
+        location.href = "../add_task/add_task.html"
     }
 }
 

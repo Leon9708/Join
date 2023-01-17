@@ -28,7 +28,7 @@
             <h1 class="heading_board">Board</h1>
             <div class="search_container">
                 <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
-                <button onclick="toggleTask(); renderTask()" title="Add Task" class="add_button_task">
+                <button id="board_addTask" onclick="toAddTaskPage(); toggleTask(); renderTask()" title="Add Task" class="add_button_task">
                         <p class="">Add Task</p>
                         <img src="../assets/img/plus.png" alt="#">
                 </button>
