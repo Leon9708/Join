@@ -30,6 +30,10 @@ let priorities = ['Urgent', 'Medium', 'Low'];
 let todos = [];
 let currentCategory = [];
 let currentDraggedElement;
+let selectedElement = [];
+let priorityDetails;
+let priorityColor;
+let currentStatus;
 
 
 // Update container with Todo-Tasks based on status ('open', 'in progress', 'awaiting feedback', 'done')
@@ -228,21 +232,78 @@ function removeHighlight(id) {
 
 // ??? ////////////////////////////////////
 // Show Task Details
-function openBoardDetails(index) {
+function openBoardDetails(id) {
     document.getElementById('boardDetails').classList.remove('d_none');
     let boardContent = document.getElementById('boardContent');
     boardContent.innerHTML = '';
-    let selectedBoard = tasks[index];
-    boardContent.innerHTML += openBoardDetailstHTML(selectedBoard);
+    for (let i = 0; i < tasks.length; i++) {
+        const element = tasks[i];
+        if(element['id'] == id) {
+        selectedElement.push(element);
+        }
+    } console.log(selectedElement);
+    boardContent.innerHTML += openBoardDetailsHTML(selectedElement);
 }
 
+function openBoardDetailsHTML(selectedElement) {
+    setPriorityColor(selectedElement);
+    setPriorityDetails(selectedElement);
+    setCurrentStatus(selectedElement);
 
-function openBoardDetailstHTML(selectedBoard) {
     return `
-    <div><h3>${selectedBoard['user'].charAt(0)}</h3></div>
-    <div><h3>${selectedBoard['user']}</h3></div>
-    <div><h3>${selectedBoard['status']}</h3></div>
+    <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
+    <div class="taskDetailsHeader">  
+        <div style="background-color: ${selectedElement[0]['categories'][0]['color']}" class="taskDetailsCategory"> ${selectedElement[0]['categories'][0]['title']} </div> 
+    </div>  
+        <div class="taskDetailsTitle"> ${selectedElement[0]['title']} </div>
+        <div class="taskDetailsDescription"> ${selectedElement[0]['description']} </div> 
+    <div class="timeAndPriority">
+        <div class="dueDate"> <h2> Due date </h2> <p> ${selectedElement[0]['due_date']} </p> </div>
+        <div class="priority"> <h2> Priority </h2> <div style="color: ${priorityColor};"> ${priorityDetails} </div>  </div>
+    </div>
+    <div class="currentStatus">
+      <div>  <h2> Current status </h2> <p> ${currentStatus} </p> </div>
+    </div>
+    <div class="assignments">
+        <h2> Assigned To </h2>
+        <div class="assignedTo">
+            <p> ${selectedElement[0]['user']} </p>
+        </div>
+    </div>
+    <div class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
+    <div class="trashIcon"> <img src="../assets/img/trash.png"> </div>
     `
+    
+}
+
+function setPriorityColor(selectedElement) {
+    if (selectedElement[0]['priority'] == 'M') {
+        priorityColor = 'orange';
+    } else if (selectedElement[0]['priority'] == 'L') {     // Sets color for selected task depending on priority
+        priorityColor = 'green';
+    } else if (selectedElement[0]['priority'] == 'U') {
+        priorityColor = 'red';
+    }
+}
+
+function setPriorityDetails(selectedElement) {
+    if (selectedElement[0]['priority'] == 'M') {
+        priorityDetails = 'Medium';
+    } else if (selectedElement[0]['priority'] == 'L') {     // Sets priority for selected task
+        priorityDetails = 'Low';
+    } else if (selectedElement[0]['priority'] == 'U') {
+        priorityDetails = 'Urgent';
+    }
+}
+
+function setCurrentStatus(selectedElement) {
+    if (selectedElement[0]['status'] == '1') {
+        currentStatus = 'To do';
+    } else if (selectedElement[0]['status'] == '2') {       // Sets current status for selected task
+        currentStatus = 'in Progress';
+    } else if (selectedElement[0]['status'] == '3') {
+        currentStatus = 'Awaiting feedback';
+    }
 }
 
 function toAddTaskPage() {
@@ -334,7 +395,7 @@ function toggleTask(id) {
 function generateTodoHTML(element, index) {
     return `
     <div draggable="true" ondragstart="startDragging(${element['id']})" class="todo">
-        <div onclick="openBoardDetails(${index})" class="todo_content">
+        <div onclick="openBoardDetails(${element['id']})" class="todo_content">
             <div class="bg_category" id="checkCategory${index}">${element['categories'][0]['title']}</div>
             <div class="bg_title" id="checkTitle"><b>${element['title']}</b></div>
             <div class="bg_description" id="checkDescription">${element['description']}</div>
