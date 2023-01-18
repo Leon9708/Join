@@ -6,16 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board</title>
-    <!--<link rel="stylesheet" href="board.css">-->
     <link rel="stylesheet" href="board.css">
     <link rel="stylesheet" href="../assets/font/font.css">
-    <link rel="stylesheet" href="../navigation/navigation.css">>
+    <link rel="stylesheet" href="../navigation/navigation.css">
     <link rel="stylesheet" href="../add_task/add_task.css">
     <script src="./board.js"></script>
     <script src="../navigation/navigation.js"></script>
     <script src="../globalVariables.js"></script>
     <script src="../add_task/add_task.js"></script>
-
 </head>
 
 <body onload="includeHTML();render('board')">
@@ -27,7 +25,7 @@
         <div class="container_heading_board">
             <h1 class="heading_board">Board</h1>
             <div class="search_container">
-                <input type="text" id="search" onkeydown="searchTask()" class="header_search" placeholder="Find Task">
+                <input type="text" id="search" onkeyup="searchTask()" class="header_search" placeholder="Find Task">
                 <button id="board_addTask" onclick="toAddTaskPage(); toggleTask(); renderTask()" title="Add Task" class="add_button_task">
                         <p class="">Add Task</p>
                         <img src="../assets/img/plus.png" alt="#">

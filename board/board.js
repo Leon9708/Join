@@ -253,6 +253,60 @@ function toAddTaskPage() {
 }
 
 
+function searchTask() {
+    let search = document.getElementById('search').value;
+    searchInToDos(search);
+    searchInProgress(search);
+    searchInAwaitingFeedback(search);
+}
+
+
+function searchInToDos(search) {
+    let openTasks = tasks.filter((task) => {
+        return task['status'] == '1'
+    });
+    document.getElementById('open').innerHTML = '';
+    for (let index = 0; index < openTasks.length; index++) {
+        const element = openTasks[index];
+        if (element['title'].includes(search)) {
+            let openIndex = index + "o"
+            document.getElementById('open').innerHTML += generateTodoHTML(element, openIndex);
+            updateToDo(element, openIndex);
+        }
+    }
+}
+
+function searchInProgress(search) {
+    let progress = tasks.filter((task) => {
+        return task['status'] == '2'
+    });
+    document.getElementById('progress').innerHTML = '';
+    for (let index = 0; index < progress.length; index++) {
+        const element = progress[index];
+        if (element['title'].includes(search)) {
+            let progressIndex = index + "p"
+            document.getElementById('progress').innerHTML += generateTodoHTML(element, progressIndex);
+            updateToDo(element, progressIndex);
+        }
+    }
+}
+
+function searchInAwaitingFeedback(search) {
+    let awaitingFeedback = tasks.filter((task) => {
+        return task['status'] == '3'
+    });
+    document.getElementById('feedback').innerHTML = '';
+    for (let index = 0; index < awaitingFeedback.length; index++) {
+        const element = awaitingFeedback[index];
+        if (element['title'].includes(search)) {
+            let feedbackIndex = index + "f"
+            document.getElementById('feedback').innerHTML += generateTodoHTML(element, feedbackIndex);
+            updateToDo(element, feedbackIndex);
+        }
+    }
+}
+
+
 // Close Board Details
 function closeBoardDetails() {
     document.getElementById('boardDetails').classList.add('d_none');
