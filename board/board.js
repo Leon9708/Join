@@ -353,24 +353,32 @@ function confirmChangedTask(id) {
     let title = document.getElementById(`inputTitle${id}`);
     let description = document.getElementById(`inputDescription${id}`);
     changeDate(id);
+    console.log(changedDate);
     for (let i = 0; i < tasks.length; i++) {
         const element = tasks[i]['id'];
         if(element == id) {
-            tasks[i]['title'] = title.value;
-            tasks[i]['description'] = description.value;
-            console.log(tasks[i]);
+            if (!title.value == '') {
+                tasks[i]['title'] = title.value;
+            }
+            if (!description.value == '') {
+                tasks[i]['description'] = description.value;
+            }
+            if (typeof changedDate !== 'undefined' || changedDate !== null) {
+                tasks[i]['due_date'] = changedDate;
+            }
         }
     }
     renderBoard();
     closeBoardDetails()
 }
 
+let changedDate;
 function changeDate(id) {
     let due_date_rev = document.getElementById(`inputDate${id}`).value;
     let year = due_date_rev.substr(0, 4)
     let month = due_date_rev.substr(5, 2)
     let day = due_date_rev.substr(8, 2)
-    date = month + "/" + day + "/" + year
+    changedDate = month + "/" + day + "/" + year
 }
 
 function getNameDetails(selectedElement, id) {
