@@ -355,6 +355,7 @@ main {
     border-radius: 2rem;
     padding: 2rem;
     position: relative;
+    overflow-y:auto;
 }
 
 .d_none {
@@ -419,14 +420,6 @@ main {
 
 .img_close_overlay_task {
     width: 1.2rem;
-}
-
-.taskDetails {
-    height: 100%;
-    width: 100%;
-    flex-direction: column;
-    display: flex;
-    position: relative;
 }
 
 .closeDetails {
@@ -544,6 +537,29 @@ main {
     color: white;
     border: solid 2px white;
     font-size: 1rem;
+}
+
+.editCategories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.editCategories .place_subtasks {
+    height: auto;
+}
+
+.detailsSubheadline {
+    font-size: 1.5rem;
+}
+
+.saveChangesImg {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 1rem;
+    right: 2.75rem;
 }
 
 @media (max-width: 1325px) {

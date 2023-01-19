@@ -273,10 +273,80 @@ function openBoardDetailsHTML(selectedElement) {
             <p> ${selectedElement[0]['user']} </p>
         </div>
     </div>
-    <div class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
-    <div class="trashIcon"> <img src="../assets/img/trash.png"> </div>
+    <div onclick="changeTaskDetails()" class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
     `
 
+}
+
+function changeTaskDetails() {
+    let boardContent = document.getElementById('boardContent');
+    boardContent.innerHTML = '';
+    boardContent.innerHTML += changeTaskDetailsHTML()
+}
+
+function changeTaskDetailsHTML() {
+    return `
+    <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Title</label>
+        <input id="inputTitle" required class="input_task" minlength="3" maxlength="30" type="text" placeholder="Enter a title">
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Description</label>
+        <textarea id="inputDescription" class="input_task_description" type="text" placeholder="Enter a Description"></textarea>
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Due date</label>
+        <div class="box_input_date">
+        <input id="inputDate" type="date" class="input_task" required>
+        </div>
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Prio</label>
+        <div id="containerButtonsTask" class="container_buttons_task ">
+            <button type='button' id="urgentButton" onclick="selectUrgency( 'urgent') " class="box_button_task ">
+                <p class="text_urgency_task ">Urgent</p>
+                <div id="prioUrgent" class="urgency_img_u_task urgency_img_task "></div>
+            </button>
+            <button type='button' id="mediumButton" onclick="selectUrgency( 'medium') " class="box_button_task ">
+                <p class="text_urgency_task ">Medium</p>
+                <div id="prioMedium" class="urgency_img_m_task urgency_img_task "></div>
+            </button>
+            <button type='button' id="lowButton" onclick="selectUrgency( 'low') " class="box_button_task ">
+                <p class="text_urgency_task ">Low</p>
+                <div id="prioLow" class="urgency_img_l_task urgency_img_task "></div>
+            </button>
+        </div>
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Subtasks</label>
+        <div class="container_subtask" id="containerSubtask">
+            <button type='button' onclick="openSubtask()" id="boxSubtaskInput" class="box_subtask_input">
+                <input required minlength="3" disabled="disabled" placeholder="Add new subtask" id="inputSubtask" type="text" class="input_subtask_fake">
+                <div  class="button_subtask_input">
+                    <img class="img_subtask_task" src="../assets/img/plus_task.png" alt="#">
+                </div>
+            </button>
+        </div>
+        <div id="boxSubtasks" class="place_subtasks">
+
+        </div>
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline" for="button">Assigned to</label>
+        <div id="placeSelectCategory2 " class="place_select_category">
+            <button type='button' onclick="toggleDropdownUser()" id="selectButtonTask2" class="select_button_task ">
+                <span class="select_label" id="selectedUser">Select user</span>
+                <div id="arrow " class="arrow "></div>
+            </button>
+        </div>
+        <div class="dropdown display_none" id="dropdown2">
+            <div id="addUser">
+            </div>
+        </div>
+    </div>
+    <img class="saveChangesImg" src="../assets/img/done_white.png">
+    `
 }
 
 function getNameDetails(selectedElement, id) {
@@ -299,7 +369,7 @@ function getNameDetails(selectedElement, id) {
 }
 
 function addUserToDetails(id, splitUser, letters, selectedElement) {
-    setTimeout( () => {
+    setTimeout(() => {
         document.getElementById(`${id}`).innerHTML += `<div style="background-color:${selectedElement[0]['categories'][0]['color']}" class="details_contact_img">${letters[0]}${letters[1]}</div>`
     }, 10)
 }
