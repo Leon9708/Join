@@ -524,7 +524,26 @@ main {
     height: 32px;
 }
 
-.trashIcon img {
+.assignedTo {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.details_contact_img {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 100%;
+    border: none;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: solid 2px white;
+    font-size: 1rem;
 }
 
 @media (max-width: 1325px) {

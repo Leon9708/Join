@@ -116,7 +116,8 @@ function updateToDo(element, index) {
 
 function getName(task, index) {
     let splitUsers = task.user.split('/');
-    splitUsers.splice(-1)
+    splitUsers.splice(-1);
+
 
     for (let i = 0; i < splitUsers.length; i++) {
         const splitUser = splitUsers[i];
@@ -238,17 +239,19 @@ function openBoardDetails(id) {
     boardContent.innerHTML = '';
     for (let i = 0; i < tasks.length; i++) {
         const element = tasks[i];
-        if(element['id'] == id) {
-        selectedElement.push(element);
+        if (element['id'] == id) {
+            selectedElement.push(element);
         }
-    } console.log(selectedElement);
+    }
     boardContent.innerHTML += openBoardDetailsHTML(selectedElement);
 }
 
 function openBoardDetailsHTML(selectedElement) {
+    let id = selectedElement[0]['id'];
     setPriorityColor(selectedElement);
     setPriorityDetails(selectedElement);
     setCurrentStatus(selectedElement);
+    getNameDetails(selectedElement, id)
 
     return `
     <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
@@ -266,14 +269,39 @@ function openBoardDetailsHTML(selectedElement) {
     </div>
     <div class="assignments">
         <h2> Assigned To </h2>
-        <div class="assignedTo">
+        <div id="${id}" class="assignedTo">
             <p> ${selectedElement[0]['user']} </p>
         </div>
     </div>
     <div class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
     <div class="trashIcon"> <img src="../assets/img/trash.png"> </div>
     `
-    
+
+}
+
+function getNameDetails(selectedElement, id) {
+    let splitUsers = selectedElement[0]['user'].split('/');
+    splitUsers.splice(-1);
+
+    for (let i = 0; i < splitUsers.length; i++) {
+        const splitUser = splitUsers[i];
+        let Characters = "";
+        let string = splitUser.toString();
+        len = string.length
+
+        for (let i = 0; i < len; i++) {
+            if (string[i] === string[i].toUpperCase())
+                Characters = Characters + string[i]
+        }
+        let letters = Characters.replace(/[^\w\s!?]/g, '')
+        addUserToDetails(id, splitUser, letters, selectedElement)
+    }
+}
+
+function addUserToDetails(id, splitUser, letters, selectedElement) {
+    setTimeout( () => {
+        document.getElementById(`${id}`).innerHTML += `<div style="background-color:${selectedElement[0]['categories'][0]['color']}" class="details_contact_img">${letters[0]}${letters[1]}</div>`
+    }, 10)
 }
 
 function setPriorityColor(selectedElement) {
@@ -371,6 +399,7 @@ function searchInAwaitingFeedback(search) {
 // Close Board Details
 function closeBoardDetails() {
     document.getElementById('boardDetails').classList.add('d_none');
+    selectedElement.splice(0);
 }
 
 function toggleTask() {
