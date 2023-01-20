@@ -157,7 +157,6 @@ main {
     width: 100%;
     padding-top: 1rem;
     min-height: 10rem;
-    height: calc(100% - 4rem);
 }
 
 .drag_area_highlight {
@@ -678,6 +677,24 @@ main {
 
     .header_search {
         width: 12rem;
+    }
+}
+
+@media (max-width: 475px) {
+    .board {
+        width: 39vh;
+        height: 54vh;
+    }
+    .input_task {
+        width: 16rem;
+    }
+
+    .input_task_description {
+        width: 16rem;
+    }
+
+    .box_subtask_input {
+        width: 18rem !important;
     }
 }
 

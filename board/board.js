@@ -335,18 +335,23 @@ function changeTaskDetailsHTML(id) {
     <div class="editCategories">
         <label class="detailsSubheadline" for="button">Assigned to</label>
         <div id="placeSelectCategory2 " class="place_select_category">
-            <button type='button' onclick="toggleDropdownUser()" id="selectButtonTask2" class="select_button_task ">
+            <button type='button' onclick="toggleDropdownUser_Details(${id})" id="selectButtonTask2" class="select_button_task ">
                 <span class="select_label" id="selectedUser">Select user</span>
                 <div id="arrow " class="arrow "></div>
             </button>
         </div>
-        <div class="dropdown display_none" id="dropdown2">
+        <div class="dropdown display_none" id="dropdown${id}">
             <div id="addUser${id}">
             </div>
         </div>
     </div>
+
     <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
     `
+}
+
+function toggleDropdownUser_Details(id) {
+
 }
 
 function confirmChangedTask(id) {

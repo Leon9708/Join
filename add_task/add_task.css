@@ -683,7 +683,7 @@ select {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        overflow: scroll;
+        overflow-y: scroll;
     }
     .container_buttons_bottom_task {
         top: 2% !important;
