@@ -585,8 +585,20 @@ main {
     filter: opacity(0.6);
 }
 
+.d-none {
+    display: none;
+}
+
 .img_close_overlay_task {
     width: 1.2rem;
+}
+
+.arrowLeft {
+    position: absolute;
+    bottom: 4rem;
+    right: 4rem;
+    width: 24px;
+    height: 24px;
 }
 
 @media (max-width: 1225px) {
@@ -732,5 +744,8 @@ main {
     }
     .overlay_add_contact {
         width: 80%;
+    }
+    main {
+        padding-left: 2.2rem;
     }
 }

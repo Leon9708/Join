@@ -158,7 +158,7 @@ function resetContactClicked() {
 function showContactsHTML(singleContact, i) {
     return `
     <div id="containerCard" class="container_cards">
-        <button id="buttonContact${i}" class="contact_card_button" onclick="showSelectedContact(${i})">
+        <button id="buttonContact${i}" class="contact_card_button" onclick="showSelectedContact(${i}); showContactDetails()">
             <div class="contact_list_container">
                 <div id="circle${i}" class="contact_list_img">
                     <p>${singleContact['firstName'].charAt(0)}${singleContact['lastName'].charAt(0)}</p>
@@ -175,6 +175,23 @@ function showContactsHTML(singleContact, i) {
         </button>
     </div>
     `
+}
+
+function showContactDetails() {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if(width < 1000) {
+        if(document.getElementById('container_contacts_right').classList.contains('d-none')) {
+            document.getElementById('container_contacts_right').classList.remove('d-none');
+        }
+        document.getElementById('container_contacts_right').style.zIndex = "1000";
+        document.getElementById('container_contacts_left').classList.add('d-none');
+        document.getElementById('container_contacts_right').innerHTML += '<img onclick="closeContactDetails()" class="arrowLeft" src="../assets/img/arrow-left.png">'
+    }
+}
+
+function closeContactDetails() {
+    document.getElementById('container_contacts_right').classList.add('d-none');
+    document.getElementById('container_contacts_left').classList.remove('d-none');
 }
 
 function generateLetters(letter) {
