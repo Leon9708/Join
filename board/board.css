@@ -354,7 +354,7 @@ main {
     border-radius: 2rem;
     padding: 2rem;
     position: relative;
-    overflow-y:auto;
+    overflow-y: auto;
 }
 
 .d_none {
@@ -428,6 +428,7 @@ main {
     font-size: 2rem;
     cursor: pointer;
 }
+
 .taskDetailsCategory {
     border-radius: 12px;
     border: 0px solid;
@@ -561,6 +562,14 @@ main {
     right: 2.75rem;
 }
 
+.trashImg {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 4rem;
+    bottom: 1rem;
+}
+
 @media (max-width: 1325px) {
     html {
         font-size: 14px;
@@ -618,7 +627,7 @@ main {
         padding-left: 0;
     }
     .place_add_task .container_heading_task {
-        position:unset;
+        position: unset;
         width: 100%;
         align-items: unset;
     }
@@ -634,16 +643,13 @@ main {
         gap: 1rem;
         padding-bottom: 1.5rem;
     }
-
     .heading_board {
         font-size: 2.75rem;
     }
-
     .place_categories {
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
-
     .box_category {
         width: 35%;
     }
@@ -662,19 +668,15 @@ main {
     .box_category {
         width: 65%;
     }
-
     .todo {
         height: 12rem;
     }
-
     .todo_content {
         justify-content: space-evenly;
     }
-
     .search_container {
         height: auto;
     }
-
     .header_search {
         width: 12rem;
     }
@@ -688,13 +690,10 @@ main {
     .input_task {
         width: 16rem;
     }
-
     .input_task_description {
         width: 16rem;
     }
-
     .box_subtask_input {
         width: 18rem !important;
     }
 }
-

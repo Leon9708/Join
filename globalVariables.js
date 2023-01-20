@@ -19,6 +19,20 @@ async function getSubtasks() {
     }
 }
 
+function deleteSubtask(subtask, url) {
+    const data = JSON.stringify(subtask);
+    fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+}
+
 async function getTodos() {
     try {
         let responseServer = await fetch('https://jonas34.pythonanywhere.com/todos/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });

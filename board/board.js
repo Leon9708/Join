@@ -12,6 +12,14 @@ async function includeHTML() {
     }
 }
 
+async function requestSubtask(subtask) {
+    let subtaskId = subtask.id
+    console.log(subtaskId);
+    let url = "https://jonas34.pythonanywhere.com/subtasks/" + subtaskId + '/';
+    deleteSubtask(subtask, url)
+
+}
+
 async function requestStatus(filteredTask) {
     let date = correctDate(filteredTask[0].due_date)
     filteredTask[0]['due_date'] = date;
@@ -112,8 +120,6 @@ function updateToDo(element, index) {
     getPrio(element, index);
 }
 
-
-
 function getName(task, index) {
     let splitUsers = task.user.split('/');
     splitUsers.splice(-1);
@@ -187,7 +193,6 @@ function correctDate(date) {
     return date
 
 }
-
 
 // Needed to make dropping elements possible. 
 function allowDrop(ev) {
@@ -274,6 +279,7 @@ function openBoardDetailsHTML(selectedElement) {
         </div>
     </div>
     <div onclick="changeTaskDetails(${id})" class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
+    <img onclick="getDeleteTask(${id})" class="trashImg" src="../assets/img/trash.png">
     `
 
 }
@@ -347,6 +353,7 @@ function changeTaskDetailsHTML(id) {
     </div>
 
     <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
+   
     `
 }
 
@@ -361,7 +368,7 @@ function confirmChangedTask(id) {
     console.log(changedDate);
     for (let i = 0; i < tasks.length; i++) {
         const element = tasks[i]['id'];
-        if(element == id) {
+        if (element == id) {
             if (!title.value == '') {
                 tasks[i]['title'] = title.value;
             }
@@ -377,7 +384,28 @@ function confirmChangedTask(id) {
     closeBoardDetails()
 }
 
+function getDeleteSubtask(filteredtask) {
+    let subtasks = filteredtask[0].subtasks;
+    let filteredIdSubtasks = [];
+    subtasks.forEach((subtask) => {
+        requestSubtask(subtask)
+
+    })
+
+}
+
+
+function getDeleteTask(id) {
+    let filteredtask = tasks.filter((task) => {
+        return task.id === id;
+    })
+    getDeleteSubtask(filteredtask)
+}
+
+
+
 let changedDate;
+
 function changeDate(id) {
     let due_date_rev = document.getElementById(`inputDate${id}`).value;
     let year = due_date_rev.substr(0, 4)
@@ -414,7 +442,7 @@ function addUserToDetails(id, splitUser, letters, selectedElement) {
 function setPriorityColor(selectedElement) {
     if (selectedElement[0]['priority'] == 'M') {
         priorityColor = 'orange';
-    } else if (selectedElement[0]['priority'] == 'L') {     // Sets color for selected task depending on priority
+    } else if (selectedElement[0]['priority'] == 'L') { // Sets color for selected task depending on priority
         priorityColor = 'green';
     } else if (selectedElement[0]['priority'] == 'U') {
         priorityColor = 'red';
@@ -424,7 +452,7 @@ function setPriorityColor(selectedElement) {
 function setPriorityDetails(selectedElement) {
     if (selectedElement[0]['priority'] == 'M') {
         priorityDetails = 'Medium';
-    } else if (selectedElement[0]['priority'] == 'L') {     // Sets priority for selected task
+    } else if (selectedElement[0]['priority'] == 'L') { // Sets priority for selected task
         priorityDetails = 'Low';
     } else if (selectedElement[0]['priority'] == 'U') {
         priorityDetails = 'Urgent';
@@ -434,7 +462,7 @@ function setPriorityDetails(selectedElement) {
 function setCurrentStatus(selectedElement) {
     if (selectedElement[0]['status'] == '1') {
         currentStatus = 'To do';
-    } else if (selectedElement[0]['status'] == '2') {       // Sets current status for selected task
+    } else if (selectedElement[0]['status'] == '2') { // Sets current status for selected task
         currentStatus = 'in Progress';
     } else if (selectedElement[0]['status'] == '3') {
         currentStatus = 'Awaiting feedback';
@@ -501,7 +529,6 @@ function searchInAwaitingFeedback(search) {
         }
     }
 }
-
 
 // Close Board Details
 function closeBoardDetails() {
