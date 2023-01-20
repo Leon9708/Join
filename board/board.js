@@ -14,7 +14,6 @@ async function includeHTML() {
 
 async function requestSubtask(subtask) {
     let subtaskId = subtask.id
-    console.log(subtaskId);
     let url = "https://jonas34.pythonanywhere.com/subtasks/" + subtaskId + '/';
     deleteSubtask(subtask, url)
 
