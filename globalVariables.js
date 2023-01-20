@@ -22,13 +22,9 @@ async function getSubtasks() {
 function deleteSubtask(subtask, url) {
     console.log(url)
     console.log(subtask)
-    const data = JSON.stringify(subtask[0]);
+    const data = JSON.stringify(subtask);
     fetch(url, {
             method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
             body: data
         })
         .then(response => response.json())
