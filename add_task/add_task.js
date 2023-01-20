@@ -297,7 +297,6 @@ function loadSubtask() {
     document.getElementById('boxSubtasks').innerHTML = "";
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
-
         document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtask, i);
     }
 }
