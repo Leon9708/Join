@@ -14,17 +14,18 @@ async function includeHTML() {
 
 async function requestSubtask(subtask) {
     let subtaskId = subtask.id
-    let url = "https://jonas34.pythonanywhere.com/subtasks/" + subtaskId + '/';
-    deleteSubtask(subtask, url)
-
+    if (typeof subtask !== 'undefined') {
+        let url = "https://jonas34.pythonanywhere.com/subtasks/" + subtaskId + '/';
+        await deleteSubtask(subtask, url);
+    }
 }
 
-async function requestStatus(filteredTask) {
+async function requestTask(filteredTask) {
     let date = correctDate(filteredTask[0].due_date)
     filteredTask[0]['due_date'] = date;
     let urlId = filteredTask[0].id
     let url = "https://jonas34.pythonanywhere.com/todos/" + urlId + '/'
-    if (filteredTask[0].status === '4') {
+    if (filteredTask[0].status === '5') {
         await deleteToDo(filteredTask[0], url)
     } else {
         await putToDo(filteredTask[0], url)
@@ -48,7 +49,7 @@ async function renderBoard() {
     updateHTMLOpenTasks();
     updateHTMLInProgessTasks();
     updateHTMLFeedbackTasks();
-    /*      updateHTMLClosedTasks(); */
+    updateHTMLClosedTasks();
 }
 
 
@@ -209,7 +210,7 @@ function moveTo(status) {
         return task['id'] === currentDraggedElement
     });
     filteredTask[0]['status'] = status;
-    requestStatus(filteredTask)
+    requestTask(filteredTask)
 }
 
 
@@ -388,17 +389,17 @@ function getDeleteSubtask(filteredtask) {
     let filteredIdSubtasks = [];
     subtasks.forEach((subtask) => {
         requestSubtask(subtask)
-
     })
-
 }
 
 
 function getDeleteTask(id) {
-    let filteredtask = tasks.filter((task) => {
+    let filteredTask = tasks.filter((task) => {
         return task.id === id;
     })
-    getDeleteSubtask(filteredtask)
+    filteredTask[0].status = '5'
+    getDeleteSubtask(filteredTask)
+    requestTask(filteredTask)
 }
 
 

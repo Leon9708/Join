@@ -19,10 +19,10 @@ async function getSubtasks() {
     }
 }
 
-function deleteSubtask(subtask, url) {
-    console.log(url)
-    console.log(subtask)
-    const data = JSON.stringify(subtask[0]);
+async function deleteSubtask(subtask, url) {
+    /* console.log(url)
+    console.log(subtask)     */
+    const data = JSON.stringify(subtask);
     fetch(url, {
             method: 'DELETE',
             body: data
