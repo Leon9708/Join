@@ -266,16 +266,16 @@ function openBoardDetailsHTML(selectedElement) {
         <div class="taskDetailsTitle"> ${selectedElement[0]['title']} </div>
         <div class="taskDetailsDescription"> ${selectedElement[0]['description']} </div> 
     <div class="timeAndPriority">
-        <div class="dueDate"> <h2> Due date </h2> <p> ${selectedElement[0]['due_date']} </p> </div>
-        <div class="priority"> <h2> Priority </h2> <div style="color: ${priorityColor};"> ${priorityDetails} </div>  </div>
+        <div class="dueDate"> <b> Due date: </b> <p> ${selectedElement[0]['due_date']} </p> </div>
+        <div class="priority"> <b> Priority: </b> <div style="color: ${priorityColor};"> ${priorityDetails} </div>  </div>
     </div>
-    <div class="currentStatus">
-      <div>  <h2> Current status </h2> <p> ${currentStatus} </p> </div>
+    <div class="taskDetailsSubtasks">
+      <div>  <b> Subtasks: </b> <p> ${currentStatus} </p> </div>
     </div>
     <div class="assignments">
         <h2> Assigned To </h2>
         <div id="${id}" class="assignedTo">
-            <p> ${selectedElement[0]['user']} </p>
+            
         </div>
     </div>
     <div onclick="changeTaskDetails(${id})" class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
@@ -414,9 +414,13 @@ function changeDate(id) {
     changedDate = month + "/" + day + "/" + year
 }
 
+let arraySplitUser = [];
+
 function getNameDetails(selectedElement, id) {
     let splitUsers = selectedElement[0]['user'].split('/');
     splitUsers.splice(-1);
+    arraySplitUser.push(splitUsers)
+    let lettersArray = []
 
     for (let i = 0; i < splitUsers.length; i++) {
         const splitUser = splitUsers[i];
@@ -428,15 +432,22 @@ function getNameDetails(selectedElement, id) {
             if (string[i] === string[i].toUpperCase())
                 Characters = Characters + string[i]
         }
-        let letters = Characters.replace(/[^\w\s!?]/g, '')
-        addUserToDetails(id, splitUser, letters, selectedElement)
-    }
+        letters = Characters.replace(/[^\w\s!?]/g, '')
+        lettersArray.push(letters)
+    } 
+    addUserToDetails(id, lettersArray, selectedElement)
 }
 
-function addUserToDetails(id, splitUser, letters, selectedElement) {
+function addUserToDetails(id, letters, selectedElement) {
     setTimeout(() => {
-        document.getElementById(`${id}`).innerHTML += `<div style="background-color:${selectedElement[0]['categories'][0]['color']}" class="details_contact_img">${letters[0]}${letters[1]}</div>`
-    }, 10)
+        for (let i = 0; i < arraySplitUser[0].length; i++) {
+            const element = arraySplitUser[0][i];
+            document.getElementById(`${id}`).innerHTML += `<div class="assignedContact"> <div style="background-color:${selectedElement[0]['categories'][0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`
+        }
+    }, 1)
+    setTimeout(() => {
+        arraySplitUser = [];
+    }, 1)
 }
 
 function setPriorityColor(selectedElement) {
@@ -444,7 +455,7 @@ function setPriorityColor(selectedElement) {
         priorityColor = 'orange';
     } else if (selectedElement[0]['priority'] == 'L') { // Sets color for selected task depending on priority
         priorityColor = 'green';
-    } else if (selectedElement[0]['priority'] == 'U') {
+    } else if (selectedElement[0]['priority'] == 'H') {
         priorityColor = 'red';
     }
 }
@@ -454,7 +465,7 @@ function setPriorityDetails(selectedElement) {
         priorityDetails = 'Medium';
     } else if (selectedElement[0]['priority'] == 'L') { // Sets priority for selected task
         priorityDetails = 'Low';
-    } else if (selectedElement[0]['priority'] == 'U') {
+    } else if (selectedElement[0]['priority'] == 'H') {
         priorityDetails = 'Urgent';
     }
 }
