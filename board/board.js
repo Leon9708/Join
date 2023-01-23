@@ -256,7 +256,9 @@ function openBoardDetailsHTML(selectedElement) {
     setPriorityColor(selectedElement);
     setPriorityDetails(selectedElement);
     setCurrentStatus(selectedElement);
-    getNameDetails(selectedElement, id)
+    setNameDetails(selectedElement, id);
+    setSubtasks(selectedElement);
+
 
     return `
     <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
@@ -267,13 +269,16 @@ function openBoardDetailsHTML(selectedElement) {
         <div class="taskDetailsDescription"> ${selectedElement[0]['description']} </div> 
     <div class="timeAndPriority">
         <div class="dueDate"> <b> Due date: </b> <p> ${selectedElement[0]['due_date']} </p> </div>
-        <div class="priority"> <b> Priority: </b> <div style="color: ${priorityColor};"> ${priorityDetails} </div>  </div>
+        <div class="priority"> <b> Priority: </b> <div class="taskDetailsPriority" style="background-color: ${priorityColor};"> ${priorityDetails} </div>  </div>
     </div>
     <div class="taskDetailsSubtasks">
-      <div>  <b> Subtasks: </b> <p> ${currentStatus} </p> </div>
+      <div>  
+      <b> Subtasks: </b> 
+      <div id="place_subtasks">  </div> 
+      </div>
     </div>
     <div class="assignments">
-        <h2> Assigned To </h2>
+        <b> Assigned To: </b>
         <div id="${id}" class="assignedTo">
             
         </div>
@@ -282,6 +287,15 @@ function openBoardDetailsHTML(selectedElement) {
     <img onclick="getDeleteTask(${id})" class="trashImg" src="../assets/img/trash.png">
     `
 
+}
+
+function setSubtasks(selectedElement) {
+    setTimeout(() => {
+        for (let i = 0; i < selectedElement[0]['subtasks'].length; i++) {
+            const element = selectedElement[0]['subtasks'][i];
+            document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input style="width: 1rem" type="checkbox"> ${element['title']} </div>`
+        }
+    })
 }
 
 function changeTaskDetails(id) {
@@ -416,7 +430,7 @@ function changeDate(id) {
 
 let arraySplitUser = [];
 
-function getNameDetails(selectedElement, id) {
+function setNameDetails(selectedElement, id) {
     let splitUsers = selectedElement[0]['user'].split('/');
     splitUsers.splice(-1);
     arraySplitUser.push(splitUsers)
