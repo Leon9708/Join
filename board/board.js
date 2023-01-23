@@ -379,7 +379,6 @@ function confirmChangedTask(id) {
     let title = document.getElementById(`inputTitle${id}`);
     let description = document.getElementById(`inputDescription${id}`);
     changeDate(id);
-    console.log(changedDate);
     for (let i = 0; i < tasks.length; i++) {
         const element = tasks[i]['id'];
         if (element == id) {
@@ -455,7 +454,8 @@ function setNameDetails(selectedElement, id) {
 function addUserToDetails(id, letters, selectedElement) {
     setTimeout(() => {
         for (let i = 0; i < arraySplitUser[0].length; i++) {
-            const element = arraySplitUser[0][i];
+            let element = arraySplitUser[0][i];
+            element=element.replace(/\,/g,' ');
             document.getElementById(`${id}`).innerHTML += `<div class="assignedContact"> <div style="background-color:${selectedElement[0]['categories'][0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`
         }
     }, 1)
