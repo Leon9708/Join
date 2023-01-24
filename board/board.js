@@ -42,6 +42,7 @@ let selectedElement = [];
 let priorityDetails;
 let priorityColor;
 let currentStatus;
+let changedUrgency;
 
 
 // Update container with Todo-Tasks based on status ('open', 'in progress', 'awaiting feedback', 'done')
@@ -251,44 +252,6 @@ function openBoardDetails(id) {
     boardContent.innerHTML += openBoardDetailsHTML(selectedElement);
 }
 
-function openBoardDetailsHTML(selectedElement) {
-    let id = selectedElement[0]['id'];
-    setPriorityColor(selectedElement);
-    setPriorityDetails(selectedElement);
-    setCurrentStatus(selectedElement);
-    setNameDetails(selectedElement, id);
-    setSubtasks(selectedElement);
-
-
-    return `
-    <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
-    <div class="taskDetailsHeader">  
-        <div style="background-color: ${selectedElement[0]['categories'][0]['color']}" class="taskDetailsCategory"> ${selectedElement[0]['categories'][0]['title']} </div> 
-    </div>  
-        <div class="taskDetailsTitle"> ${selectedElement[0]['title']} </div>
-        <div class="taskDetailsDescription"> ${selectedElement[0]['description']} </div> 
-    <div class="timeAndPriority">
-        <div class="dueDate"> <b> Due date: </b> <p> ${selectedElement[0]['due_date']} </p> </div>
-        <div class="priority"> <b> Priority: </b> <div class="taskDetailsPriority" style="background-color: ${priorityColor};"> ${priorityDetails} </div>  </div>
-    </div>
-    <div class="taskDetailsSubtasks">
-      <div>  
-      <b> Subtasks: </b> 
-      <div id="place_subtasks">  </div> 
-      </div>
-    </div>
-    <div class="assignments">
-        <b> Assigned To: </b>
-        <div id="${id}" class="assignedTo">
-            
-        </div>
-    </div>
-    <div onclick="changeTaskDetails(${id})" class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
-    <img onclick="getDeleteTask(${id})" class="trashImg" src="../assets/img/trash.png">
-    `
-
-}
-
 function setSubtasks(selectedElement) {
     setTimeout(() => {
         for (let i = 0; i < selectedElement[0]['subtasks'].length; i++) {
@@ -298,103 +261,39 @@ function setSubtasks(selectedElement) {
     })
 }
 
+// opens window, that allows you to change task details
 function changeTaskDetails(id) {
     let boardContent = document.getElementById('boardContent');
     boardContent.innerHTML = '';
     boardContent.innerHTML += changeTaskDetailsHTML(id)
 }
 
-function changeTaskDetailsHTML(id) {
-    return `
-    <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
-    <div class="editCategories">
-        <label class="detailsSubheadline">Title</label>
-        <input id="inputTitle${id}" required class="input_task" minlength="3" maxlength="30" type="text" placeholder="Enter a title">
-    </div>
-    <div class="editCategories">
-        <label class="detailsSubheadline">Description</label>
-        <textarea id="inputDescription${id}" class="input_task_description" type="text" placeholder="Enter a Description"></textarea>
-    </div>
-    <div class="editCategories">
-        <label class="detailsSubheadline">Due date</label>
-        <div class="box_input_date">
-        <input id="inputDate${id}" type="date" class="input_task" required>
-        </div>
-    </div>
-    <div class="editCategories">
-        <label class="detailsSubheadline">Prio</label>
-        <div id="containerButtonsTask${id}" class="container_buttons_task ">
-            <button type='button' id="urgentButton" onclick="selectUrgency( 'urgent') " class="box_button_task ">
-                <p class="text_urgency_task ">Urgent</p>
-                <div id="prioUrgent" class="urgency_img_u_task urgency_img_task "></div>
-            </button>
-            <button type='button' id="mediumButton" onclick="selectUrgency( 'medium') " class="box_button_task ">
-                <p class="text_urgency_task ">Medium</p>
-                <div id="prioMedium" class="urgency_img_m_task urgency_img_task "></div>
-            </button>
-            <button type='button' id="lowButton" onclick="selectUrgency( 'low') " class="box_button_task ">
-                <p class="text_urgency_task ">Low</p>
-                <div id="prioLow" class="urgency_img_l_task urgency_img_task "></div>
-            </button>
-        </div>
-    </div>
-    <div class="editCategories">
-        <label class="detailsSubheadline">Subtasks</label>
-        <div class="container_subtask" id="containerSubtask">
-            <button type='button' onclick="openSubtask()" id="boxSubtaskInput" class="box_subtask_input">
-                <input required minlength="3" disabled="disabled" placeholder="Add new subtask" id="inputSubtask${id}" type="text" class="input_subtask_fake">
-                <div  class="button_subtask_input">
-                    <img class="img_subtask_task" src="../assets/img/plus_task.png" alt="#">
-                </div>
-            </button>
-        </div>
-        <div id="boxSubtasks${id}" class="place_subtasks">
-
-        </div>
-    </div>
-    <div class="editCategories">
-        <label class="detailsSubheadline" for="button">Assigned to</label>
-        <div id="placeSelectCategory2 " class="place_select_category">
-            <button type='button' onclick="toggleDropdownUser_Details(${id})" id="selectButtonTask2" class="select_button_task ">
-                <span class="select_label" id="selectedUser">Select user</span>
-                <div id="arrow " class="arrow "></div>
-            </button>
-        </div>
-        <div class="dropdown display_none" id="dropdown${id}">
-            <div id="addUser${id}">
-            </div>
-        </div>
-    </div>
-
-    <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
-   
-    `
-}
-
-function toggleDropdownUser_Details(id) {
-
-}
-
 function confirmChangedTask(id) {
-    let title = document.getElementById(`inputTitle${id}`);
-    let description = document.getElementById(`inputDescription${id}`);
     changeDate(id);
-    for (let i = 0; i < tasks.length; i++) {
-        const element = tasks[i]['id'];
-        if (element == id) {
-            if (!title.value == '') {
-                tasks[i]['title'] = title.value;
-            }
-            if (!description.value == '') {
-                tasks[i]['description'] = description.value;
-            }
-            if (typeof changedDate !== 'undefined' || changedDate !== null) {
-                tasks[i]['due_date'] = changedDate;
-            }
-        }
-    }
+    checkFilteredTask(id);
     renderBoard();
     closeBoardDetails()
+}
+
+// checks if changes to selected task have been made
+function checkFilteredTask(id) {
+    let title = document.getElementById(`inputTitle${id}`);
+    let description = document.getElementById(`inputDescription${id}`);
+    let filteredTask = tasks.filter((task) => {
+        return task.id === id;
+    })
+    if (title.value !== '') {
+        filteredTask[0].title = title.value;
+    }
+    if (description.value !== '') {
+        filteredTask[0].description = description.value;
+    }
+    if (changedDate !== undefined || changedDate !== null ) {
+        filteredTask[0].due_date = changedDate;
+    }
+    if(changedUrgency !== undefined) {
+        filteredTask[0].priority = changedUrgency;
+    }
 }
 
 function getDeleteSubtask(filteredtask) {
@@ -405,7 +304,6 @@ function getDeleteSubtask(filteredtask) {
     })
 }
 
-
 function getDeleteTask(id) {
     let filteredTask = tasks.filter((task) => {
         return task.id === id;
@@ -414,8 +312,6 @@ function getDeleteTask(id) {
     getDeleteSubtask(filteredTask)
     requestTask(filteredTask)
 }
-
-
 
 let changedDate;
 
@@ -447,15 +343,16 @@ function setNameDetails(selectedElement, id) {
         }
         letters = Characters.replace(/[^\w\s!?]/g, '')
         lettersArray.push(letters)
-    } 
+    }
     addUserToDetails(id, lettersArray, selectedElement)
 }
 
+// adds small circle with initials and names of users that belong to the selected task
 function addUserToDetails(id, letters, selectedElement) {
     setTimeout(() => {
         for (let i = 0; i < arraySplitUser[0].length; i++) {
             let element = arraySplitUser[0][i];
-            element=element.replace(/\,/g,' ');
+            element = element.replace(/\,/g, ' ');
             document.getElementById(`${id}`).innerHTML += `<div class="assignedContact"> <div style="background-color:${selectedElement[0]['categories'][0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`
         }
     }, 1)
@@ -507,9 +404,10 @@ function searchTask() {
     searchInToDos(search);
     searchInProgress(search);
     searchInAwaitingFeedback(search);
+    searchInDone(search);
 }
 
-
+// search functions, searches in all 4 categories (toDo, in progress, awaiting feedback, done)
 function searchInToDos(search) {
     let openTasks = tasks.filter((task) => {
         return task['status'] == '1'
@@ -555,6 +453,51 @@ function searchInAwaitingFeedback(search) {
     }
 }
 
+function searchInDone(search) {
+    let done = tasks.filter((task) => {
+        return task['status'] == '4'
+    });
+    document.getElementById('closed').innerHTML = '';
+    for (let index = 0; index < done.length; index++) {
+        const element = done[index];
+        if (element['title'].includes(search)) {
+            let doneIndex = index + "d"
+            document.getElementById('closed').innerHTML += generateTodoHTML(element, doneIndex);
+            updateToDo(element, doneIndex);
+        }
+    }
+}
+
+// changes urgency/priority when clicking on an urgency button in change task details html
+function changeUrgency(prio, id) {
+    unsetChangedPrioHTML(id);
+    changedUrgency = prio;
+    if (prio === 'H') {
+        document.getElementById('changeUrgentButton').classList.toggle('box_button_task_u');
+        document.getElementById('changePrioUrgent').classList.toggle('urgency_img_u_clicked_task');
+        document.getElementById('changePrioUrgent').classList.toggle('urgency_img_u_task');
+    } else if (prio === 'L') {
+        document.getElementById('changeLowButton').classList.toggle('box_button_task_l');
+        document.getElementById('changePrioLow').classList.toggle('urgency_img_l_clicked_task');
+        document.getElementById('changePrioLow').classList.toggle('urgency_img_l_task');
+    } else if (prio === 'M') {
+        document.getElementById('changeMediumButton').classList.toggle('box_button_task_m');
+        document.getElementById('changePrioMedium').classList.toggle('urgency_img_m_clicked_task');
+        document.getElementById('changePrioMedium').classList.toggle('urgency_img_m_task');
+    }
+}
+
+// opens section where users/contacts can be selected
+function toggleDropdownUser_Details(id) {
+    const dropdown = document.getElementById(`dropdown${id}`);
+    if (dropdown.classList.contains('display_none')) {
+        dropdown.classList.toggle('display_none');
+    } else if (!dropdown.classList.contains('display_none')) {
+        dropdown.classList.toggle('display_none')
+    }
+    loadUser();
+}
+
 // Close Board Details
 function closeBoardDetails() {
     document.getElementById('boardDetails').classList.add('d_none');
@@ -597,6 +540,61 @@ function generateTodoHTML(element, index) {
         </div>
     </div>
     `
+}
+
+function unsetChangedPrioHTML(id) {
+    document.getElementById(`containerButtonsTask${id}`).innerHTML = `
+    <button type='button' id="changeUrgentButton" onclick="changeUrgency('urgent', ${id}) " class="box_button_task ">
+                <p class="text_urgency_task ">Urgent</p>
+                <div id="changePrioUrgent" class="urgency_img_u_task urgency_img_task "></div>
+    </button>
+    <button type='button' id="changeMediumButton" onclick="changeUrgency('medium', ${id}) " class="box_button_task ">
+                <p class="text_urgency_task ">Medium</p>
+                <div id="changePrioMedium" class="urgency_img_m_task urgency_img_task "></div>
+    </button>
+    <button type='button' id="changeLowButton" onclick="changeUrgency('low', ${id}) " class="box_button_task ">
+                <p class="text_urgency_task ">Low</p>
+                <div id="changePrioLow" class="urgency_img_l_task urgency_img_task "></div>
+    </button>
+    `
+}
+
+function openBoardDetailsHTML(selectedElement) {
+    let id = selectedElement[0]['id'];
+    setPriorityColor(selectedElement);
+    setPriorityDetails(selectedElement);
+    setCurrentStatus(selectedElement);
+    setNameDetails(selectedElement, id);
+    setSubtasks(selectedElement);
+
+
+    return `
+    <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
+    <div class="taskDetailsHeader">  
+        <div style="background-color: ${selectedElement[0]['categories'][0]['color']}" class="taskDetailsCategory"> ${selectedElement[0]['categories'][0]['title']} </div> 
+    </div>  
+        <div class="taskDetailsTitle"> ${selectedElement[0]['title']} </div>
+        <div class="taskDetailsDescription"> ${selectedElement[0]['description']} </div> 
+    <div class="timeAndPriority">
+        <div class="dueDate"> <b> Due date: </b> <p> ${selectedElement[0]['due_date']} </p> </div>
+        <div class="priority"> <b> Priority: </b> <div class="taskDetailsPriority" style="background-color: ${priorityColor};"> ${priorityDetails} </div>  </div>
+    </div>
+    <div class="taskDetailsSubtasks">
+      <div>  
+      <b> Subtasks: </b> 
+      <div id="place_subtasks">  </div> 
+      </div>
+    </div>
+    <div class="assignments">
+        <b> Assigned To: </b>
+        <div id="${id}" class="assignedTo">
+            
+        </div>
+    </div>
+    <div onclick="changeTaskDetails(${id})" class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
+    <img onclick="getDeleteTask(${id})" class="trashImg" src="../assets/img/trash.png">
+    `
+
 }
 
 function generateSubtasks(doneTasks, TaskTotal, index) {
@@ -724,4 +722,57 @@ function taskOverlayHTML(id) {
 </div>
 </div>
 `
+}
+
+function changeTaskDetailsHTML(id) {
+    return `
+    <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Title</label>
+        <input id="inputTitle${id}" required class="input_task" minlength="3" maxlength="30" type="text" placeholder="Enter a title">
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Description</label>
+        <textarea id="inputDescription${id}" class="input_task_description" type="text" placeholder="Enter a Description"></textarea>
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Due date</label>
+        <div class="box_input_date">
+        <input id="inputDate${id}" type="date" class="input_task" required>
+        </div>
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline">Prio</label>
+        <div id="containerButtonsTask${id}" class="container_buttons_task ">
+            <button type='button' id="changeUrgentButton" onclick="changeUrgency('H', ${id}) " class="box_button_task ">
+                <p class="text_urgency_task ">Urgent</p>
+                <div id="changePrioUrgent" class="urgency_img_u_task urgency_img_task "></div>
+            </button>
+            <button type='button' id="changeMediumButton" onclick="changeUrgency('M', ${id}) " class="box_button_task ">
+                <p class="text_urgency_task ">Medium</p>
+                <div id="changePrioMedium" class="urgency_img_m_task urgency_img_task "></div>
+            </button>
+            <button type='button' id="changeLowButton" onclick="changeUrgency('L', ${id}) " class="box_button_task ">
+                <p class="text_urgency_task ">Low</p>
+                <div id="changePrioLow" class="urgency_img_l_task urgency_img_task "></div>
+            </button>
+        </div>
+    </div>
+    <div class="editCategories">
+        <label class="detailsSubheadline" for="button">Assigned to</label>
+        <div id="placeSelectCategory2 " class="place_select_category">
+            <button type='button' onclick="toggleDropdownUser_Details(${id})" id="selectButtonTask2" class="select_button_task ">
+                <span class="select_label" id="selectedUser">Select user</span>
+                <div id="arrow " class="arrow "></div>
+            </button>
+        </div>
+        <div class="dropdown display_none" id="dropdown${id}">
+            <div id="addUser">
+            </div>
+        </div>
+    </div>
+
+    <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
+   
+    `
 }

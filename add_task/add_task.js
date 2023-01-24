@@ -206,7 +206,6 @@ function UsersToString() {
         StringArrayUser.push(user.firstName)
         StringArrayUser.push(user.lastName + '/')
     });
-    console.log(StringArrayUser)
 }
 
 function setDate() {
