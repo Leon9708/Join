@@ -256,9 +256,21 @@ function setSubtasks(selectedElement) {
     setTimeout(() => {
         for (let i = 0; i < selectedElement[0]['subtasks'].length; i++) {
             const element = selectedElement[0]['subtasks'][i];
-            document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input style="width: 1rem" type="checkbox"> ${element['title']} </div>`
+            document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}')"> ${element['title']} </div>`
         }
     })
+}
+
+// Sets selected subtask to done = "true";
+function setSubtaskDone(id, subtaskTitle) {
+    let filteredTask = tasks.filter((task) => {
+        return task.id === id;
+    }) 
+    let filteredSubtask = filteredTask[0].subtasks.filter((subtask) => {
+        return subtask.title === subtaskTitle;
+    })
+    filteredSubtask[0].done = "true";
+    requestTask(filteredTask);
 }
 
 // opens window, that allows you to change task details
