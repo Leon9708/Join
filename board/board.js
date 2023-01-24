@@ -294,6 +294,7 @@ function checkFilteredTask(id) {
     if(changedUrgency !== undefined) {
         filteredTask[0].priority = changedUrgency;
     }
+    requestTask(filteredTask)
 }
 
 function getDeleteSubtask(filteredtask) {
