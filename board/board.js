@@ -239,7 +239,7 @@ function removeHighlight(id) {
 
 // ??? ////////////////////////////////////
 // Show Task Details
-function openBoardDetails(id) {
+function openBoardDetails(id, index) {
     document.getElementById('boardDetails').classList.remove('d_none');
     let boardContent = document.getElementById('boardContent');
     boardContent.innerHTML = '';
@@ -249,20 +249,20 @@ function openBoardDetails(id) {
             selectedElement.push(element);
         }
     }
-    boardContent.innerHTML += openBoardDetailsHTML(selectedElement);
+    boardContent.innerHTML += openBoardDetailsHTML(selectedElement, index);
 }
 
-function setSubtasks(selectedElement) {
+function setSubtasks(selectedElement, index) {
     setTimeout(() => {
         for (let i = 0; i < selectedElement[0]['subtasks'].length; i++) {
             const element = selectedElement[0]['subtasks'][i];
-            document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}')"> ${element['title']} </div>`
+            document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}', '${index}')"> ${element['title']} </div>`
         }
     })
 }
 
 // Sets selected subtask to done = "true";
-function setSubtaskDone(id, subtaskTitle) {
+function setSubtaskDone(id, subtaskTitle, index) {
     let filteredTask = tasks.filter((task) => {
         return task.id === id;
     }) 
@@ -271,6 +271,22 @@ function setSubtaskDone(id, subtaskTitle) {
     })
     filteredSubtask[0].done = "true";
     requestTask(filteredTask);
+    checkDoneSubtasks(filteredTask, index)
+}
+
+let finishedPercentage;
+function checkDoneSubtasks(filteredTask, index) {
+    let amountSubtasks = filteredTask[0].subtasks.length;
+    let finishedSubtasks = filteredTask[0].subtasks.filter((finSub) => {
+        return finSub.done === "true"
+    })
+    finishedPercentage = (finishedSubtasks.length / amountSubtasks) *100
+    updateDoneSubtasks(index)
+}
+
+function updateDoneSubtasks(index) {
+    document.getElementById(`subtaskBar${index}`).style.width = `${finishedPercentage}%`
+    console.log(document.getElementById(`subtaskBar${index}`).style.width)
 }
 
 // opens window, that allows you to change task details
@@ -539,7 +555,7 @@ function toggleTask(id) {
 function generateTodoHTML(element, index) {
     return `
     <div draggable="true" ondragstart="startDragging(${element['id']})" class="todo">
-        <div onclick="openBoardDetails(${element['id']})" class="todo_content">
+        <div onclick="openBoardDetails(${element['id']}, '${index}')" class="todo_content">
             <div class="bg_category" id="checkCategory${index}">${element['categories'][0]['title']}</div>
             <div class="bg_title" id="checkTitle"><b>${element['title']}</b></div>
             <div class="bg_description" id="checkDescription">${element['description']}</div>
@@ -572,14 +588,13 @@ function unsetChangedPrioHTML(id) {
     `
 }
 
-function openBoardDetailsHTML(selectedElement) {
+function openBoardDetailsHTML(selectedElement, index) {
     let id = selectedElement[0]['id'];
     setPriorityColor(selectedElement);
     setPriorityDetails(selectedElement);
     setCurrentStatus(selectedElement);
     setNameDetails(selectedElement, id);
-    setSubtasks(selectedElement);
-
+    setSubtasks(selectedElement, index);
 
     return `
     <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
