@@ -146,15 +146,17 @@ function getSubtask(task, index) {
     let doneTasks = 0;
     let TaskTotal = task.subtasks.length
     task.subtasks.forEach(subtask => {
-        if (subtask.done === true) {
-            doneTasks + 1;
+        if (subtask.done == "true") {
+            doneTasks = doneTasks + 1;
+            console.log(doneTasks)
         }
     });
     if (TaskTotal > 0) {
         document.getElementById('boxSubTask' + index).innerHTML = generateSubtasks(doneTasks, TaskTotal, index);
 
-        let taskPercentDone = doneTasks / TaskTotal;
-        document.getElementById('subtaskBar' + index).style.width = taskPercentDone;
+        let taskPercentDone = TaskTotal / doneTasks *100;
+        console.log(taskPercentDone)
+        document.getElementById('subtaskBar' + index).style = `width: ${taskPercentDone}%`;
     }
 }
 
@@ -256,7 +258,10 @@ function setSubtasks(selectedElement, index) {
     setTimeout(() => {
         for (let i = 0; i < selectedElement[0]['subtasks'].length; i++) {
             const element = selectedElement[0]['subtasks'][i];
-            document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}', '${index}')"> ${element['title']} </div>`
+            document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input id="${index}${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}', '${index}')"> ${element['title']} </div>`
+            if(element['done'] == "true") {
+                console.log(document.getElementById(`${index}${i}`))
+            }
         }
     })
 }
@@ -281,12 +286,14 @@ function checkDoneSubtasks(filteredTask, index) {
         return finSub.done === "true"
     })
     finishedPercentage = (finishedSubtasks.length / amountSubtasks) *100
-    updateDoneSubtasks(index)
+    updateDoneSubtasks(index, finishedPercentage)
 }
 
-function updateDoneSubtasks(index) {
-    document.getElementById(`subtaskBar${index}`).style.width = `${finishedPercentage}%`
-    console.log(document.getElementById(`subtaskBar${index}`).style.width)
+// Updates subtask bar depending on amount of finished subtasks
+function updateDoneSubtasks(index, finishedPercentage) {
+    setTimeout (()=> {
+        document.getElementById(`subtaskBar${index}`).style = `width:${finishedPercentage}%;`
+    }, 10)
 }
 
 // opens window, that allows you to change task details
