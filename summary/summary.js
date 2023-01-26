@@ -18,14 +18,25 @@ function renderSummary() {
     tasksDone = document.getElementById('tasksDone');
     tasksTodo = document.getElementById('tasksTodo');
     displayInfo();
+    defineCurrentUser();
+    greetUser();
 }
 
 let tasksProgress;
 let tasksAwaitingFeedback;
 let tasksDone;
 let tasksTodo;
+let currentUserName;
 
+function defineCurrentUser() {
+    currentUser = localStorage.getItem('user');
+    currentUserObject = JSON.parse(currentUser)
+    currentUserName = currentUserObject[0]['name'];
+}
 
+function greetUser() {
+    document.getElementById('greetingName').innerHTML = `${currentUserName}`;
+}
 
 function displayInfo() {
     console.log(tasks)

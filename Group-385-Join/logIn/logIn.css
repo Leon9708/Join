@@ -224,10 +224,13 @@ body {
     margin-top: 24px;
     width: 240px;
     height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     background-color: rgb(42, 54, 71);
     border-radius: 12px;
-    padding: 6px;
+    padding: 10px;
     color: white;
 }
 

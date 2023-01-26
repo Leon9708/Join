@@ -101,6 +101,14 @@ function onsubmitLogIn() {
         const element = usersAsObject[i];
         if (element['mail'] == `${mail}` && element['password'] == `${password}`) {
             window.location.href="../summary/summary.html"
+            currentUserName = element['name'];
+        } else {
+            document.getElementById('logInInputMail').value = '';
+            document.getElementById('logInInputPassword').value = '';
+            document.getElementById('errorLogin').classList.remove('d-none');
+            setTimeout(()=> {
+                document.getElementById('errorLogin').classList.add('d-none');
+            }, 5000)
         }
     }
 }
