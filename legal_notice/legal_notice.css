@@ -30,7 +30,7 @@ body {
 }
 
 .content_legal_notice {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .content_headlines {
@@ -41,4 +41,23 @@ body {
 .content_small_headlines {
     font-size: 14px;
     font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+    .main_legal_notice {
+        width: 90%;
+        left: 0;
+        padding: 0;
+        height: auto;
+        padding-right: 5%;
+        padding-left: 5%;
+        bottom: 15%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .content_legal_notice {
+        font-size: 12px;
+    }
 }

@@ -148,14 +148,12 @@ function getSubtask(task, index) {
     task.subtasks.forEach(subtask => {
         if (subtask.done == "true") {
             doneTasks = doneTasks + 1;
-            console.log(doneTasks)
         }
     });
     if (TaskTotal > 0) {
         document.getElementById('boxSubTask' + index).innerHTML = generateSubtasks(doneTasks, TaskTotal, index);
 
         let taskPercentDone = TaskTotal / doneTasks *100;
-        console.log(taskPercentDone)
         document.getElementById('subtaskBar' + index).style = `width: ${taskPercentDone}%`;
     }
 }
@@ -627,7 +625,7 @@ function openBoardDetailsHTML(selectedElement, index) {
         </div>
     </div>
     <div onclick="changeTaskDetails(${id})" class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
-    <img onclick="getDeleteTask(${id})" class="trashImg" src="../assets/img/trash.png">
+    <img onclick="getDeleteTask(${id}); closeBoardDetails()" class="trashImg" src="../assets/img/trash.png">
     `
 
 }

@@ -56,9 +56,16 @@ body {
 @media (max-width: 1000px) {
     .main_join-info {
         left: 0;
+        bottom: 15%;
+        height: auto;
     }
+}
 
+@media (max-width: 600px) {
     .main_join-info {
-        height: 75%;
+        bottom: 12%;
+        padding-left: 5%;
+        padding-right: 5%;
+        width: 90%;
     }
 }
