@@ -31,7 +31,7 @@ html {
     border-radius: 100%;
     height: 2.5rem;
     width: 2.5rem;
-    padding: 3px;
+    padding: 1px;
     background-color: white;
     border: solid #2A3647;
 }
@@ -107,8 +107,8 @@ nav {
 }
 
 .aside_icons {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
 }
 
 @media (min-width: 1000px) {
