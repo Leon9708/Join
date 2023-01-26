@@ -34,7 +34,7 @@ function loginContainer() {
                 <h1 class="logInHeadline">Log In</h1>
                 <hr class="underlineHeadline">
                 <input required id="logInInputMail" class="logInInputMail" type="email" placeholder="Email">
-                <input required id="logInInputPassword" class="logInInputPassword" type="text" placeholder="Password">
+                <input required id="logInInputPassword" class="logInInputPassword" type="password" placeholder="Password">
                 <div class="belowPassword">
                     <input type="checkbox">
                     <span>Remember me</span>
@@ -47,6 +47,7 @@ function loginContainer() {
             </form>
         </div>
         <div id="errorLogin" class="userAlert d-none"> User not found - <br> instead use Guest Log in </div>
+        <div id="userCreated" class="userCreated d-none">User was successfully created!</div>
     `
 }
 
@@ -61,12 +62,12 @@ function signUpContainer() {
     return `
         <div style="height: 420px; padding: 14px" class="divLogIn">
         <img style="cursor: pointer;" onclick="backToLogin()" src="./assets/img/arrow.png">
-            <form class="logInForm" onsubmit="submitSignUp(); return false">
+            <form class="logInForm" onsubmit="registerUser(); return false">
                 <h1 style="margin-top: 0" class="logInHeadline">Sign Up</h1>
                 <hr class="underlineHeadline">
                 <input required id="signUpInputName" class="logInInputName" type="text" placeholder="Name">
                 <input required id="signUpInputMail" class="logInInputMail" type="email" placeholder="Email">
-                <input required id="signUpInputPassword" class="logInInputPassword" type="text" placeholder="Password">
+                <input required id="signUpInputPassword" class="logInInputPassword" type="password" placeholder="Password">
                 <div style="margin-top: 10px" class="logInButtons">
                     <button class="logInBtn">Sign Up</button>
                 </div>
@@ -75,22 +76,43 @@ function signUpContainer() {
     `
 }
 
-function login() {
-    document.getElementById('errorLogin').classList.remove('d-none');
+function registerUser() {
+    let mail = document.getElementById('signUpInputMail').value;
+    let password = document.getElementById('signUpInputPassword').value;
+    let name = document.getElementById('signUpInputName').value;
+    let userDetails = {'mail': `${mail}`, 'name': `${name}`, 'password': `${password}`}
+    users.push(userDetails)
+    saveUserInLocalStorage()
+    submitSignUp()
+}
 
-    setTimeout(() => {
-        document.getElementById('errorLogin').classList.add('d-none');
-    }, 4000)
-    document.getElementById('logInInputMail').value = '';
-    document.getElementById('logInInputPassword').value = '';
+function saveUserInLocalStorage() {
+    usersAsString = JSON.stringify(users);
+    window.localStorage.setItem('user', usersAsString);
 }
 
 function onsubmitLogIn() {
-    document.getElementById('logInForm').setAttribute("onsubmit", "login(); return false")
+    let mail = document.getElementById('logInInputMail').value;
+    let password = document.getElementById('logInInputPassword').value
+    users = [];
+    users.push(window.localStorage.getItem('user'))
+    usersAsObject = JSON.parse(users)
+    for (let i = 0; i < usersAsObject.length; i++) {
+        const element = usersAsObject[i];
+        if (element['mail'] == `${mail}` && element['password'] == `${password}`) {
+            window.location.href="../summary/summary.html"
+        }
+    }
 }
 
 function submitSignUp() {
-    window.location.href = "./summary/summary.html ";
+    backToLogin()
+    setTimeout(()=> {
+        document.getElementById('userCreated').classList.remove('d-none');
+    }, 100)
+    setTimeout (()=> {
+        document.getElementById('userCreated').classList.add('d-none');
+    }, 5000) 
 }
 
 function guestLogIn() {

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="Group-385-Join/logIn/logIn.css">
     <script src="Group-385-Join/logIn/logIn.js"></script>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <script src="globalVariables.js"></script>
     <title>Join</title>
 </head>
 
@@ -28,7 +29,7 @@
                 <h1 class="logInHeadline">Log In</h1>
                 <hr class="underlineHeadline">
                 <input required id="logInInputMail" class="logInInputMail" type="email" placeholder="Email" />
-                <input required id="logInInputPassword" class="logInInputPassword" type="text" placeholder="Password" />
+                <input required id="logInInputPassword" class="logInInputPassword" type="password" placeholder="Password" />
                 <div class="belowPassword">
                     <input type="checkbox">
                     <span>Remember me</span>
@@ -42,6 +43,7 @@
         </div>
 
         <div id="errorLogin" class="userAlert d-none"> User not found - <br> instead use Guest Log in </div>
+        <div id="userCreated" class="userCreated d-none">User was successfully created!</div>
 
     </div>
 

@@ -231,6 +231,19 @@ body {
     color: white;
 }
 
+.userCreated {
+    background-color: rgb(42, 54, 71);
+    border-radius: 12px;
+    padding: 6px;
+    color: white;
+    width: 240px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 24px;
+}
+
 .d-none {
     display: none;
 }

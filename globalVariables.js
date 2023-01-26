@@ -124,6 +124,9 @@ let contacts = [{
     'color': 'orange'
 }];
 
+let users = [
+] 
+
 
 async function render(id) {
     await getTodos();
