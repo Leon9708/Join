@@ -246,6 +246,7 @@ select {
     border: none;
     background-color: white;
     cursor: pointer;
+    width: fit-content;
 }
 
 .img_button_input_category {
@@ -446,6 +447,7 @@ select {
     border-radius: 0;
     width: 100%;
     background-color: white;
+    cursor: auto;
 }
 
 .img_subtask_task {

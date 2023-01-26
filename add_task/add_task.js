@@ -41,6 +41,7 @@ function checkValdation(newStatus) {
     let filteredcontact = contacts.filter((ele) => {
         return user.includes(ele.lastName)
     })
+
     if (filteredLabels.length > 0 && filteredcontact.length > 0 && typeof priority !== 'undefined' > 0 && chosenSubtasks.length > 0) {
         createTask(user, filteredLabels, status);
         window.location.href = "../board/board.html";
@@ -275,16 +276,19 @@ function CreateNewSubtask(newSubtask) {
 
 function filterSubtaskDuplicates() {
     let newSubtask = document.getElementById('inputSubtask').value
-    const filteredSubtask = subtasks.filter((subtask) => {
-        return subtask.title == newSubtask
-    }).length > 0
-    if (filteredSubtask) {
-        alert('Subtask already exsits')
-        unsetSubtaskHTML();
+    if (newSubtask.length < 3) {
+        alert('you need atleast 3 Letters')
     } else {
-        CreateNewSubtask(newSubtask)
+        const filteredSubtask = subtasks.filter((subtask) => {
+            return subtask.title == newSubtask
+        }).length > 0
+        if (filteredSubtask) {
+            alert('Subtask already exsits')
+            unsetSubtaskHTML();
+        } else {
+            CreateNewSubtask(newSubtask)
+        }
     }
-
 }
 
 function loadSubtask() {
