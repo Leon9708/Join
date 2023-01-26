@@ -92,6 +92,10 @@ function saveUserInLocalStorage() {
 }
 
 function onsubmitLogIn() {
+    document.getElementById('logInForm').setAttribute("onsubmit", "LogIn(); return false")
+}
+
+function LogIn() {
     let mail = document.getElementById('logInInputMail').value;
     let password = document.getElementById('logInInputPassword').value
     users = [];

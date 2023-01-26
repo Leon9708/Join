@@ -221,7 +221,6 @@ body {
 }
 
 .userAlert {
-    margin-top: 24px;
     width: 240px;
     height: 46px;
     display: flex;
@@ -232,6 +231,8 @@ body {
     border-radius: 12px;
     padding: 10px;
     color: white;
+    position: absolute;
+    bottom: 9%;
 }
 
 .userCreated {
@@ -244,7 +245,8 @@ body {
     justify-content: center;
     align-items: center;
     display: flex;
-    margin-top: 24px;
+    position: absolute;
+    bottom: 9%;
 }
 
 .d-none {
