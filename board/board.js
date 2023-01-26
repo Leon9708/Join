@@ -258,7 +258,7 @@ function setSubtasks(selectedElement, index) {
             const element = selectedElement[0]['subtasks'][i];
             document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input id="${index}${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}', '${index}')"> ${element['title']} </div>`
             if(element['done'] == "true") {
-                console.log(document.getElementById(`${index}${i}`))
+                document.getElementById(`${index}${i}`).checked = true;
             }
         }
     })

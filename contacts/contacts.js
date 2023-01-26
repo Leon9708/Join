@@ -215,7 +215,7 @@ function showSelectedContactHTML(selectedContact, i) {
                 </button>
             </div>
         </div>
-        <h4 class="contact_information">Contact Information</h4>
+        <div class="headingAndChangeContact"> <h4 class="contact_information">Contact Information</h4> <div> <img src="../assets/img/pencil_blue.png"> </div> </div>
         <div class="box_contact_content">
             <p class="contact_content_p">Email</p>
             <p class="contact_content_email">${selectedContact['email']}</p>
