@@ -259,6 +259,8 @@ function setSubtasks(selectedElement, index) {
             document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input id="${index}${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}', '${index}')"> ${element['title']} </div>`
             if(element['done'] == "true") {
                 document.getElementById(`${index}${i}`).checked = true;
+            } else {
+                document.getElementById(`${index}${i}`).checked = false;
             }
         }
     })
@@ -272,7 +274,11 @@ function setSubtaskDone(id, subtaskTitle, index) {
     let filteredSubtask = filteredTask[0].subtasks.filter((subtask) => {
         return subtask.title === subtaskTitle;
     })
-    filteredSubtask[0].done = "true";
+    if(filteredSubtask[0].done != "true") {
+        filteredSubtask[0].done = "true";
+    } else {
+        filteredSubtask[0].done = "false";
+    }
     requestTask(filteredTask);
     checkDoneSubtasks(filteredTask, index)
 }
