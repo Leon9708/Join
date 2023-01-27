@@ -211,7 +211,8 @@ function showSelectedContactHTML(selectedContact, i) {
                 <p class="show_contact_name">${selectedContact['firstName']} ${selectedContact['lastName']}</p>
                 <button onclick="toggleTask()" class="button_plus_add_task">
                     <p class="show_contact_plus">+</p>
-                    <p class="show_contact_add_task">Add Task</p>
+                    <p class="show_contact_add_task">Add Task</p>position: absolute;
+                    bottom: 9%;
                 </button>
             </div>
         </div>
@@ -363,7 +364,7 @@ function newContactOverlayHTML() {
         <form class="rightside_form" onsubmit="checkValdationContact(event); return false">
             <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="name">
             <input required placeholder="Email" class="overlay_input email" type="email" id="email">
-            <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="tel" id="phone">
+            <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="number" id="phone">
             <div class="place_buttons_overlay">
                 <button onclick="toggleOverlayNewContact()" type="button" class="box_cancel">
                     <p>Cancel</p>
