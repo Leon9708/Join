@@ -86,48 +86,6 @@ async function deleteToDo(task, url) {
 }
 
 
-
-let contacts = [{
-    'id': 0,
-    'lastName': 'Adamadam',
-    'firstName': 'Adam',
-    'email': 'ABC@gmail.com',
-    'phone': '123',
-    'color': 'red'
-}, {
-    'id': 1,
-    'lastName': 'Bertaberta',
-    'firstName': 'Berta',
-    'email': 'BGI@gmail.com',
-    'phone': '257',
-    'color': 'blue'
-}, {
-    'id': 2,
-    'lastName': 'Charlie',
-    'firstName': 'ABC',
-    'email': 'CGI@gmail.com',
-    'phone': '357',
-    'color': 'aqua'
-}, {
-    'id': 3,
-    'lastName': 'Doradora',
-    'firstName': 'Dora',
-    'email': 'DGI@gmail.com',
-    'phone': '457',
-    'color': 'brown'
-}, {
-    'id': 4,
-    'lastName': 'Evaeva',
-    'firstName': 'Eva',
-    'email': 'EFG@gmail.com',
-    'phone': '543',
-    'color': 'orange'
-}];
-
-let users = [
-] 
-
-
 async function render(id) {
     await getTodos();
     await getSubtasks();
@@ -143,85 +101,129 @@ async function render(id) {
     }
 
 }
+
+
+let contacts = [{
+    'id': 0,
+    'lastName': 'Adamadam',
+    'firstName': 'Adam',
+    'email': 'ABC@gmail.com',
+    'phone': '0157257445123',
+    'color': 'red'
+}, {
+    'id': 1,
+    'lastName': 'Bertaberta',
+    'firstName': 'Berta',
+    'email': 'BGI@gmail.com',
+    'phone': '014525343243',
+    'color': 'blue'
+}, {
+    'id': 2,
+    'lastName': 'Charlie',
+    'firstName': 'ABC',
+    'email': 'CGI@gmail.com',
+    'phone': '017879643243',
+    'color': 'aqua'
+}, {
+    'id': 3,
+    'lastName': 'Doradora',
+    'firstName': 'Dora',
+    'email': 'DGI@gmail.com',
+    'phone': '017325378902',
+    'color': 'brown'
+}, {
+    'id': 4,
+    'lastName': 'Evaeva',
+    'firstName': 'Eva',
+    'email': 'EFG@gmail.com',
+    'phone': '013368345639',
+    'color': 'orange'
+}];
+
+let todos = [{
+    'id': 0,
+    'title': 'Call Designer',
+    'description': 'To this or that...',
+    'category': 'Design',
+    'priority': 'low',
+    'image': 'assets/img/low_task.png',
+    'user': 'Aname',
+    'due_date': 0,
+    'status': 'open',
+}, {
+    'id': 1,
+    'title': 'Call Sales',
+    'description': 'To this or that...',
+    'category': 'Sales',
+    'priority': 'medium',
+    'image': 'assets/img/medium_task.png',
+    'user': 'Bname',
+    'due_date': 0,
+    'status': 'feedback',
+}, {
+    'id': 2,
+    'title': 'Call Media',
+    'description': 'To this or that...',
+    'category': 'Media',
+    'priority': 'urgent',
+    'image': 'assets/img/urgent_task.png',
+    'user': 'Cname',
+    'due_date': 0,
+    'status': 'progress',
+}, {
+    'id': 3,
+    'title': 'Call Sales',
+    'description': 'To this or that...',
+    'category': 'Sales',
+    'priority': 'low',
+    'image': 'assets/img/low_task.png',
+    'user': 'Dname',
+    'due_date': 0,
+    'status': 'progress',
+}, {
+    'id': 4,
+    'title': 'Call Marketing',
+    'description': 'To this or that...',
+    'category': 'Marketing',
+    'priority': 'low',
+    'image': 'assets/img/low_task.png',
+    'user': 'Ename',
+    'due_date': 0,
+    'status': 'progress',
+}, {
+    'id': 5,
+    'title': 'Call Sales',
+    'description': 'To this or that...',
+    'category': 'Sales',
+    'priority': 'low',
+    'image': 'assets/img/low_task.png',
+    'user': 'Fname',
+    'due_date': 0,
+    'status': 'feedback',
+}, {
+    'id': 6,
+    'title': 'Call Backoffice',
+    'description': 'To this or that...',
+    'category': 'Backoffice',
+    'priority': 'medium',
+    'image': 'assets/img/medium_task.png',
+    'user': 'Gname',
+    'due_date': 0,
+    'status': 'closed',
+}, {
+    'id': 7,
+    'title': 'Call Media',
+    'description': 'To this or that...',
+    'category': 'Media',
+    'priority': 'medium',
+    'image': 'assets/img/medium_task.png',
+    'user': 'Hname',
+    'due_date': 0,
+    'status': 'closed'
+}]
+
+let users = []
 let lastId;
 let tasks;
 let categoryLabels;
 let subtasks;
-
-/* async function init() {
-    await getTodos();
-    await loadHTML('content', 'summary.html').then(function() {
-        loadScript('summary');
-    });
-
-}
-
-async function loadHTML(id, filename) {
-    let xhttp;
-    let element = document.getElementById(id);
-    let file = filename;
-    if (file) {
-        return new Promise(function(resolve, reject) {
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4) {
-                    if (this.status == 200) {
-                        element.innerHTML = this.responseText;
-                        resolve();
-                    }
-                    if (this.status == 400) {
-                        element.innerHTML = "<p>Page not found</p>";
-                        reject();
-                    }
-                }
-            };
-            xhttp.open("Get", file, true);
-            xhttp.send();
-        });
-    }
-    return;
-}
-
-async function loadScript(id) {
-    const templateJs = document.getElementById("templateJs");
-    if (isScriptLoaded(id + '.js')) {
-        const script = document.createElement('script')
-        script.src = id + '.js'
-        document.head.insertBefore(script, templateJs);
-    }
-
-}
-
-function isScriptLoaded(src) {
-    const scripts = document.getElementsByTagName("script");
-    for (let i = 0; i < scripts.length; i++) {
-        if (scripts[i].src == src) {
-            return false;
-        }
-    }
-    return true;
-}
-
-
-
-
-async function checkContent(name, filename, id) {
-    let contentBox = document.getElementById("content");
-    content = contentBox.innerHTML
-    await loadHTML(name, filename).then(function() {
-        let previousContent = contentBox.innerHTML;
-        if (content !== previousContent) {
-            loadScript(id);
-        }
-    });
-    if (id = "summary") {
-        renderSummary()
-    } else if (id = "board") {
-        renderBoard()
-    } else if (id = "contacts") {
-        renderContacts()
-    } else if (id = "task") {
-        renderTask()
-    }
-    changeColor(id);
-} */

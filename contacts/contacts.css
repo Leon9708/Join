@@ -14,6 +14,12 @@ button {
     margin: 0;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .main_container_contacts {
     position: absolute;
     right: 0;
@@ -190,16 +196,14 @@ button {
     gap: 0.6rem;
 }
 
-.box_contact_content p {
-    font-size: 0.8rem;
-}
-
 .contact_content_email {
     color: #29ABE2;
+    font-size: 1rem;
 }
 
 .contact_content_p {
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .contact_list_img p {
@@ -601,6 +605,18 @@ main {
     height: 24px;
 }
 
+.editContact {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.edit_img {
+    width: 3rem;
+    height: 3rem;
+}
+
 @media (max-width: 1225px) {
     .heading_contacts {
         font-size: 2.5rem;
@@ -710,7 +726,8 @@ main {
         top: 0;
     }
     .container_buttons_bottom_task {
-        position: inherit !important;;
+        position: inherit !important;
+        ;
     }
     .contact_list {
         margin-top: 0;

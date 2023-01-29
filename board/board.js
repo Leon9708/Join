@@ -35,7 +35,6 @@ async function requestTask(filteredTask) {
 }
 
 let priorities = ['Urgent', 'Medium', 'Low'];
-let todos = [];
 let currentCategory = [];
 let currentDraggedElement;
 let selectedElement = [];
@@ -46,7 +45,7 @@ let changedUrgency;
 
 
 // Update container with Todo-Tasks based on status ('open', 'in progress', 'awaiting feedback', 'done')
-async function renderBoard() {
+function renderBoard() {
     updateHTMLOpenTasks();
     updateHTMLInProgessTasks();
     updateHTMLFeedbackTasks();
@@ -95,7 +94,6 @@ function updateHTMLFeedbackTasks() {
         let feedbackIndex = index + "f";
         document.getElementById('feedback').innerHTML += generateTodoHTML(element, feedbackIndex);
         updateToDo(element, feedbackIndex);
-
     }
 }
 
@@ -115,16 +113,15 @@ function updateHTMLClosedTasks() {
 
 }
 
-function updateToDo(element, index) {
-    getName(element, index);
-    getSubtask(element, index);
-    getPrio(element, index);
+function updateToDo(task, index) {
+    getName(task, index);
+    getSubtask(task, index);
+    getPrio(task, index);
 }
 
 function getName(task, index) {
     let splitUsers = task.user.split('/');
     splitUsers.splice(-1);
-
 
     for (let i = 0; i < splitUsers.length; i++) {
         const splitUser = splitUsers[i];
@@ -153,7 +150,7 @@ function getSubtask(task, index) {
     if (TaskTotal > 0) {
         document.getElementById('boxSubTask' + index).innerHTML = generateSubtasks(doneTasks, TaskTotal, index);
 
-        let taskPercentDone = TaskTotal / doneTasks *100;
+        let taskPercentDone = TaskTotal / doneTasks * 100;
         document.getElementById('subtaskBar' + index).style = `width: ${taskPercentDone}%`;
     }
 }
@@ -257,7 +254,7 @@ function setSubtasks(selectedElement, index) {
         for (let i = 0; i < selectedElement[0]['subtasks'].length; i++) {
             const element = selectedElement[0]['subtasks'][i];
             document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input id="${index}${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}', '${index}')"> ${element['title']} </div>`
-            if(element['done'] == "true") {
+            if (element['done'] == "true") {
                 document.getElementById(`${index}${i}`).checked = true;
             }
         }
@@ -268,7 +265,7 @@ function setSubtasks(selectedElement, index) {
 function setSubtaskDone(id, subtaskTitle, index) {
     let filteredTask = tasks.filter((task) => {
         return task.id === id;
-    }) 
+    })
     let filteredSubtask = filteredTask[0].subtasks.filter((subtask) => {
         return subtask.title === subtaskTitle;
     })
@@ -278,18 +275,19 @@ function setSubtaskDone(id, subtaskTitle, index) {
 }
 
 let finishedPercentage;
+
 function checkDoneSubtasks(filteredTask, index) {
     let amountSubtasks = filteredTask[0].subtasks.length;
     let finishedSubtasks = filteredTask[0].subtasks.filter((finSub) => {
         return finSub.done === "true"
     })
-    finishedPercentage = (finishedSubtasks.length / amountSubtasks) *100
+    finishedPercentage = (finishedSubtasks.length / amountSubtasks) * 100
     updateDoneSubtasks(index, finishedPercentage)
 }
 
 // Updates subtask bar depending on amount of finished subtasks
 function updateDoneSubtasks(index, finishedPercentage) {
-    setTimeout (()=> {
+    setTimeout(() => {
         document.getElementById(`subtaskBar${index}`).style = `width:${finishedPercentage}%;`
     }, 10)
 }
@@ -321,10 +319,10 @@ function checkFilteredTask(id) {
     if (description.value !== '') {
         filteredTask[0].description = description.value;
     }
-    if (changedDate !== undefined || changedDate !== null ) {
+    if (changedDate !== undefined || changedDate !== null) {
         filteredTask[0].due_date = changedDate;
     }
-    if(changedUrgency !== undefined) {
+    if (changedUrgency !== undefined) {
         filteredTask[0].priority = changedUrgency;
     }
     requestTask(filteredTask)

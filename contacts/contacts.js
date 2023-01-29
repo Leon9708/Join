@@ -105,11 +105,28 @@ function toggleOverlayNewContact() {
     }
 }
 
+function toggleOverlayEditContact(i) {
+    document.getElementById('overlayEdit').classList.toggle("d_none");
+    if (!overlayEdit.classList.contains('d_none')) {
+        overlayEdit.innerHTML = editContactOverlayHTML();
+        showEditContact(i)
+    }
+}
+
 function toggleTask() {
     document.getElementById('overlayTask').classList.toggle("d_none");
     if (!overlayTask.classList.contains('d_none')) {
         overlayTask.innerHTML = taskOverlayHTML();
     }
+}
+
+function showEditContact(i) {
+    document.getElementById('name').value = contacts[i].firstName + ' ' + contacts[i].lastName;
+    document.getElementById('email').value = contacts[i].email;
+    document.getElementById('phone').value = contacts[i].phone;
+    document.getElementById('showContactImg').style.backgroundColor = contacts[i].color;
+    showName();
+
 }
 
 function showName() {
@@ -155,32 +172,10 @@ function resetContactClicked() {
     }
 }
 
-function showContactsHTML(singleContact, i) {
-    return `
-    <div id="containerCard" class="container_cards">
-        <button id="buttonContact${i}" class="contact_card_button" onclick="showSelectedContact(${i}); showContactDetails()">
-            <div class="contact_list_container">
-                <div id="circle${i}" class="contact_list_img">
-                    <p>${singleContact['firstName'].charAt(0)}${singleContact['lastName'].charAt(0)}</p>
-                </div>
-                <div class="contact_content">
-                    <div id="contact" class="contact_list_name">
-                        <p class="contact_name" id="contactName${i}">${singleContact['firstName']} ${singleContact['lastName']}</p>
-                    </div>
-                    <div class="contact_list_email">
-                        <p>${singleContact['email']}</p>
-                    </div>
-                </div>
-            </div>
-        </button>
-    </div>
-    `
-}
-
 function showContactDetails() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    if(width < 1000) {
-        if(document.getElementById('container_contacts_right').classList.contains('d-none')) {
+    if (width < 1000) {
+        if (document.getElementById('container_contacts_right').classList.contains('d-none')) {
             document.getElementById('container_contacts_right').classList.remove('d-none');
         }
         document.getElementById('container_contacts_right').style.zIndex = "1000";
@@ -203,6 +198,28 @@ function generateLetters(letter) {
     </div>`
 }
 
+function showContactsHTML(singleContact, i) {
+    return `
+    <div id="containerCard" class="container_cards">
+        <button id="buttonContact${i}" class="contact_card_button" onclick="showSelectedContact(${i}); showContactDetails()">
+            <div class="contact_list_container">
+                <div id="circle${i}" class="contact_list_img">
+                    <p>${singleContact['firstName'].charAt(0)}${singleContact['lastName'].charAt(0)}</p>
+                </div>
+                <div class="contact_content">
+                    <div id="contact" class="contact_list_name">
+                        <p class="contact_name" id="contactName${i}">${singleContact['firstName']} ${singleContact['lastName']}</p>
+                    </div>
+                    <div class="contact_list_email">
+                        <p>${singleContact['email']}</p>
+                    </div>
+                </div>
+            </div>
+        </button>
+    </div>
+    `
+}
+
 function showSelectedContactHTML(selectedContact, i) {
     return `
         <div class="contact_list_content">
@@ -215,14 +232,17 @@ function showSelectedContactHTML(selectedContact, i) {
                 </button>
             </div>
         </div>
-        <div class="headingAndChangeContact"> <h4 class="contact_information">Contact Information</h4> <div> <img src="../assets/img/pencil_blue.png"> </div> </div>
+        <div class="editContact">
+            <h4 class="contact_information">Contact Information</h4>
+            <div onclick="toggleOverlayEditContact(${i})"> <img class="edit_img" src="../assets/img/pencil_blue.png"> </div>
+        </div>
         <div class="box_contact_content">
             <p class="contact_content_p">Email</p>
             <p class="contact_content_email">${selectedContact['email']}</p>
         </div>
         <div class="box_contact_content">
             <p class="contact_content_p">Phone</p>
-            <p>${selectedContact['phone']}</p>   
+            <p class="contact_content_email">${selectedContact['phone']}</p>   
         </div>
     `
 }
@@ -363,7 +383,7 @@ function newContactOverlayHTML() {
         <form class="rightside_form" onsubmit="checkValdationContact(event); return false">
             <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="name">
             <input required placeholder="Email" class="overlay_input email" type="email" id="email">
-            <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="tel" id="phone">
+            <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="number" id="phone">
             <div class="place_buttons_overlay">
                 <button onclick="toggleOverlayNewContact()" type="button" class="box_cancel">
                     <p>Cancel</p>
@@ -378,5 +398,44 @@ function newContactOverlayHTML() {
     </div>
 </div>
 </div>
+    `
+}
+
+function editContactOverlayHTML() {
+    return `
+    <div class="background_overlay">
+        <div class="overlay_add_contact ">
+            <div class="overlay_leftside">
+                <img class="leftside_img" src="../assets/img/logo_sidebar.png" alt="">
+                <p class="leftside_Add">Edit contact</p>
+                <p class="leftside_text">Tasks are better with a team !</p>
+            </div>
+            <div class="overlay_rightside">
+                <button onclick="toggleOverlayEditContact()" class="close_overlay">
+                    <img class="img_close_overlay" src="../assets/img/cross.png" alt="">
+                </button>
+                <div class="rightside_place_circle">
+                    <div id="showContactImg" class="show_contact_img">
+
+                    </div>
+                </div>
+                <form class="rightside_form" onsubmit="checkValdationContact(event); return false">
+                    <input onblur="showName();checkNamelength(this.id)" required type='text' placeholder="Name" class="overlay_input name" id="name">
+                    <input required placeholder="Email" class="overlay_input email" type="email" id="email">
+                    <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="number" id="phone">
+                    <div class="place_buttons_overlay">
+                        <button onclick="toggleOverlayEditContact()" type="button" class="box_cancel">
+                        <p>Cancel</p>
+                        <p>x</p>
+                    </button>
+                        <button type="submit" class="overlay_create_button">
+                        <p>Edit contact</p>
+                        <img src="../assets/img/check_white_task.png " alt="">
+                    </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     `
 }
