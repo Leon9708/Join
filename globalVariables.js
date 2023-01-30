@@ -89,43 +89,42 @@ async function deleteToDo(task, url) {
 
 let contacts = [{
     'id': 0,
-    'lastName': 'Adamadam',
-    'firstName': 'Adam',
-    'email': 'ABC@gmail.com',
-    'phone': '123',
+    'lastName': 'Adam',
+    'firstName': 'Marks',
+    'email': 'A_Marks@gmail.com',
+    'phone': '924782934',
     'color': 'red'
 }, {
     'id': 1,
-    'lastName': 'Bertaberta',
-    'firstName': 'Berta',
-    'email': 'BGI@gmail.com',
-    'phone': '257',
+    'lastName': 'Michael',
+    'firstName': 'Bertram',
+    'email': 'Bertram25@gmx.com',
+    'phone': '25798264',
     'color': 'blue'
 }, {
     'id': 2,
     'lastName': 'Charlie',
-    'firstName': 'ABC',
-    'email': 'CGI@gmail.com',
-    'phone': '357',
+    'firstName': 'Landon',
+    'email': 'CL@gmail.com',
+    'phone': '357342',
     'color': 'aqua'
 }, {
     'id': 3,
-    'lastName': 'Doradora',
-    'firstName': 'Dora',
-    'email': 'DGI@gmail.com',
-    'phone': '457',
+    'lastName': 'Dora',
+    'firstName': 'Hurts',
+    'email': 'DoHurts@gmail.com',
+    'phone': '4572342',
     'color': 'brown'
 }, {
     'id': 4,
-    'lastName': 'Evaeva',
-    'firstName': 'Eva',
-    'email': 'EFG@gmail.com',
-    'phone': '543',
+    'lastName': 'Eva',
+    'firstName': 'Müller',
+    'email': 'EviMüller21@gmail.com',
+    'phone': '543204249',
     'color': 'orange'
 }];
 
-let users = [
-] 
+let users = [] 
 
 
 async function render(id) {

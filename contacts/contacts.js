@@ -179,8 +179,8 @@ function showContactsHTML(singleContact, i) {
 
 function showContactDetails() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    if(width < 1000) {
-        if(document.getElementById('container_contacts_right').classList.contains('d-none')) {
+    if (width < 1000) {
+        if (document.getElementById('container_contacts_right').classList.contains('d-none')) {
             document.getElementById('container_contacts_right').classList.remove('d-none');
         }
         document.getElementById('container_contacts_right').style.zIndex = "1000";
@@ -192,6 +192,73 @@ function showContactDetails() {
 function closeContactDetails() {
     document.getElementById('container_contacts_right').classList.add('d-none');
     document.getElementById('container_contacts_left').classList.remove('d-none');
+}
+
+function openEditContact(i) {
+    document.getElementById('placeEditContact').classList.remove('d-none');
+    document.getElementById('placeEditContact').innerHTML = editContactHTML(i);
+    setTimeout(() => {
+        fillInputSelectedContact(i)
+    }, 10)
+}
+
+let selectedContact;
+function fillInputSelectedContact(i) {
+    for (let index = 0; index < contacts.length; index++) {
+        const element = contacts[index];
+        if (element['id'] == i) {
+            selectedContact = element;
+        }
+    }
+    let firstName = selectedContact['firstName'];
+    let lastName = selectedContact['lastName']
+    let email = selectedContact['email'];
+    let phone = selectedContact['phone'];
+    document.getElementById('edit_firstName').value = `${firstName}`
+    document.getElementById('edit_lastName').value = `${lastName}`
+    document.getElementById('edit_email').value = `${email}`
+    document.getElementById('edit_phone').value = `${phone}`
+}
+
+function editContact(i) {
+    let firstName = document.getElementById('edit_firstName').value;
+    let lastName = document.getElementById('edit_lastName').value;
+    let email = document.getElementById('edit_email').value;
+    let phone = document.getElementById('edit_phone').value;
+    for (let index = 0; index < contacts.length; index++) {
+        const element = contacts[index];
+        if (element['id'] == i) {
+            element['firstName'] = firstName;
+            element['lastName'] = lastName;
+            element['email'] = email;
+            element['phone'] = phone;
+            document.getElementById(`buttonContact${i}`).innerHTML = editedContactHTML(i, element);
+        }
+    }
+    
+}
+
+function closeEditContact() {
+    document.getElementById('placeEditContact').innerHTML = '';
+    document.getElementById('placeEditContact').classList.add('d-none');
+}
+
+function editedContactHTML(i, element) {
+    return `
+    <div class="contact_list_container">
+            <div id="circle${i}" style="color: white; background-color: ${element['color']}" class="contact_list_img">
+                    <p>${element['firstName'].charAt(0)}${element['lastName'].charAt(0)}</p>
+                </div>
+                <div class="contact_content">
+                    <div id="contact" class="contact_list_name">
+                        <p class="contact_name" id="contactName${i}">${element['firstName']} ${element['lastName']}</p>
+                    </div>
+                    <div class="contact_list_email">
+                        <p>${element['email']}</p>
+                    </div>
+            </div>
+    </div>
+    `
 }
 
 function generateLetters(letter) {
@@ -211,12 +278,11 @@ function showSelectedContactHTML(selectedContact, i) {
                 <p class="show_contact_name">${selectedContact['firstName']} ${selectedContact['lastName']}</p>
                 <button onclick="toggleTask()" class="button_plus_add_task">
                     <p class="show_contact_plus">+</p>
-                    <p class="show_contact_add_task">Add Task</p>position: absolute;
-                    bottom: 9%;
+                    <p class="show_contact_add_task">Add Task</p>
                 </button>
             </div>
         </div>
-        <div class="headingAndChangeContact"> <h4 class="contact_information">Contact Information</h4> <div> <img src="../assets/img/pencil_blue.png"> </div> </div>
+        <div class="headingAndChangeContact"> <h4 class="contact_information">Contact Information</h4> <div onclick="openEditContact(${i})" class="editContact"> <img src="../assets/img/pencil_black.png"> <p> Edit Contact </p> </div> </div>
         <div class="box_contact_content">
             <p class="contact_content_p">Email</p>
             <p class="contact_content_email">${selectedContact['email']}</p>
@@ -225,6 +291,39 @@ function showSelectedContactHTML(selectedContact, i) {
             <p class="contact_content_p">Phone</p>
             <p>${selectedContact['phone']}</p>   
         </div>
+    `
+}
+
+function editContactHTML(i) {
+    return `
+    <div class="overlay_edit_contact">
+        <div class="edit_overlay_leftside">
+            <div class="edit_contact_logo"> <img src="../assets/img/logo_sidebar.png"> </div>
+            <div class="edit_contact_title"> 
+                Edit Contact 
+                <div class="edit_contact_seperation"> </div>
+            </div>
+        </div>
+        <div class="edit_overlay_rightside">
+            <form class="rightside_form" onsubmit="editContact(${i}); return false">
+            <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="edit_firstName">
+            <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="edit_lastName">
+            <input required placeholder="Email" class="overlay_input email" type="email" id="edit_email">
+            <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="number" id="edit_phone">
+            <div class="place_buttons_overlay">
+            <button type="button" class="box_cancel">
+                <p>Cancel</p>
+                <p>x</p>
+            </button>
+            <button type="submit" class="overlay_create_button">
+                <p>Edit contact</p>
+                <img src="../assets/img/check_white_task.png " alt="">
+            </button>
+            </div>
+            </form>
+        </div>
+        <div onclick="closeEditContact()" class="close_edit_contact"> <img src="../assets/img/cross.png"> </div>
+    </div>
     `
 }
 
