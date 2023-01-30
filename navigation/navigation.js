@@ -38,6 +38,7 @@ function openLogOut() {
 
 function logOut() {
     location.href = "../index.html"
+    localStorage.clear();
 }
 
 function openInfos() {
