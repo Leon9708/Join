@@ -605,16 +605,110 @@ main {
     height: 24px;
 }
 
-.editContact {
+.headingAndChangeContact {
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
     gap: 1.5rem;
+}
+
+.placeEditContact {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #7d7d7d86;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.edit_img {
-    width: 3rem;
-    height: 3rem;
+.headingAndChangeContact img {
+    width: 21px;
+    height: 30px;
+}
+
+.editContact {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.editContact:hover {
+    cursor: pointer;
+}
+
+.overlay_edit_contact {
+    width: 70%;
+    height: 55%;
+    border-radius: 2rem;
+    background-color: white;
+    display: flex;
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px, rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
+    border: none;
+    position: relative;
+}
+
+.edit_overlay_leftside {
+    height: 100%;
+    width: 30%;
+    background-color: #2A3647;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 2rem;
+}
+
+.edit_overlay_rightside {
+    height: 100%;
+    width: 70%;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.edit_contact_logo {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.edit_contact_logo img {
+    width: 64px;
+    height: 80px;
+}
+
+.edit_contact_title {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    flex-direction: column;
+}
+
+.edit_contact_seperation {
+    width: 5rem;
+    height: 2px;
+    background-color: #29ABE2;
+}
+
+.close_edit_contact {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.close_edit_contact img {
+    width: 24px;
+    height: 24px;
 }
 
 @media (max-width: 1225px) {

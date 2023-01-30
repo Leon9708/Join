@@ -39,7 +39,6 @@ function greetUser() {
 }
 
 function displayInfo() {
-    console.log(tasks)
     document.getElementById('tasksTotal').innerHTML = tasks.length;
     filterInProgress();
     filterAwaitingFeedback();

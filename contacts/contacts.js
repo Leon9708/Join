@@ -220,6 +220,32 @@ function showContactsHTML(singleContact, i) {
     `
 }
 
+function showContactDetails() {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width < 1000) {
+        if (document.getElementById('container_contacts_right').classList.contains('d-none')) {
+            document.getElementById('container_contacts_right').classList.remove('d-none');
+        }
+        document.getElementById('container_contacts_right').style.zIndex = "1000";
+        document.getElementById('container_contacts_left').classList.add('d-none');
+        document.getElementById('container_contacts_right').innerHTML += '<img onclick="closeContactDetails()" class="arrowLeft" src="../assets/img/arrow-left.png">'
+    }
+}
+
+function closeContactDetails() {
+    document.getElementById('container_contacts_right').classList.add('d-none');
+    document.getElementById('container_contacts_left').classList.remove('d-none');
+}
+
+function generateLetters(letter) {
+    return `   
+    <div id="boxContact${letter}" class="box_contact">
+        <div class="contact_letter">
+            <h3>${letter}</h3>
+        </div>
+    </div>`
+}
+
 function showSelectedContactHTML(selectedContact, i) {
     return `
         <div class="contact_list_content">
@@ -232,10 +258,7 @@ function showSelectedContactHTML(selectedContact, i) {
                 </button>
             </div>
         </div>
-        <div class="editContact">
-            <h4 class="contact_information">Contact Information</h4>
-            <div onclick="toggleOverlayEditContact(${i})"> <img class="edit_img" src="../assets/img/pencil_blue.png"> </div>
-        </div>
+        <div class="headingAndChangeContact"> <h4 class="contact_information">Contact Information</h4> <div> <img src="../assets/img/pencil_blue.png"> </div> </div>
         <div class="box_contact_content">
             <p class="contact_content_p">Email</p>
             <p class="contact_content_email">${selectedContact['email']}</p>
@@ -244,6 +267,39 @@ function showSelectedContactHTML(selectedContact, i) {
             <p class="contact_content_p">Phone</p>
             <p class="contact_content_email">${selectedContact['phone']}</p>   
         </div>
+    `
+}
+
+function editContactHTML(i) {
+    return `
+    <div class="overlay_edit_contact">
+        <div class="edit_overlay_leftside">
+            <div class="edit_contact_logo"> <img src="../assets/img/logo_sidebar.png"> </div>
+            <div class="edit_contact_title"> 
+                Edit Contact 
+                <div class="edit_contact_seperation"> </div>
+            </div>
+        </div>
+        <div class="edit_overlay_rightside">
+            <form class="rightside_form" onsubmit="editContact(${i}); return false">
+            <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="edit_firstName">
+            <input onblur="showName();checkNamelength(this.id)"  required  type='text'  placeholder="Name" class="overlay_input name" id="edit_lastName">
+            <input required placeholder="Email" class="overlay_input email" type="email" id="edit_email">
+            <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="number" id="edit_phone">
+            <div class="place_buttons_overlay">
+            <button type="button" class="box_cancel">
+                <p>Cancel</p>
+                <p>x</p>
+            </button>
+            <button type="submit" class="overlay_create_button">
+                <p>Edit contact</p>
+                <img src="../assets/img/check_white_task.png " alt="">
+            </button>
+            </div>
+            </form>
+        </div>
+        <div onclick="closeEditContact()" class="close_edit_contact"> <img src="../assets/img/cross.png"> </div>
+    </div>
     `
 }
 

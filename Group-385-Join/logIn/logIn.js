@@ -134,5 +134,8 @@ function guestLogIn() {
 function onsubmitGuestLogIn() {
     document.getElementById(`logInInputMail`).required = false;
     document.getElementById(`logInInputPassword`).required = false;
+    let userDetails = {'name': 'Guest'}
+    users.push(userDetails)
+    saveUserInLocalStorage();
     document.getElementById('logInForm').setAttribute("onsubmit", "guestLogIn(); return false")
 }

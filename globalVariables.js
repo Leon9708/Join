@@ -108,7 +108,7 @@ let contacts = [{
     'lastName': 'Adamadam',
     'firstName': 'Adam',
     'email': 'ABC@gmail.com',
-    'phone': '0157257445123',
+    'phone': '123',
     'color': 'red'
 }, {
     'id': 1,
@@ -130,6 +130,10 @@ let contacts = [{
     'firstName': 'Dora',
     'email': 'DGI@gmail.com',
     'phone': '017325378902',
+    'lastName': 'Dora',
+    'firstName': 'Hurts',
+    'email': 'DoHurts@gmail.com',
+    'phone': '4572342',
     'color': 'brown'
 }, {
     'id': 4,
@@ -139,88 +143,6 @@ let contacts = [{
     'phone': '013368345639',
     'color': 'orange'
 }];
-
-let todos = [{
-    'id': 0,
-    'title': 'Call Designer',
-    'description': 'To this or that...',
-    'category': 'Design',
-    'priority': 'low',
-    'image': 'assets/img/low_task.png',
-    'user': 'Aname',
-    'due_date': 0,
-    'status': 'open',
-}, {
-    'id': 1,
-    'title': 'Call Sales',
-    'description': 'To this or that...',
-    'category': 'Sales',
-    'priority': 'medium',
-    'image': 'assets/img/medium_task.png',
-    'user': 'Bname',
-    'due_date': 0,
-    'status': 'feedback',
-}, {
-    'id': 2,
-    'title': 'Call Media',
-    'description': 'To this or that...',
-    'category': 'Media',
-    'priority': 'urgent',
-    'image': 'assets/img/urgent_task.png',
-    'user': 'Cname',
-    'due_date': 0,
-    'status': 'progress',
-}, {
-    'id': 3,
-    'title': 'Call Sales',
-    'description': 'To this or that...',
-    'category': 'Sales',
-    'priority': 'low',
-    'image': 'assets/img/low_task.png',
-    'user': 'Dname',
-    'due_date': 0,
-    'status': 'progress',
-}, {
-    'id': 4,
-    'title': 'Call Marketing',
-    'description': 'To this or that...',
-    'category': 'Marketing',
-    'priority': 'low',
-    'image': 'assets/img/low_task.png',
-    'user': 'Ename',
-    'due_date': 0,
-    'status': 'progress',
-}, {
-    'id': 5,
-    'title': 'Call Sales',
-    'description': 'To this or that...',
-    'category': 'Sales',
-    'priority': 'low',
-    'image': 'assets/img/low_task.png',
-    'user': 'Fname',
-    'due_date': 0,
-    'status': 'feedback',
-}, {
-    'id': 6,
-    'title': 'Call Backoffice',
-    'description': 'To this or that...',
-    'category': 'Backoffice',
-    'priority': 'medium',
-    'image': 'assets/img/medium_task.png',
-    'user': 'Gname',
-    'due_date': 0,
-    'status': 'closed',
-}, {
-    'id': 7,
-    'title': 'Call Media',
-    'description': 'To this or that...',
-    'category': 'Media',
-    'priority': 'medium',
-    'image': 'assets/img/medium_task.png',
-    'user': 'Hname',
-    'due_date': 0,
-    'status': 'closed'
-}]
 
 let users = []
 let lastId;
