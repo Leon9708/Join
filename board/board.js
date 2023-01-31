@@ -14,10 +14,14 @@ async function includeHTML() {
 
 async function requestSubtask(subtask) {
     let subtaskId = subtask.id
-    if (typeof subtask !== 'undefined') {
-        let url = "https://jonas34.pythonanywhere.com/subtasks/" + subtaskId + '/';
-        await deleteSubtask(subtask, url);
-    }
+    let url = "https://jonas34.pythonanywhere.com/subtasks/" + subtaskId + '/';
+    await changeSubtask(subtask, url)
+}
+
+async function requestDeleteSubtask(subtask) {
+    let subtaskId = subtask.id
+    let url = "https://jonas34.pythonanywhere.com/subtasks/" + subtaskId + '/';
+    await deleteSubtask(subtaskId, url);
 }
 
 async function requestTask(filteredTask) {
@@ -67,7 +71,6 @@ function updateHTMLOpenTasks() {
     }
 }
 
-
 // Update container with status == 'progress'.
 function updateHTMLInProgessTasks() {
     let progress = tasks.filter((task) => {
@@ -81,7 +84,6 @@ function updateHTMLInProgessTasks() {
         updateToDo(element, progressIndex);
     }
 }
-
 
 // Update container with status == 'feedback'.
 function updateHTMLFeedbackTasks() {
@@ -140,18 +142,16 @@ function getName(task, index) {
 }
 
 function getSubtask(task, index) {
-    let doneTasks = 0;
     let TaskTotal = task.subtasks.length
-    task.subtasks.forEach(subtask => {
+    let subtaskTrue = task.subtasks.filter(subtask => {
         if (subtask.done == "true") {
-            doneTasks = doneTasks + 1;
+            return subtask
         }
     });
     if (TaskTotal > 0) {
-        document.getElementById('boxSubTask' + index).innerHTML = generateSubtasks(doneTasks, TaskTotal, index);
-
-        let taskPercentDone = TaskTotal / doneTasks * 100;
-        document.getElementById('subtaskBar' + index).style = `width: ${taskPercentDone}%`;
+        document.getElementById('boxSubTask' + index).innerHTML = generateSubtasks(subtaskTrue.length, TaskTotal, index);
+        let taskPercentDone = subtaskTrue.length / TaskTotal * 100;
+        document.getElementById('subtaskBar' + index).style.width = taskPercentDone + '%'
     }
 }
 
@@ -241,61 +241,60 @@ function openBoardDetails(id, index) {
     let boardContent = document.getElementById('boardContent');
     boardContent.innerHTML = '';
     for (let i = 0; i < tasks.length; i++) {
-        const element = tasks[i];
-        if (element['id'] == id) {
-            selectedElement.push(element);
+        const task = tasks[i];
+        if (task['id'] == id) {
+            selectedElement.push(task);
         }
     }
-    boardContent.innerHTML += openBoardDetailsHTML(selectedElement, index);
+    let fitleredTask = selectedElement[0]
+
+    setPriorityColor(fitleredTask);
+    setPriorityDetails(fitleredTask);
+    setCurrentStatus(fitleredTask);
+    boardContent.innerHTML += openBoardDetailsHTML(fitleredTask);
+    setSubtasks(fitleredTask, index);
+    setNameDetails(fitleredTask, id);
+
 }
 
-function setSubtasks(selectedElement, index) {
-    setTimeout(() => {
-        for (let i = 0; i < selectedElement[0]['subtasks'].length; i++) {
-            const element = selectedElement[0]['subtasks'][i];
-            document.getElementById('place_subtasks').innerHTML += `<div class="setSubtask"> <input id="${index}${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${selectedElement[0]['id']}, '${element['title']}', '${index}')"> ${element['title']} </div>`
-            if (element['done'] == "true") {
-                document.getElementById(`${index}${i}`).checked = true;
-            } else {
-                document.getElementById(`${index}${i}`).checked = false;
-            }
+function setSubtasks(fitleredTask, index) {
+    for (let i = 0; i < fitleredTask['subtasks'].length; i++) {
+        const subtask = fitleredTask['subtasks'][i];
+        document.getElementById('place_subtasks').innerHTML += generateSubtaskDetails(fitleredTask, i, index)
+    }
+    for (let i = 0; i < fitleredTask['subtasks'].length; i++) {
+        const subtask = fitleredTask['subtasks'][i];
+        if (subtask['done'] == "true") {
+            document.getElementById('subtask' + i).checked = true;
+        } else {
+            document.getElementById('subtask' + i).checked = false;
         }
-    })
+    }
 }
 
 // Sets selected subtask to done = "true";
-function setSubtaskDone(id, subtaskTitle, index) {
+async function setSubtaskDone(filteredTaskId, i, index) {
     let filteredTask = tasks.filter((task) => {
-        return task.id === id;
-    })
-    let filteredSubtask = filteredTask[0].subtasks.filter((subtask) => {
-        return subtask.title === subtaskTitle;
-    })
-    if(filteredSubtask[0].done != "true") {
-        filteredSubtask[0].done = "true";
+        return task.id === filteredTaskId;
+    });
+    let subtask = filteredTask[0].subtasks[i]
+    if (subtask.done !== "true") {
+        subtask.done = "true";
     } else {
-        filteredSubtask[0].done = "false";
+        subtask.done = "false";
     }
-    requestTask(filteredTask);
-    checkDoneSubtasks(filteredTask, index)
+    await requestSubtask(subtask);
+    checkDoneSubtasks(filteredTask[0], index)
 }
 
-let finishedPercentage;
-
 function checkDoneSubtasks(filteredTask, index) {
-    let amountSubtasks = filteredTask[0].subtasks.length;
-    let finishedSubtasks = filteredTask[0].subtasks.filter((finSub) => {
+    let amountSubtasks = filteredTask.subtasks.length;
+    let finishedSubtasks = filteredTask.subtasks.filter((finSub) => {
         return finSub.done === "true"
     })
     finishedPercentage = (finishedSubtasks.length / amountSubtasks) * 100
-    updateDoneSubtasks(index, finishedPercentage)
-}
-
-// Updates subtask bar depending on amount of finished subtasks
-function updateDoneSubtasks(index, finishedPercentage) {
-    setTimeout(() => {
-        document.getElementById(`subtaskBar${index}`).style = `width:${finishedPercentage}%;`
-    }, 10)
+    document.getElementById('subtaskDone' + index).innerHTML = finishedSubtasks.length
+    document.getElementById('subtaskBar' + index).style.width = finishedPercentage + '%'
 }
 
 // opens window, that allows you to change task details
@@ -336,9 +335,9 @@ function checkFilteredTask(id) {
 
 function getDeleteSubtask(filteredtask) {
     let subtasks = filteredtask[0].subtasks;
-    let filteredIdSubtasks = [];
+    /*     let filteredIdSubtasks = []; */
     subtasks.forEach((subtask) => {
-        requestSubtask(subtask)
+        requestDeleteSubtask(subtask)
     })
 }
 
@@ -363,8 +362,8 @@ function changeDate(id) {
 
 let arraySplitUser = [];
 
-function setNameDetails(selectedElement, id) {
-    let splitUsers = selectedElement[0]['user'].split('/');
+function setNameDetails(fitleredTask, id) {
+    let splitUsers = fitleredTask['user'].split('/');
     splitUsers.splice(-1);
     arraySplitUser.push(splitUsers)
     let lettersArray = []
@@ -382,49 +381,46 @@ function setNameDetails(selectedElement, id) {
         letters = Characters.replace(/[^\w\s!?]/g, '')
         lettersArray.push(letters)
     }
-    addUserToDetails(id, lettersArray, selectedElement)
+    addUserToDetails(id, lettersArray, fitleredTask)
 }
 
 // adds small circle with initials and names of users that belong to the selected task
-function addUserToDetails(id, letters, selectedElement) {
-    setTimeout(() => {
-        for (let i = 0; i < arraySplitUser[0].length; i++) {
-            let element = arraySplitUser[0][i];
-            element = element.replace(/\,/g, ' ');
-            document.getElementById(`${id}`).innerHTML += `<div class="assignedContact"> <div style="background-color:${selectedElement[0]['categories'][0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`
-        }
-    }, 1)
-    setTimeout(() => {
-        arraySplitUser = [];
-    }, 1)
+function addUserToDetails(id, letters, fitleredTask) {
+    for (let i = 0; i < arraySplitUser[0].length; i++) {
+        let element = arraySplitUser[0][i];
+        element = element.replace(/\,/g, ' ');
+        document.getElementById(`${id}`).innerHTML += `<div class="assignedContact"> <div style="background-color:${fitleredTask['categories'][0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`
+    }
+    arraySplitUser = [];
+
 }
 
-function setPriorityColor(selectedElement) {
-    if (selectedElement[0]['priority'] == 'M') {
+function setPriorityColor(fitleredTask) {
+    if (fitleredTask['priority'] == 'M') {
         priorityColor = 'orange';
-    } else if (selectedElement[0]['priority'] == 'L') { // Sets color for selected task depending on priority
+    } else if (fitleredTask['priority'] == 'L') { // Sets color for selected task depending on priority
         priorityColor = 'green';
-    } else if (selectedElement[0]['priority'] == 'H') {
+    } else if (fitleredTask['priority'] == 'H') {
         priorityColor = 'red';
     }
 }
 
-function setPriorityDetails(selectedElement) {
-    if (selectedElement[0]['priority'] == 'M') {
+function setPriorityDetails(fitleredTask) {
+    if (fitleredTask['priority'] == 'M') {
         priorityDetails = 'Medium';
-    } else if (selectedElement[0]['priority'] == 'L') { // Sets priority for selected task
+    } else if (fitleredTask['priority'] == 'L') { // Sets priority for selected task
         priorityDetails = 'Low';
-    } else if (selectedElement[0]['priority'] == 'H') {
+    } else if (fitleredTask['priority'] == 'H') {
         priorityDetails = 'Urgent';
     }
 }
 
-function setCurrentStatus(selectedElement) {
-    if (selectedElement[0]['status'] == '1') {
+function setCurrentStatus(fitleredTask) {
+    if (fitleredTask['status'] == '1') {
         currentStatus = 'To do';
-    } else if (selectedElement[0]['status'] == '2') { // Sets current status for selected task
+    } else if (fitleredTask['status'] == '2') { // Sets current status for selected task
         currentStatus = 'in Progress';
-    } else if (selectedElement[0]['status'] == '3') {
+    } else if (fitleredTask['status'] == '3') {
         currentStatus = 'Awaiting feedback';
     }
 }
@@ -597,39 +593,30 @@ function unsetChangedPrioHTML(id) {
     `
 }
 
-function openBoardDetailsHTML(selectedElement, index) {
-    let id = selectedElement[0]['id'];
-    setPriorityColor(selectedElement);
-    setPriorityDetails(selectedElement);
-    setCurrentStatus(selectedElement);
-    setNameDetails(selectedElement, id);
-    setSubtasks(selectedElement, index);
-
+function openBoardDetailsHTML(fitleredTask) {
     return `
     <div onclick="closeBoardDetails()" class="closeDetails"> x </div>
     <div class="taskDetailsHeader">  
-        <div style="background-color: ${selectedElement[0]['categories'][0]['color']}" class="taskDetailsCategory"> ${selectedElement[0]['categories'][0]['title']} </div> 
+        <div style="background-color: ${fitleredTask['categories'][0]['color']}" class="taskDetailsCategory"> ${fitleredTask['categories'][0]['title']} </div> 
     </div>  
-        <div class="taskDetailsTitle"> ${selectedElement[0]['title']} </div>
-        <div class="taskDetailsDescription"> ${selectedElement[0]['description']} </div> 
+        <div class="taskDetailsTitle"> ${fitleredTask['title']} </div>
+        <div class="taskDetailsDescription"> ${fitleredTask['description']} </div> 
     <div class="timeAndPriority">
-        <div class="dueDate"> <b> Due date: </b> <p> ${selectedElement[0]['due_date']} </p> </div>
+        <div class="dueDate"> <b> Due date: </b> <p> ${fitleredTask['due_date']} </p> </div>
         <div class="priority"> <b> Priority: </b> <div class="taskDetailsPriority" style="background-color: ${priorityColor};"> ${priorityDetails} </div>  </div>
     </div>
     <div class="taskDetailsSubtasks">
-      <div>  
-      <b> Subtasks: </b> 
+      <p><b> Subtasks: </b></p>
       <div id="place_subtasks">  </div> 
-      </div>
     </div>
     <div class="assignments">
-        <b> Assigned To: </b>
-        <div id="${id}" class="assignedTo">
+    <p><b> Assigned To: </b></p>
+        <div id="${fitleredTask.id}" class="assignedTo">
             
         </div>
     </div>
-    <div onclick="changeTaskDetails(${id})" class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
-    <img onclick="getDeleteTask(${id}); closeBoardDetails()" class="trashImg" src="../assets/img/trash.png">
+    <div onclick="changeTaskDetails(${fitleredTask.id})" class="pencilIcon">  <img src="../assets/img/pencil.png">  </div> 
+    <img onclick="getDeleteTask(${fitleredTask.id}); closeBoardDetails()" class="trashImg" src="../assets/img/trash.png">
     `
 
 }
@@ -640,7 +627,7 @@ function generateSubtasks(doneTasks, TaskTotal, index) {
         <div id="subtaskBar${index}" class="subtask_bar"></div>
     </div>
     <div class="box_subtask_num">
-        <p class="subtask_num">${doneTasks}/${TaskTotal}</p>
+        <p class="subtask_num"><span id="subtaskDone${index}">${doneTasks}</span>/${TaskTotal}</p>
         <p class="subtask_text">Done</p>
     </div>
     `
@@ -812,4 +799,12 @@ function changeTaskDetailsHTML(id) {
     <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
    
     `
+}
+
+function generateSubtaskDetails(fitleredTask, i, index) {
+    return `
+    <div class="setSubtask"> 
+        <input id="subtask${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${fitleredTask.id},${i},'${index}')">
+        <p>${fitleredTask.subtasks[i].title}</p>
+     </div>`
 }

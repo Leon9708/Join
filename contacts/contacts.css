@@ -31,21 +31,40 @@ input::-webkit-inner-spin-button {
 .container_contacts_right {
     background-color: #F6F7F8;
     width: 100%;
+    padding-left: 17.5rem;
 }
 
 .container_contacts_left {
-    position: sticky;
+    position: absolute;
     display: flex;
-    width: 500px;
+    height: calc(100vh - 4.5rem);
     justify-content: center;
     box-shadow: 5px 0 3px -3px rgb(0 0 0 / 13%);
     background-color: white;
+    overflow: auto;
+    bottom: 0;
+}
+
+.container_contacts_left::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.container_contacts_left::-webkit-scrollbar {
+    width: 6px;
+    background-color: #ffffff;
+}
+
+.container_contacts_left::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #c8c8c8;
 }
 
 .contact_list {
     width: 70%;
-    margin-top: 4.75rem;
-    overflow: auto;
     margin-bottom: 0.25rem;
     padding-right: 3rem;
     padding-left: 3rem;
@@ -529,22 +548,6 @@ main {
     background-position: 97%;
 }
 
-.contact_list::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #ffffff;
-}
-
-.contact_list::-webkit-scrollbar {
-    width: 6px;
-    background-color: #ffffff;
-}
-
-.contact_list::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: #c8c8c8;
-}
-
 .overlay_add_task {
     position: absolute;
     top: 50%;
@@ -625,8 +628,14 @@ main {
 }
 
 .headingAndChangeContact img {
-    width: 21px;
-    height: 30px;
+    height: 2rem;
+    width: 2rem;
+    object-fit: cover;
+}
+
+.headingAndChangeContact button {
+    border: none;
+    background-color: transparent;
 }
 
 .editContact {

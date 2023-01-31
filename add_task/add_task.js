@@ -3,8 +3,10 @@ let priority;
 let date;
 let status = 1;
 let chosenSubtasks = [];
-let usersInTask = []
-let StringArrayUser = []
+let chosenTitles = [];
+let tiltesInBox = [];
+let usersInTask = [];
+let StringArrayUser = [];
 let user;
 
 async function includeHTML() {
@@ -23,7 +25,7 @@ async function includeHTML() {
 
 
 function renderTask() {
-    loadSubtask();
+    loadfilterTitles();
     loadCategory();
     loadUser();
     inputDate.min = new Date().toISOString().split("T")[0];
@@ -42,9 +44,10 @@ function checkValdation(newStatus) {
         return user.includes(ele.lastName)
     })
 
-    if (filteredLabels.length > 0 && filteredcontact.length > 0 && typeof priority !== 'undefined' > 0 && chosenSubtasks.length > 0) {
+    if (filteredLabels.length > 0 && filteredcontact.length > 0 && typeof priority !== 'undefined' > 0 && chosenTitles.length > 0) {
+        createChosenSubtask();
         createTask(user, filteredLabels, status);
-        window.location.href = "../board/board.html";
+        window.location.href = "/board/board.html";
     } else {
         alert("unvalid Request, try again.")
     }
@@ -263,56 +266,70 @@ function openSubtask() {
     createInputSubtask();
 }
 
-function CreateNewSubtask(newSubtask) {
-    let status = false;
-    let statusStr = status.toString();
+function CreateNewSubtask(newTitle) {
     subtasks.push({
-        "title": newSubtask,
-        "status": statusStr
+        "title": newTitle
     });
-    document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtasks[subtasks.length - 1], (subtasks.length - 1));
+    loadfilterTitles();
     unsetSubtaskHTML();
 }
 
+function createChosenSubtask() {
+    for (let i = 0; i < chosenTitles.length; i++) {
+        const title = chosenTitles[i];
+        let status = false;
+        let statusStr = status.toString();
+        chosenSubtasks.push({
+            "title": title,
+            "status": statusStr
+        });
+    }
+    console.log(chosenSubtasks)
+}
+
 function filterSubtaskDuplicates() {
-    let newSubtask = document.getElementById('inputSubtask').value
-    if (newSubtask.length < 3) {
+    let newTitle = document.getElementById('inputSubtask').value
+    if (newTitle.length < 3) {
         alert('you need atleast 3 Letters')
     } else {
-        const filteredSubtask = subtasks.filter((subtask) => {
-            return subtask.title == newSubtask
-        }).length > 0
-        if (filteredSubtask) {
-            alert('Subtask already exsits')
-            unsetSubtaskHTML();
-        } else {
-            CreateNewSubtask(newSubtask)
-        }
+        CreateNewSubtask(newTitle);
     }
 }
 
-function loadSubtask() {
+function loadfilterTitles() {
+    const titles = subtasks.map(subtask => {
+        return subtask.title
+    });
+    let filteredTitles = titles.reduce((unique, title) => {
+        if (!unique[title]) unique[title] = title;
+        return unique;
+    }, {});
+
+    filteredTitles = Object.values(filteredTitles);
+    loadSubtask(filteredTitles)
+}
+
+function loadSubtask(filteredSubtasks) {
     document.getElementById('boxSubtasks').innerHTML = "";
-    for (let i = 0; i < subtasks.length; i++) {
-        const subtask = subtasks[i];
-        document.getElementById('boxSubtasks').innerHTML += subtasksHTML(subtask, i);
+    for (let i = 0; i < filteredSubtasks.length; i++) {
+        const title = filteredSubtasks[i];
+        document.getElementById('boxSubtasks').innerHTML += subtasksHTML(title, i);
     }
 }
 
 function checkedSubtask(id) {
     let checkbox = document.getElementById(id);
+    let titleTask = document.getElementById('subtask' + id).innerHTML;
     if (checkbox.checked === true) {
-        let subtask = subtasks.filter(function(ele) {
-            return ele.title === document.getElementById('subtask' + id).innerHTML;
-        });
-        chosenSubtasks.push(subtask[0]);
+        chosenTitles.push(titleTask);
     } else {
-        let chosenSubtask = chosenSubtasks.filter(function(ele) {
-            return ele.title === document.getElementById('subtask' + id).innerHTML;
+        let chosenSubtask = chosenTitles.filter(function(ele) {
+            return ele === titleTask;
         });
-        let index = chosenSubtasks.indexOf(chosenSubtask[0])
-        chosenSubtasks.splice(index, 1)
+        let indexOfChosenSubtask = chosenTitles.indexOf(chosenSubtask[0])
+        chosenTitles.splice(indexOfChosenSubtask, 1)
     }
+
 }
 
 function createInputSubtask() {
@@ -422,14 +439,14 @@ function unsetSubtaskHTML() {
    `
 }
 
-function subtasksHTML(subtask, i) {
+function subtasksHTML(title, i) {
     return `    
     <div class="box_create_subtask">
         <label class="box_checkbox">
             <input onclick="checkedSubtask(this.id)" id="${i}" type="checkbox" >
             <span  class="checkmark"></span>
         </label>
-        <p class="subtask" id="subtask${i}">${subtask.title}</p>
+        <p class="subtask" id="subtask${i}">${title}</p>
     </div> 
     `
 }

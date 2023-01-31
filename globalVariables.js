@@ -19,9 +19,26 @@ async function getSubtasks() {
     }
 }
 
+
+async function changeSubtask(subtask, url) {
+    console.log(url)
+    console.log(subtask)
+    const data = JSON.stringify(subtask);
+    fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: data
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+}
+
 async function deleteSubtask(subtask, url) {
-    /* console.log(url)
-    console.log(subtask)     */
+    console.log(url)
+    console.log(subtask)
     const data = JSON.stringify(subtask);
     fetch(url, {
             method: 'DELETE',
@@ -30,6 +47,8 @@ async function deleteSubtask(subtask, url) {
         .then(response => response.json())
         .then(response => console.log(JSON.stringify(response)))
 }
+
+
 
 async function getTodos() {
     try {
@@ -40,6 +59,7 @@ async function getTodos() {
     } catch (error) {
         console.error(error)
     }
+    console.log(tasks)
 }
 
 async function postTodo(task) {
@@ -54,6 +74,7 @@ async function postTodo(task) {
         })
         .then(response => response.json())
         .then(response => console.log(JSON.stringify(response)))
+
 }
 
 
@@ -105,41 +126,37 @@ async function render(id) {
 
 let contacts = [{
     'id': 0,
-    'lastName': 'Adamadam',
+    'lastName': 'Hügel',
     'firstName': 'Adam',
-    'email': 'ABC@gmail.com',
+    'email': 'HügelAdam@gmail.com',
     'phone': '123',
     'color': 'red'
 }, {
     'id': 1,
-    'lastName': 'Bertaberta',
+    'lastName': 'Müller',
     'firstName': 'Berta',
     'email': 'BGI@gmail.com',
     'phone': '014525343243',
     'color': 'blue'
 }, {
     'id': 2,
-    'lastName': 'Charlie',
-    'firstName': 'ABC',
+    'lastName': 'Kovin',
+    'firstName': 'Charlie',
     'email': 'CGI@gmail.com',
     'phone': '017879643243',
     'color': 'aqua'
 }, {
     'id': 3,
-    'lastName': 'Doradora',
+    'lastName': 'Baltwin',
     'firstName': 'Dora',
-    'email': 'DGI@gmail.com',
+    'email': 'DoBawin@gmail.com',
     'phone': '017325378902',
-    'lastName': 'Dora',
-    'firstName': 'Hurts',
-    'email': 'DoHurts@gmail.com',
-    'phone': '4572342',
     'color': 'brown'
 }, {
     'id': 4,
-    'lastName': 'Evaeva',
+    'lastName': 'Mayer',
     'firstName': 'Eva',
-    'email': 'EFG@gmail.com',
+    'email': 'E.Mayer@gmail.com',
     'phone': '013368345639',
     'color': 'orange'
 }];

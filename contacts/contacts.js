@@ -198,28 +198,6 @@ function generateLetters(letter) {
     </div>`
 }
 
-function showContactsHTML(singleContact, i) {
-    return `
-    <div id="containerCard" class="container_cards">
-        <button id="buttonContact${i}" class="contact_card_button" onclick="showSelectedContact(${i}); showContactDetails()">
-            <div class="contact_list_container">
-                <div id="circle${i}" class="contact_list_img">
-                    <p>${singleContact['firstName'].charAt(0)}${singleContact['lastName'].charAt(0)}</p>
-                </div>
-                <div class="contact_content">
-                    <div id="contact" class="contact_list_name">
-                        <p class="contact_name" id="contactName${i}">${singleContact['firstName']} ${singleContact['lastName']}</p>
-                    </div>
-                    <div class="contact_list_email">
-                        <p>${singleContact['email']}</p>
-                    </div>
-                </div>
-            </div>
-        </button>
-    </div>
-    `
-}
-
 function showContactDetails() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     if (width < 1000) {
@@ -246,6 +224,28 @@ function generateLetters(letter) {
     </div>`
 }
 
+function showContactsHTML(singleContact, i) {
+    return `
+    <div id="containerCard" class="container_cards">
+        <button id="buttonContact${i}" class="contact_card_button" onclick="showSelectedContact(${i}); showContactDetails()">
+            <div class="contact_list_container">
+                <div id="circle${i}" class="contact_list_img">
+                    <p>${singleContact['firstName'].charAt(0)}${singleContact['lastName'].charAt(0)}</p>
+                </div>
+                <div class="contact_content">
+                    <div id="contact" class="contact_list_name">
+                        <p class="contact_name" id="contactName${i}">${singleContact['firstName']} ${singleContact['lastName']}</p>
+                    </div>
+                    <div class="contact_list_email">
+                        <p>${singleContact['email']}</p>
+                    </div>
+                </div>
+            </div>
+        </button>
+    </div>
+    `
+}
+
 function showSelectedContactHTML(selectedContact, i) {
     return `
         <div class="contact_list_content">
@@ -258,7 +258,12 @@ function showSelectedContactHTML(selectedContact, i) {
                 </button>
             </div>
         </div>
-        <div class="headingAndChangeContact"> <h4 class="contact_information">Contact Information</h4> <div> <img src="../assets/img/pencil_blue.png"> </div> </div>
+        <div class="headingAndChangeContact">
+            <h4 class="contact_information">Contact Information</h4>
+            <button onclick="toggleOverlayEditContact(${i})">
+                <img src="../assets/img/pencil_blue.png">
+            </button>
+        </div>
         <div class="box_contact_content">
             <p class="contact_content_p">Email</p>
             <p class="contact_content_email">${selectedContact['email']}</p>
@@ -270,7 +275,7 @@ function showSelectedContactHTML(selectedContact, i) {
     `
 }
 
-function editContactHTML(i) {
+/* function editContactHTML(i) {
     return `
     <div class="overlay_edit_contact">
         <div class="edit_overlay_leftside">
@@ -302,7 +307,7 @@ function editContactHTML(i) {
     </div>
     `
 }
-
+ */
 function taskOverlayHTML() {
     return `
     <div class="background_overlay">
