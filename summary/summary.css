@@ -70,7 +70,6 @@ h3 {
 @keyframes scaleDown {
     from {
         padding-right: 0.3rem;
-        padding-bottom: 0.3rem;
     }
     to {
         padding: 0;
@@ -95,7 +94,6 @@ h3 {
     }
     to {
         padding-right: 0.3rem;
-        padding-bottom: 0.3rem;
     }
 }
 
