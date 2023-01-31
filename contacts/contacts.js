@@ -60,22 +60,33 @@ function showContacts() {
     }
 }
 
-function checkValdationContact(event) {
+function checkValdationContact(event, i) {
     event.preventDefault();
     let fullName = document.getElementById('name').value;
     if (checkNamelength(fullName)) {
         let [first, last] = fullName.split(' ');
-        createNewContact(last, first)
+        createContact(last, first, i)
     } else {
         alert('invalid Name')
     }
 }
 
-function createNewContact(lastName, firstName) {
+
+function createContact(lastName, firstName, i) {
+    let id;
+    let editId;
+    let createId;
     let phone = document.getElementById('phone').value;
     let email = document.getElementById('email').value;
-    let id = contacts.length + 1;
     let color = document.getElementById('showContactImg').style.backgroundColor;
+    if (i) {
+        editId = contacts[i].id;
+        let index = contacts.indexOf(contacts[i])
+        contacts.splice(index, 1)
+    } else {
+        createId = contacts.length + 1;
+    }
+    editId ? id = editId : id = createId
 
     let contact = {
         'id': id,
@@ -86,8 +97,8 @@ function createNewContact(lastName, firstName) {
         'color': color
     }
     contacts.push(contact)
+    i ? toggleOverlayEditContact() : toggleOverlayNewContact();
     renderContacts();
-    toggleOverlayNewContact();
 }
 
 
@@ -108,7 +119,7 @@ function toggleOverlayNewContact() {
 function toggleOverlayEditContact(i) {
     document.getElementById('overlayEdit').classList.toggle("d_none");
     if (!overlayEdit.classList.contains('d_none')) {
-        overlayEdit.innerHTML = editContactOverlayHTML();
+        overlayEdit.innerHTML = editContactOverlayHTML(i);
         showEditContact(i)
     }
 }
@@ -462,7 +473,7 @@ function newContactOverlayHTML() {
     `
 }
 
-function editContactOverlayHTML() {
+function editContactOverlayHTML(i) {
     return `
     <div class="background_overlay">
         <div class="overlay_add_contact ">
@@ -480,7 +491,7 @@ function editContactOverlayHTML() {
 
                     </div>
                 </div>
-                <form class="rightside_form" onsubmit="checkValdationContact(event); return false">
+                <form class="rightside_form" onsubmit="checkValdationContact(event, ${i}); return false">
                     <input onblur="showName();checkNamelength(this.id)" required type='text' placeholder="Name" class="overlay_input name" id="name">
                     <input required placeholder="Email" class="overlay_input email" type="email" id="email">
                     <input required placeholder="Phone" minlength="11" class="overlay_input phone" type="number" id="phone">

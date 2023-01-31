@@ -389,7 +389,10 @@ function addUserToDetails(id, letters, fitleredTask) {
     for (let i = 0; i < arraySplitUser[0].length; i++) {
         let element = arraySplitUser[0][i];
         element = element.replace(/\,/g, ' ');
-        document.getElementById(`${id}`).innerHTML += `<div class="assignedContact"> <div style="background-color:${fitleredTask['categories'][0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`
+        let filteredContact = contacts.filter((user) => {
+            return element.includes(user.firstName)
+        })
+        document.getElementById(id).innerHTML += `<div class="assignedContact"> <div style="background-color:${filteredContact[0]['color']}" class="details_contact_img">${letters[i]}</div> <p> ${element} </div>`
     }
     arraySplitUser = [];
 
