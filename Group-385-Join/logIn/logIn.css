@@ -162,7 +162,7 @@ body {
     margin-bottom: 34px;
     border: 1.8px solid rgb(0, 0, 0, 0.1);
     padding: 8px;
-    background: url(assets/img/person.png) no-repeat scroll;
+    background: url("person.png") no-repeat scroll;
     background-size: 16px;
     background-position: center;
     background-position-x: calc(100% - 8px);
@@ -238,15 +238,22 @@ body {
 .userCreated {
     background-color: rgb(42, 54, 71);
     border-radius: 12px;
-    padding: 6px;
+    padding: 8px;
     color: white;
-    width: 240px;
-    height: 36px;
     justify-content: center;
     align-items: center;
     display: flex;
     position: absolute;
     bottom: 9%;
+}
+
+.alertArea {
+    position: absolute;
+    bottom: 9%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .d-none {

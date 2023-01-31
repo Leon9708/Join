@@ -371,7 +371,7 @@ main {
     top: 0;
     bottom: 0;
     background-color: #7d7d7d86;
-    z-index: 10;
+    z-index: 1100;
 }
 
 .overlay_add_contact {
@@ -827,6 +827,22 @@ main {
         width: 40rem;
         position: absolute;
         top: 0;
+        height: auto;
+    }
+    .container_contacts_right {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+    main {
+        padding: 0;
+        justify-content: center;
+        background-color: white;
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+    }
+    .show_contact_box {
+        padding: 0;
     }
     .container_buttons_bottom_task {
         position: inherit !important;
@@ -834,7 +850,6 @@ main {
     }
     .contact_list {
         margin-top: 0;
-        overflow: auto;
     }
     .contact_letter {
         align-items: center;

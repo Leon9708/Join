@@ -59,7 +59,6 @@ async function getTodos() {
     } catch (error) {
         console.error(error)
     }
-    console.log(tasks)
 }
 
 async function postTodo(task) {

@@ -219,6 +219,7 @@ nav {
     height: 26px;
     width: 90px;
     border-radius: 10px 0px 10px 10px;
+    z-index: 5;
 }
 
 .logOutButton:hover {
