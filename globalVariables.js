@@ -127,7 +127,7 @@ let contacts = [{
     'id': 0,
     'lastName': 'Hügel',
     'firstName': 'Adam',
-    'email': 'HügelAdam@gmail.com',
+    'email': 'HuegelAdam@gmail.com',
     'phone': '123',
     'color': 'red'
 }, {

@@ -808,6 +808,6 @@ function generateSubtaskDetails(fitleredTask, i, index) {
     return `
     <div class="setSubtask"> 
         <input id="subtask${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${fitleredTask.id},${i},'${index}')">
-        <p>${fitleredTask.subtasks[i].title}</p>
+        <p class="">${fitleredTask.subtasks[i].title}</p>
      </div>`
 }

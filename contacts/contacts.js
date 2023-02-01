@@ -20,24 +20,25 @@ async function renderContacts() {
 
 
 // Placeholder!! Needs to be filled with input from 'Add Contact'-field. 
-
-
 let colors = ['orange', 'purple', 'blue', 'red', 'aqua', 'brown', 'grey', 'green'];
 let letters = [];
 
 function filterLetters() {
-    contacts.forEach(contact => {
-        if (!letters.includes(contact.firstName.charAt(0))) {
-            letters.push(contact.firstName.charAt(0))
+    const filteredLetters = contacts.reduce((acc, contact) => {
+        const firstLetter = contact.firstName.charAt(0);
+        if (!acc.includes(firstLetter)) {
+            acc.push(firstLetter);
         }
-    });
-    showLetters();
+        return acc;
+    }, []);
+    console.log(filteredLetters)
+    showLetters(filteredLetters);
 }
 
-function showLetters() {
+function showLetters(filteredLetters) {
     document.getElementById('contactList').innerHTML = "";
-    for (let i = 0; i < letters.length; i++) {
-        const letter = letters[i];
+    for (let i = 0; i < filteredLetters.length; i++) {
+        const letter = filteredLetters[i];
         document.getElementById('contactList').innerHTML += generateLetters(letter);
     }
 }
@@ -128,6 +129,7 @@ function toggleTask() {
     document.getElementById('overlayTask').classList.toggle("d_none");
     if (!overlayTask.classList.contains('d_none')) {
         overlayTask.innerHTML = taskOverlayHTML();
+        renderTask();
     }
 }
 
@@ -322,115 +324,115 @@ function showSelectedContactHTML(selectedContact, i) {
 function taskOverlayHTML() {
     return `
     <div class="background_overlay">
-        <div class="overlay_add_task">
-        <div class="place_add_task">
-            <button onclick="toggleTask()" class="close_overlay_task">
-                <img class="img_close_overlay_task" src="../assets/img/cross.png" alt="">
-            </button>
-            <div class="container_heading_task">
-                <h1 class="heading_task">Add Task</h1>
-            </div>
-            <div>
-                <form>
-                    <div class="main">
-                        <div class="place_input_left_task">
-                            <div class="container_input_task">
-                                <label>Title</label>
-                                <input id="inputTitle" required class="input_task" minlength="3" maxlength="30" type="text" placeholder="Enter a title">
+    <div class="overlay_add_task">
+    <div class="place_add_task">
+        <button onclick="toggleTask()" class="close_overlay_task">
+            <img class="img_close_overlay_task" src="../assets/img/cross.png" alt="">
+        </button>
+        <div class="container_heading_task">
+            <h1 class="heading_task">Add Task</h1>
+        </div>
+        <div>
+            <form>
+                <div class="main">
+                    <div class="place_input_left_task">
+                        <div class="container_input_task">
+                            <label>Title</label>
+                            <input id="inputTitle" required class="input_task" minlength="3" maxlength="30" type="text" placeholder="Enter a title">
+                        </div>
+                        <div class="container_input_task">
+                            <label>Description</label>
+                            <textarea id="inputDescription" class="input_task_description" type="text" placeholder="Enter a Description"></textarea>
+                        </div>
+                        <div class="select_group">
+                            <label class="label_select" for="button">Category</label>
+                            <div id="placeSelectCategory" class="place_select_category">
+                                <button type='button' onclick="toggleDropdown()" id="selectButtonTask" class="select_button_task">
+                                <span class="select_label" id="selectedLabel">Select task category</span>
+                                <div id="selectedColor" class="button_color selected_category_color"></div>
+                                <div id="arrow" class="arrow"></div>
+                            </button>
                             </div>
-                            <div class="container_input_task">
-                                <label>Description</label>
-                                <textarea id="inputDescription" class="input_task_description" type="text" placeholder="Enter a Description"></textarea>
-                            </div>
-                            <div class="select_group">
-                                <label class="label_select" for="button">Category</label>
-                                <div id="placeSelectCategory" class="place_select_category">
-                                    <button type='button' onclick="toggleDropdown()" id="selectButtonTask" class="select_button_task">
-                                    <span class="select_label" id="selectedLabel">Select task category</span>
-                                    <div id="selectedColor" class="button_color selected_category_color"></div>
-                                    <div id="arrow" class="arrow"></div>
-                                </button>
+                            <div class="dropdown display_none" id="dropdown">
+                                <div id="newCategory" onclick="selectTitle(this.id)" class="box_categoryelement">
+                                    <input type="radio" name="where" value="internet" class="option">
+                                    <label id="newCategory" class="select-item">New category</label>
                                 </div>
-                                <div class="dropdown display_none" id="dropdown">
-                                    <div id="newCategory" onclick="selectTitle(this.id)" class="box_categoryelement">
-                                        <input type="radio" name="where" value="internet" class="option">
-                                        <label id="newCategory" class="select-item">New category</label>
-                                    </div>
-                                    <div id="addCategory">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="select_group_2">
-                                <label class="label_select " for="button">Assigned to</label>
-                                <div id="placeSelectCategory2 " class="place_select_category">
-                                    <button type='button' onclick="toggleDropdownUser()" id="selectButtonTask2" class="select_button_task ">
-                                    <span class="select_label" id="selectedUser">Select user</span>
-                                    <div id="arrow " class="arrow "></div>
-                                </button>
-                                </div>
-                                <div class="dropdown display_none" id="dropdown2">
-                                    <div id="addUser">
-                                    </div>
+                                <div id="addCategory">
+    
                                 </div>
                             </div>
                         </div>
-                        <div class="seperation_task "></div>
-                        <div class="place_input_right_task ">
-                            <div class="container_input_task ">
-                                <label>Due date</label>
-                                <div class="box_input_date ">
-                                    <input id="inputDate" type="date" class="input_task" required>
-                                </div>
+                        <div class="select_group_2">
+                            <label class="label_select " for="button">Assigned to</label>
+                            <div id="placeSelectCategory2 " class="place_select_category">
+                                <button type='button' onclick="toggleDropdownUser()" id="selectButtonTask2" class="select_button_task ">
+                                <span class="select_label" id="selectedUser">Select user</span>
+                                <div id="arrow " class="arrow "></div>
+                            </button>
                             </div>
-                            <div class="container_input_task ">
-                                <label>Prio</label>
-                                <div id="containerButtonsTask" class="container_buttons_task ">
-                                    <button type='button' id="urgentButton" onclick="selectUrgency( 'urgent') " class="box_button_task ">
-                                <p class="text_urgency_task ">Urgent</p>
-                                <div id="prioUrgent" class="urgency_img_u_task urgency_img_task "></div>
-                            </button>
-                                    <button type='button' id="mediumButton" onclick="selectUrgency( 'medium') " class="box_button_task ">
-                                <p class="text_urgency_task ">Medium</p>
-                            <div id="prioMedium" class="urgency_img_m_task urgency_img_task "></div>
-                            </button>
-                                    <button type='button' id="lowButton" onclick="selectUrgency( 'low') " class="box_button_task ">
-                                <p class="text_urgency_task ">Low</p>
-                            <div id="prioLow" class="urgency_img_l_task urgency_img_task "></div>
-                            </button>
+                            <div class="dropdown display_none" id="dropdown2">
+                                <div id="addUser">
                                 </div>
-                            </div>
-                            <div class="container_input_task">
-                                <label>Subtasks</label>
-                                <div class="container_subtask" id="containerSubtask">
-                                    <button type='button' onclick="openSubtask()" id="boxSubtaskInput" class="box_subtask_input">
-                                    <input required minlength="3" disabled="disabled" placeholder="Add new subtask" id="inputSubtask" type="text" class="input_subtask_fake">
-                                    <div  class="button_subtask_input">
-                                    <img class="img_subtask_task" src="../assets/img/plus_task.png" alt="#">
-                                    </div>
-                                </button>
-                                </div>
-                                <div id="boxSubtasks" class="place_subtasks">
-
-                                </div>
-                            </div>
-                            <div class="container_buttons_bottom_task ">
-                                <button onclick="clearInputAddTask()" type='button' class="clear_button_task ">
-                                <p class="text_clear_task ">Clear</p>
-                                <div class="img_clear_task "></div>
-                                </button>
-                                <button onclick="checkValdation();" type="button" value="submit" class="create_button_task ">
-                                <p class=" ">Create Task</p>
-                                <img src="../assets/img/check_white_task.png " alt="# ">
-                            </button>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                    <div class="seperation_task "></div>
+                    <div class="place_input_right_task ">
+                        <div class="container_input_task ">
+                            <label>Due date</label>
+                            <div class="box_input_date ">
+                                <input id="inputDate" type="date" class="input_task" required>
+                            </div>
+                        </div>
+                        <div class="container_input_task ">
+                            <label>Prio</label>
+                            <div id="containerButtonsTask" class="container_buttons_task ">
+                                <button type='button' id="urgentButton" onclick="selectUrgency( 'urgent') " class="box_button_task ">
+                            <p class="text_urgency_task ">Urgent</p>
+                            <div id="prioUrgent" class="urgency_img_u_task urgency_img_task "></div>
+                        </button>
+                                <button type='button' id="mediumButton" onclick="selectUrgency( 'medium') " class="box_button_task ">
+                            <p class="text_urgency_task ">Medium</p>
+                        <div id="prioMedium" class="urgency_img_m_task urgency_img_task "></div>
+                        </button>
+                                <button type='button' id="lowButton" onclick="selectUrgency( 'low') " class="box_button_task ">
+                            <p class="text_urgency_task ">Low</p>
+                        <div id="prioLow" class="urgency_img_l_task urgency_img_task "></div>
+                        </button>
+                            </div>
+                        </div>
+                        <div class="container_input_task">
+                            <label>Subtasks</label>
+                            <div class="container_subtask" id="containerSubtask">
+                                <button type='button' onclick="openSubtask()" id="boxSubtaskInput" class="box_subtask_input">
+                                <input required minlength="3" disabled="disabled" placeholder="Add new subtask" id="inputSubtask" type="text" class="input_subtask_fake">
+                                <div  class="button_subtask_input">
+                                <img class="img_subtask_task" src="../assets/img/plus_task.png" alt="#">
+                                </div>
+                            </button>
+                            </div>
+                            <div id="boxSubtasks" class="place_subtasks">
+    
+                            </div>
+                        </div>
+                        <div class="container_buttons_bottom_task ">
+                            <button onclick="clearInputAddTask()" type='button' class="clear_button_task ">
+                            <p class="text_clear_task ">Clear</p>
+                            <div class="img_clear_task "></div>
+                            </button>
+                            <button onclick="checkValdation();" type="button" value="submit" class="create_button_task ">
+                            <p class=" ">Create Task</p>
+                            <img src="../assets/img/check_white_task.png " alt="# ">
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</div>
+    </div>
+    </div>
     `
 }
 
