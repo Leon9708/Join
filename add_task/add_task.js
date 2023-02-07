@@ -23,7 +23,6 @@ async function includeHTML() {
     }
 }
 
-
 function renderTask() {
     loadfilterTitles();
     loadCategory();
@@ -31,7 +30,7 @@ function renderTask() {
     inputDate.min = new Date().toISOString().split("T")[0];
 }
 
-function checkValdation(newStatus) {
+async function checkValdation(newStatus) {
     if (newStatus) {
         status = newStatus
     }
@@ -46,14 +45,16 @@ function checkValdation(newStatus) {
 
     if (filteredLabels.length > 0 && filteredcontact.length > 0 && typeof priority !== 'undefined' > 0 && chosenTitles.length > 0) {
         createChosenSubtask();
-        createTask(user, filteredLabels, status);
-        window.location.href = "/board/board.html";
+        await createTask(user, filteredLabels, status);
+        setTimeout(() => {
+            window.location.assign("/board/board.html");
+        }, 500);
     } else {
         alert("unvalid Request, try again.")
     }
 }
 
-function createTask(user, filteredLabels, status) {
+async function createTask(user, filteredLabels, status) {
     let title = document.getElementById('inputTitle');
     let description = document.getElementById('inputDescription');
     setDate();
@@ -71,8 +72,7 @@ function createTask(user, filteredLabels, status) {
         "status": status,
         "subtasks": chosenSubtasks
     }
-    postTodo(task);
-    /*   setBackFormular(title, description) */
+    await postTodo(task);
 }
 
 // Clear input fields
@@ -284,10 +284,10 @@ function createChosenSubtask() {
             "status": statusStr
         });
     }
-    console.log(chosenSubtasks)
 }
 
 function filterSubtaskDuplicates() {
+    chosenTitles = [];
     let newTitle = document.getElementById('inputSubtask').value
     if (newTitle.length < 3) {
         alert('you need atleast 3 Letters')

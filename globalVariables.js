@@ -1,3 +1,24 @@
+let users = []
+let lastId;
+let tasks;
+let categoryLabels;
+let subtasks;
+
+async function render(id) {
+    await getTodos();
+    await getSubtasks();
+    await getCategories();
+    if (id === 'summary') {
+        renderSummary();
+    } else if (id === "board") {
+        renderBoard();
+    } else if (id === "task") {
+        renderTask();
+    } else if (id === "contacts") {
+        renderContacts()
+    }
+}
+
 async function getCategories() {
     try {
         let responseServer = await fetch('https://jonas34.pythonanywhere.com/categories/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
@@ -8,6 +29,7 @@ async function getCategories() {
         console.error(error)
     }
 }
+
 async function getSubtasks() {
     try {
         let responseServer = await fetch('https://jonas34.pythonanywhere.com/subtasks/', { method: 'GET', headers: { 'Content-Type': 'application/json', } });
@@ -19,10 +41,7 @@ async function getSubtasks() {
     }
 }
 
-
 async function changeSubtask(subtask, url) {
-    console.log(url)
-    console.log(subtask)
     const data = JSON.stringify(subtask);
     fetch(url, {
             method: 'PUT',
@@ -37,8 +56,6 @@ async function changeSubtask(subtask, url) {
 }
 
 async function deleteSubtask(subtask, url) {
-    console.log(url)
-    console.log(subtask)
     const data = JSON.stringify(subtask);
     fetch(url, {
             method: 'DELETE',
@@ -47,8 +64,6 @@ async function deleteSubtask(subtask, url) {
         .then(response => response.json())
         .then(response => console.log(JSON.stringify(response)))
 }
-
-
 
 async function getTodos() {
     try {
@@ -73,9 +88,7 @@ async function postTodo(task) {
         })
         .then(response => response.json())
         .then(response => console.log(JSON.stringify(response)))
-
 }
-
 
 async function putToDo(task, url) {
     const data = JSON.stringify(task);
@@ -105,30 +118,12 @@ async function deleteToDo(task, url) {
         .then(response => console.log(JSON.stringify(response)))
 }
 
-
-async function render(id) {
-    await getTodos();
-    await getSubtasks();
-    await getCategories();
-    if (id === 'summary') {
-        renderSummary();
-    } else if (id === "board") {
-        renderBoard();
-    } else if (id === "task") {
-        renderTask();
-    } else if (id === "contacts") {
-        renderContacts()
-    }
-
-}
-
-
 let contacts = [{
     'id': 0,
     'lastName': 'Hügel',
     'firstName': 'Adam',
     'email': 'HuegelAdam@gmail.com',
-    'phone': '123',
+    'phone': '017422314574',
     'color': 'red'
 }, {
     'id': 1,
@@ -159,9 +154,3 @@ let contacts = [{
     'phone': '013368345639',
     'color': 'orange'
 }];
-
-let users = []
-let lastId;
-let tasks;
-let categoryLabels;
-let subtasks;
