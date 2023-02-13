@@ -21,7 +21,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 7.5rem;
+    padding-top: 10.5rem;
     padding-bottom: 4rem;
     padding-left: 1rem;
 }
@@ -154,7 +154,11 @@ main {
 }
 
 .box_category {
-    width: 23.75%;
+    width: 23.4%;
+}
+
+.done {
+    padding-right: 1rem;
 }
 
 .board_header_container {
@@ -174,6 +178,7 @@ main {
     width: 100%;
     padding-top: 1rem;
     min-height: 80%;
+    padding-bottom: 1rem;
 }
 
 .drag_area_highlight {

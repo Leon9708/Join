@@ -22,7 +22,7 @@ h3 {
     display: flex;
     align-items: center;
     padding-left: 0;
-    padding-top: 7.5rem;
+    padding-top: 10.5rem;
 }
 
 .heading_summary {
@@ -325,7 +325,6 @@ h3 {
     .change_css_summary {
         padding-left: 0;
     }
-
     .main_summary {
         align-items: center;
         justify-content: center;
@@ -335,11 +334,9 @@ h3 {
         top: 10%;
         bottom: 15%;
     }
-
     .container_heading_summary {
         padding-top: 0;
     }
-
     .container_greeting_summary {
         display: none;
     }
@@ -355,21 +352,17 @@ h3 {
     html {
         font-size: 12px;
     }
-
     .main_summary {
         bottom: 12%;
     }
-
     .container_heading_summary {
         flex-direction: column;
         justify-content: center;
         gap: 1rem;
     }
-
     .subheading_summary {
         padding: 0;
     }
-
     .heading_separation_summary {
         height: 0.2rem;
         width: 5rem;
