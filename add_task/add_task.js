@@ -48,7 +48,7 @@ async function checkValdation(newStatus) {
         await createTask(user, filteredLabels, status);
         setTimeout(() => {
             window.location.assign("/board/board.html");
-        }, 500);
+        }, 1000);
     } else {
         alert("unvalid Request, try again.")
     }
