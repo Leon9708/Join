@@ -300,9 +300,9 @@ function loadfilterTitles() {
     const titles = subtasks.map(subtask => {
         return subtask.title
     });
-    let filteredTitles = titles.reduce((unique, title) => {
-        if (!unique[title]) unique[title] = title;
-        return unique;
+    let filteredTitles = titles.reduce((element, title) => {
+        if (!element[title]) element[title] = title;
+        return element;
     }, {});
 
     filteredTitles = Object.values(filteredTitles);

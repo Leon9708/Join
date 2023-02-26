@@ -21,7 +21,7 @@ async function requestSubtask(subtask) {
 async function requestDeleteSubtask(subtask) {
     let subtaskId = subtask.id
     let url = "https://jonas34.pythonanywhere.com/subtasks/" + subtaskId + '/';
-    await deleteSubtask(subtaskId, url);
+    await deleteSubtask(subtask, url);
 }
 
 async function requestTask(filteredTask) {
