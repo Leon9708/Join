@@ -50,7 +50,7 @@ async function checkValdation(newStatus) {
             window.location.assign("/board/board.html");
         }, 1000);
     } else {
-        alert("unvalid Request, try again.")
+        alert("Invalid request, try again. Each field needs a value")
     }
 }
 
@@ -166,6 +166,24 @@ function clickedColor(id) {
 
 //user selection
 
+document.addEventListener('click', (e) => {
+    const dropdown2 = document.getElementById("dropdown2");
+    const isClosestDropdown2 = e.target.closest('#dropdown2');
+    const isClosestButton = e.target.closest('#selectButtonTask2');
+    if (!isClosestDropdown2 && !isClosestButton && !dropdown2.classList.contains('display_none')) {
+        dropdown2.classList.add('display_none');
+    }
+});
+document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById("dropdown");
+    const isClosestDropdown = e.target.closest('#dropdown');
+    const isClosestButton = e.target.closest('#selectButtonTask');
+    if (!isClosestDropdown && !isClosestButton && !dropdown.classList.contains('display_none')) {
+        dropdown.classList.add('display_none');
+    }
+});
+
+
 function toggleDropdownUser() {
     const dropdown = document.getElementById("dropdown");
     const dropdownUser = document.getElementById("dropdown2");
@@ -173,7 +191,6 @@ function toggleDropdownUser() {
         dropdownUser.classList.toggle('display_none');
     }
 }
-
 
 function selectUser(e) {
     let id = document.getElementById(e);

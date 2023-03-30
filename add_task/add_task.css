@@ -69,6 +69,10 @@ select {
     padding-bottom: 1rem;
 }
 
+.container_input_task input {
+    cursor: auto;
+}
+
 .input_task_description {
     height: 4rem;
 }
@@ -171,6 +175,7 @@ select {
     align-items: center;
     gap: 0.5rem;
     padding: 0.6rem;
+    padding-right: 1.25rem;
     font-size: 0.9rem;
     letter-spacing: 0.025rem;
     background-color: #FFFFFF;
@@ -512,13 +517,15 @@ select {
     position: absolute;
     top: 0;
     left: 0;
-    height: 12.5px;
-    width: 12.5px;
-    background-color: #eee;
+    height: 11.5px;
+    width: 11.5px;
+    border: solid 2px #8a8a8a;
+    background-color: white;
+    border-radius: 2px;
 }
 
 .box_checkbox:hover input~.checkmark {
-    background-color: #ccc;
+    background-color: #eeeeee;
 }
 
 .box_checkbox input:checked~.checkmark {
