@@ -174,6 +174,7 @@ document.addEventListener('click', (e) => {
         dropdown2.classList.add('display_none');
     }
 });
+
 document.addEventListener('click', (e) => {
     const dropdown = document.getElementById("dropdown");
     const isClosestDropdown = e.target.closest('#dropdown');

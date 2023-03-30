@@ -42,11 +42,12 @@ select {
     display: flex;
     align-items: center;
     padding-left: 22.5rem;
-    padding-top: 10.5rem;
+    padding-top: 8rem;
 }
 
 .heading_task {
     font-size: 3.25rem;
+    padding-bottom: 2.5rem;
 }
 
 .main {
@@ -466,7 +467,6 @@ select {
     height: 9rem;
     overflow: auto;
     width: 100%;
-    padding-bottom: 2rem;
 }
 
 .place_subtasks::-webkit-scrollbar-track {
