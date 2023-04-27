@@ -656,7 +656,7 @@ select {
     }
     .main {
         position: fixed;
-        top: 15%;
+        top: 18%;
         bottom: 15%;
         right: 0;
         left: 0;
@@ -668,22 +668,14 @@ select {
     .container_heading_task {
         justify-content: center;
         align-items: flex-start;
-        position: absolute;
-        top: 11%;
+        position: fixed;
+        top: 13%;
         padding: 0;
         right: 0;
         left: 0;
     }
     .heading_task {
         font-size: 1.75rem;
-    }
-    .container_buttons_bottom_task {
-        width: 100%;
-        position: absolute;
-        justify-content: center;
-        bottom: 6%;
-        left: 0;
-        right: 0;
     }
 }
 
@@ -695,11 +687,15 @@ select {
         overflow-y: scroll;
     }
     .container_buttons_bottom_task {
-        top: 2% !important;
+        width: 100%;
         position: relative;
         padding-bottom: 3rem;
+        position: absolute;
+        justify-content: center;
+        left: 0;
+        right: 0;
     }
-    html {
+    .change_css_task {
         font-size: 14px;
     }
 }

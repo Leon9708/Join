@@ -563,22 +563,27 @@ main {
     border: none;
 }
 
-.place_add_task {
+.overlay_add_task .place_add_task {
     width: 100%;
     height: 100%;
 }
 
-.place_add_task .container_heading_task {
+.place_add_task .container_heading_task_contacs {
     padding-left: 10rem;
     padding-top: 2.5rem;
-    padding-bottom: 3rem;
 }
 
-.place_add_task .place_input_left_task {
-    padding-left: 10rem;
+.overlay_add_task .main {
+    justify-content: center;
 }
 
-.close_overlay_task {
+.place_input_left_task_contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.overlay_add_task .close_overlay_task {
     position: absolute;
     top: 1rem;
     right: 2.5rem;
@@ -588,15 +593,19 @@ main {
     font-size: 1.3rem;
 }
 
-.close_overlay_task:hover {
+.overlay_add_task .close_overlay_task:hover {
     filter: opacity(0.6);
+}
+
+.overlay_add_task .heading_task {
+    font-size: 2.75rem;
 }
 
 .d-none {
     display: none;
 }
 
-.img_close_overlay_task {
+.overlay_add_task .img_close_overlay_task {
     width: 1.2rem;
 }
 
@@ -745,10 +754,13 @@ main {
     }
 }
 
-@media (max-width: 1115px) {
+@media (max-width: 1110px) {
     .overlay_input {
         width: 16rem;
         margin-right: 2rem;
+    }
+    .overlay_add_task {
+        width: 90%;
     }
 }
 
@@ -858,6 +870,41 @@ main {
         align-items: center;
         margin-top: 1rem;
         margin-bottom: 1rem;
+    }
+    .place_add_task .container_heading_task_contacs {
+        padding-left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        position: fixed;
+        top: 5%;
+        padding: 0;
+        width: 100%;
+    }
+    .container_heading_task_contacs .heading_task {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .overlay_add_task {
+        width: 80%;
+    }
+    .overlay_add_task .main {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: scroll;
+        bottom: 7.5%;
+    }
+    .overlay_add_task .container_buttons_bottom_task {
+        width: 100%;
+        position: relative;
+        padding-bottom: 3rem;
+        position: absolute;
+        justify-content: center;
+        left: 0;
+        right: 0;
     }
 }
 

@@ -87,6 +87,29 @@ function clearInputAddTask() {
 
 // category selection
 
+function handleClickOutside(e) {
+    const dropdown = document.getElementById("dropdown");
+    const isClosestDropdown = e.target.closest('#dropdown');
+    const isClosestButton = e.target.closest('#selectButtonTask');
+    if (!isClosestDropdown && !isClosestButton) {
+        dropdown.classList.add('display_none');
+        document.removeEventListener('click', handleClickOutside);
+    }
+}
+
+function toggleDropdown() {
+    const dropdown = document.getElementById("dropdown");
+    if (dropdown.classList.contains('display_none')) {
+        dropdown.classList.remove('display_none');
+        document.addEventListener('click', handleClickOutside);
+
+    } else {
+        document.removeEventListener('click', handleClickOutside);
+        dropdown.classList.add('display_none');
+    }
+}
+
+
 function selectTitle(id) {
     if (id === 'newCategory') {
         openInputCategory();
@@ -131,13 +154,6 @@ function loadCategory() {
     }
 }
 
-function toggleDropdown() {
-    const dropdown = document.getElementById("dropdown");
-    const dropdownUser = document.getElementById("dropdown2");
-    if (dropdownUser.classList.contains('display_none')) {
-        dropdown.classList.toggle("display_none");
-    }
-}
 
 function unsetNewCategory() {
     document.getElementById('placeSelectCategory').innerHTML = unsetNewCategoryHTML();
@@ -166,32 +182,30 @@ function clickedColor(id) {
 
 //user selection
 
-document.addEventListener('click', (e) => {
+function handleClickOutside2(e) {
     const dropdown2 = document.getElementById("dropdown2");
     const isClosestDropdown2 = e.target.closest('#dropdown2');
     const isClosestButton = e.target.closest('#selectButtonTask2');
-    if (!isClosestDropdown2 && !isClosestButton && !dropdown2.classList.contains('display_none')) {
+    if (!isClosestDropdown2 && !isClosestButton) {
         dropdown2.classList.add('display_none');
+        document.removeEventListener('click', handleClickOutside);
     }
-});
+}
 
-document.addEventListener('click', (e) => {
-    const dropdown = document.getElementById("dropdown");
-    const isClosestDropdown = e.target.closest('#dropdown');
-    const isClosestButton = e.target.closest('#selectButtonTask');
-    if (!isClosestDropdown && !isClosestButton && !dropdown.classList.contains('display_none')) {
-        dropdown.classList.add('display_none');
-    }
-});
 
 
 function toggleDropdownUser() {
-    const dropdown = document.getElementById("dropdown");
-    const dropdownUser = document.getElementById("dropdown2");
+    const dropdown = document.getElementById("dropdown2");
     if (dropdown.classList.contains('display_none')) {
-        dropdownUser.classList.toggle('display_none');
+        dropdown.classList.remove('display_none');
+        document.addEventListener('click', handleClickOutside2);
+
+    } else {
+        document.removeEventListener('click', handleClickOutside2);
+        dropdown.classList.add('display_none');
     }
 }
+
 
 function selectUser(e) {
     let id = document.getElementById(e);

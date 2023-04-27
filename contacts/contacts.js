@@ -329,13 +329,13 @@ function taskOverlayHTML() {
         <button onclick="toggleTask()" class="close_overlay_task">
             <img class="img_close_overlay_task" src="../assets/img/cross.png" alt="">
         </button>
-        <div class="container_heading_task">
+        <div class="container_heading_task_contacs">
             <h1 class="heading_task">Add Task</h1>
         </div>
         <div>
             <form>
                 <div class="main">
-                    <div class="place_input_left_task">
+                    <div class="place_input_left_task_contacts">
                         <div class="container_input_task">
                             <label>Title</label>
                             <input id="inputTitle" required class="input_task" minlength="3" maxlength="30" type="text" placeholder="Enter a title">

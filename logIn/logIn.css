@@ -9,11 +9,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 1rem);
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    width: calc(100% - 1rem);
+    top: 1rem;
+    left: 1rem;
     background-color: rgb(246, 247, 248);
     transition-delay: 2s;
     animation-name: moveImg;
@@ -33,18 +33,12 @@ body {
 
 @keyframes moveImg {
     from {
-        width: 100%
+        width: 100%;
+        height: 100vh;
     }
     to {
-        width: 220px
-    }
-    from {
-        height: 100vh
-    }
-    to {
-        height: 220px
-    }
-    to {
+        width: 220px;
+        height: 220px;
         background-color: rgb(246, 247, 248, 0.0);
     }
 }
@@ -69,6 +63,7 @@ body {
     padding-right: 80px;
     gap: 20px;
     align-items: center;
+    z-index: -1;
 }
 
 .signUpBtn {
@@ -260,23 +255,14 @@ body {
     display: none;
 }
 
-@media (max-width: 1030px) {
-    .contentContainer {
-        padding-top: 3rem;
-    }
-}
-
 @media (max-width: 850px) {
     .logInHeader {
-        bottom: 2px !important;
+        bottom: 50px !important;
         right: 0 !important;
         justify-content: center;
         padding-right: 0 !important;
         align-items: center;
         top: auto;
-    }
-    body {
-        margin: 30px;
     }
     .divForgotPassword {
         flex-wrap: wrap;
@@ -317,7 +303,7 @@ body {
     }
     @keyframes moveImg {
         to {
-            height: 160px
+            width: 90%;
         }
         to {
             width: 160px

@@ -708,6 +708,7 @@ main {
     }
     .overlay_add_task {
         height: 80%;
+        width: 90%;
     }
     .container_heading_board {
         padding-left: 0;
@@ -728,6 +729,15 @@ main {
     }
     .place_add_task .container_buttons_bottom_task {
         position: unset;
+    }
+}
+
+@media (max-width:775px) {
+    .overlay_add_task {
+        width: 80%;
+    }
+    .place_subtasks {
+        padding-top: 1rem;
     }
 }
 
@@ -752,7 +762,7 @@ main {
 
 @media (max-width: 600px) {
     main {
-        bottom: 12%;
+        bottom: 7.5%;
         left: 0;
         right: 0;
         width: 100%;
