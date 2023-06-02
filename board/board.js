@@ -34,7 +34,6 @@ async function requestTask(filteredTask) {
     } else {
         await putToDo(filteredTask[0], url)
     }
-    removeDragBackground();
     renderBoard();
 }
 
@@ -62,11 +61,11 @@ function updateHTMLOpenTasks() {
     let openTasks = tasks.filter((task) => {
         return task['status'] == '1'
     });
-    document.getElementById('open').innerHTML = '';
+    document.getElementById('1').innerHTML = '';
     for (let index = 0; index < openTasks.length; index++) {
         const element = openTasks[index];
         let openIndex = index + "o"
-        document.getElementById('open').innerHTML += generateTodoHTML(element, openIndex);
+        document.getElementById('1').innerHTML += generateTodoHTML(element, openIndex);
         updateToDo(element, openIndex);
     }
 }
@@ -76,11 +75,11 @@ function updateHTMLInProgessTasks() {
     let progress = tasks.filter((task) => {
         return task['status'] == '2'
     });
-    document.getElementById('progress').innerHTML = '';
+    document.getElementById('2').innerHTML = '';
     for (let index = 0; index < progress.length; index++) {
         const element = progress[index];
         let progressIndex = index + "p";
-        document.getElementById('progress').innerHTML += generateTodoHTML(element, progressIndex);
+        document.getElementById('2').innerHTML += generateTodoHTML(element, progressIndex);
         updateToDo(element, progressIndex);
     }
 }
@@ -90,11 +89,11 @@ function updateHTMLFeedbackTasks() {
     let feedback = tasks.filter((task) => {
         return task['status'] == '3'
     });
-    document.getElementById('feedback').innerHTML = '';
+    document.getElementById('3').innerHTML = '';
     for (let index = 0; index < feedback.length; index++) {
         const element = feedback[index];
         let feedbackIndex = index + "f";
-        document.getElementById('feedback').innerHTML += generateTodoHTML(element, feedbackIndex);
+        document.getElementById('3').innerHTML += generateTodoHTML(element, feedbackIndex);
         updateToDo(element, feedbackIndex);
     }
 }
@@ -104,11 +103,11 @@ function updateHTMLClosedTasks() {
     let closed = tasks.filter((task) => {
         return task['status'] == '4'
     });
-    document.getElementById('closed').innerHTML = '';
+    document.getElementById('4').innerHTML = '';
     for (let index = 0; index < closed.length; index++) {
         const element = closed[index];
         let closedIndex = index + "c";
-        document.getElementById('closed').innerHTML += generateTodoHTML(element, closedIndex);
+        document.getElementById('4').innerHTML += generateTodoHTML(element, closedIndex);
         updateToDo(element, closedIndex);
 
     }
@@ -208,6 +207,7 @@ function moveTo(status) {
         return task['id'] === currentDraggedElement
     });
     filteredTask[0]['status'] = status;
+    removeDragBackground();
     requestTask(filteredTask)
 }
 
@@ -220,12 +220,18 @@ function removeDragBackground() {
     });
 }
 
-// Change background color when element is dragged.
+
 function highlight(id) {
-    let category = document.getElementById(id).querySelector('.drag_area_highlight');
-    if (category == null) {
-        document.getElementById(id).innerHTML += `
-        <div class="drag_area_highlight" ></div>`
+    let filteredTask = tasks.find((task) => {
+        return task['id'] === currentDraggedElement
+    });
+    if (filteredTask['status'] !== id) {
+        removeDragBackground();
+        let category = document.getElementById(id).querySelector('.drag_area_highlight');
+        if (category == null) {
+            document.getElementById(id).innerHTML += `
+            <div class="drag_area_highlight" ></div>`
+        }
     }
 }
 
@@ -248,8 +254,7 @@ function openBoardDetails(id, index) {
     }
     let fitleredTask = selectedElement[0]
 
-    setPriorityColor(fitleredTask);
-    setPriorityDetails(fitleredTask);
+    setPriority(fitleredTask);
     setCurrentStatus(fitleredTask);
     boardContent.innerHTML += openBoardDetailsHTML(fitleredTask);
     setSubtasks(fitleredTask, index);
@@ -302,6 +307,16 @@ function changeTaskDetails(id) {
     let boardContent = document.getElementById('boardContent');
     boardContent.innerHTML = '';
     boardContent.innerHTML += changeTaskDetailsHTML(id)
+    let title = document.getElementById('inputTitle' + id)
+    let description = document.getElementById('inputDescription' + id)
+    let date = document.getElementById('inputDate' + id)
+    let filteredtask = tasks.find((task) => {
+        return task.id === id
+    })
+    changeUrgency(filteredtask['priority'], id)
+    title.value = filteredtask['title']
+    description.value = filteredtask['description']
+    date.value = filteredtask['due_date']
 }
 
 function confirmChangedTask(id) {
@@ -398,25 +413,19 @@ function addUserToDetails(id, letters, fitleredTask) {
 
 }
 
-function setPriorityColor(fitleredTask) {
+function setPriority(fitleredTask) {
     if (fitleredTask['priority'] == 'M') {
         priorityColor = 'orange';
+        priorityDetails = 'Medium';
     } else if (fitleredTask['priority'] == 'L') { // Sets color for selected task depending on priority
         priorityColor = 'green';
-    } else if (fitleredTask['priority'] == 'H') {
-        priorityColor = 'red';
-    }
-}
-
-function setPriorityDetails(fitleredTask) {
-    if (fitleredTask['priority'] == 'M') {
-        priorityDetails = 'Medium';
-    } else if (fitleredTask['priority'] == 'L') { // Sets priority for selected task
         priorityDetails = 'Low';
     } else if (fitleredTask['priority'] == 'H') {
+        priorityColor = 'red';
         priorityDetails = 'Urgent';
     }
 }
+
 
 function setCurrentStatus(fitleredTask) {
     if (fitleredTask['status'] == '1') {
@@ -449,12 +458,12 @@ function searchInToDos(search) {
     let openTasks = tasks.filter((task) => {
         return task['status'] == '1'
     });
-    document.getElementById('open').innerHTML = '';
+    document.getElementById('1').innerHTML = '';
     for (let index = 0; index < openTasks.length; index++) {
         const element = openTasks[index];
         if (element['title'].includes(search)) {
             let openIndex = index + "o"
-            document.getElementById('open').innerHTML += generateTodoHTML(element, openIndex);
+            document.getElementById('1').innerHTML += generateTodoHTML(element, openIndex);
             updateToDo(element, openIndex);
         }
     }
@@ -464,7 +473,7 @@ function searchInProgress(search) {
     let progress = tasks.filter((task) => {
         return task['status'] == '2'
     });
-    document.getElementById('progress').innerHTML = '';
+    document.getElementById('2').innerHTML = '';
     for (let index = 0; index < progress.length; index++) {
         const element = progress[index];
         if (element['title'].includes(search)) {
@@ -477,7 +486,7 @@ function searchInProgress(search) {
 
 function searchInAwaitingFeedback(search) {
     let awaitingFeedback = tasks.filter((task) => {
-        return task['status'] == '3'
+        return task['3'] == '3'
     });
     document.getElementById('feedback').innerHTML = '';
     for (let index = 0; index < awaitingFeedback.length; index++) {
@@ -499,7 +508,7 @@ function searchInDone(search) {
         const element = done[index];
         if (element['title'].includes(search)) {
             let doneIndex = index + "d"
-            document.getElementById('closed').innerHTML += generateTodoHTML(element, doneIndex);
+            document.getElementById('4').innerHTML += generateTodoHTML(element, doneIndex);
             updateToDo(element, doneIndex);
         }
     }
@@ -524,6 +533,27 @@ function changeUrgency(prio, id) {
     }
 }
 
+function checkUser(e) {
+    let id = document.getElementById(e);
+    let numberId = e[e.length - 1]
+    let NameId = "newCategory2" + numberId
+    let lastNameUser = document.getElementById(NameId).innerHTML;
+
+    if (id.checked === true) {
+        let selectedUser = contacts.filter(function(ele) {
+            return lastNameUser.includes(ele.lastName)
+        })
+        usersInTask.push(selectedUser[0]);
+    } else {
+        let userInTask = usersInTask.filter((ele) => {
+            return lastNameUser.includes(ele.lastName)
+        });
+        let index = usersInTask.indexOf(userInTask[0])
+        usersInTask.splice(index, 1)
+    }
+    UsersToString();
+}
+
 // opens section where users/contacts can be selected
 function toggleDropdownUser_Details(id) {
     const dropdown = document.getElementById(`dropdown${id}`);
@@ -534,6 +564,8 @@ function toggleDropdownUser_Details(id) {
     }
     loadUser();
 }
+
+
 
 // Close Board Details
 function closeBoardDetails() {
@@ -581,15 +613,15 @@ function generateTodoHTML(element, index) {
 
 function unsetChangedPrioHTML(id) {
     document.getElementById(`containerButtonsTask${id}`).innerHTML = `
-    <button type='button' id="changeUrgentButton" onclick="changeUrgency('urgent', ${id}) " class="box_button_task ">
+    <button type='button' id="changeUrgentButton" onclick="changeUrgency('H', ${id}) " class="box_button_task ">
                 <p class="text_urgency_task ">Urgent</p>
                 <div id="changePrioUrgent" class="urgency_img_u_task urgency_img_task "></div>
     </button>
-    <button type='button' id="changeMediumButton" onclick="changeUrgency('medium', ${id}) " class="box_button_task ">
+    <button type='button' id="changeMediumButton" onclick="changeUrgency('M', ${id}) " class="box_button_task ">
                 <p class="text_urgency_task ">Medium</p>
                 <div id="changePrioMedium" class="urgency_img_m_task urgency_img_task "></div>
     </button>
-    <button type='button' id="changeLowButton" onclick="changeUrgency('low', ${id}) " class="box_button_task ">
+    <button type='button' id="changeLowButton" onclick="changeUrgency('L', ${id}) " class="box_button_task ">
                 <p class="text_urgency_task ">Low</p>
                 <div id="changePrioLow" class="urgency_img_l_task urgency_img_task "></div>
     </button>
@@ -785,7 +817,21 @@ function changeTaskDetailsHTML(id) {
             </button>
         </div>
     </div>
-    <div class="editCategories">
+    
+    <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
+    `
+}
+
+function generateSubtaskDetails(fitleredTask, i, index) {
+    return `
+    <div class="setSubtask"> 
+        <input id="subtask${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${fitleredTask.id},${i},'${index}')">
+        <p class="">${fitleredTask.subtasks[i].title}</p>
+     </div>`
+}
+
+
+/* <div class="editCategories">
         <label class="detailsSubheadline" for="button">Assigned to</label>
         <div id="placeSelectCategory2 " class="place_select_category">
             <button type='button' onclick="toggleDropdownUser_Details(${id})" id="selectButtonTask2" class="select_button_task ">
@@ -798,16 +844,16 @@ function changeTaskDetailsHTML(id) {
             </div>
         </div>
     </div>
+    <div class="container_input_task">
+    <label>Subtasks</label>
+    <div class="container_subtask" id="containerSubtask">
+        <button type='button' onclick="openSubtask()" id="boxSubtaskInput" class="box_subtask_input">
+        <input required minlength="3" disabled="disabled" placeholder="Add new subtask" id="inputSubtask" type="text" class="input_subtask_fake">
+        <div  class="button_subtask_input">
+        <img class="img_subtask_task" src="../assets/img/plus_task.png" alt="#">
+        </div>
+    </button>
+    </div>
+    <div id="boxSubtasks" class="place_subtasks">
 
-    <img onclick="confirmChangedTask(${id})" class="saveChangesImg" src="../assets/img/done_white.png">
-   
-    `
-}
-
-function generateSubtaskDetails(fitleredTask, i, index) {
-    return `
-    <div class="setSubtask"> 
-        <input id="subtask${i}" style="width: 1rem" type="checkbox" onclick="setSubtaskDone(${fitleredTask.id},${i},'${index}')">
-        <p class="">${fitleredTask.subtasks[i].title}</p>
-     </div>`
-}
+    </div> */

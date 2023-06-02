@@ -130,3 +130,9 @@ function showPriority(sortafterDate) {
     document.getElementById('prioImg').src = imgPrio
     document.getElementById('urgencyText').innerHTML = prio
 }
+
+function toBoard() {
+    setTimeout(() => {
+        window.location.assign("/board/board.html");
+    }, 500);
+}

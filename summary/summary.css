@@ -13,11 +13,15 @@ h3,
 div {
     padding: 0;
     margin: 0;
-    cursor: default;
 }
 
 .change_css_summary {
     padding-left: 22.5rem;
+}
+
+.place_summary {
+    display: flex;
+    align-items: center;
 }
 
 .container_heading_summary {
@@ -274,12 +278,6 @@ div {
     color: white;
 }
 
-.container_greeting_summary {
-    position: absolute;
-    top: 25rem;
-    right: 20rem;
-}
-
 .greeting_summary {
     font-size: 2rem;
     color: #2A3647;
@@ -288,6 +286,10 @@ div {
 .greeting_name_summary {
     font-size: 3rem;
     color: #29ABE2;
+}
+
+.to_board {
+    cursor: pointer;
 }
 
 @media (max-width: 1420px) {
