@@ -451,6 +451,7 @@ function searchTask() {
     searchInProgress(search);
     searchInAwaitingFeedback(search);
     searchInDone(search);
+
 }
 
 // search functions, searches in all 4 categories (toDo, in progress, awaiting feedback, done)
@@ -478,7 +479,7 @@ function searchInProgress(search) {
         const element = progress[index];
         if (element['title'].includes(search)) {
             let progressIndex = index + "p"
-            document.getElementById('progress').innerHTML += generateTodoHTML(element, progressIndex);
+            document.getElementById('2').innerHTML += generateTodoHTML(element, progressIndex);
             updateToDo(element, progressIndex);
         }
     }
@@ -486,14 +487,14 @@ function searchInProgress(search) {
 
 function searchInAwaitingFeedback(search) {
     let awaitingFeedback = tasks.filter((task) => {
-        return task['3'] == '3'
+        return task['status'] == '3'
     });
-    document.getElementById('feedback').innerHTML = '';
+    document.getElementById('3').innerHTML = '';
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
         if (element['title'].includes(search)) {
             let feedbackIndex = index + "f"
-            document.getElementById('feedback').innerHTML += generateTodoHTML(element, feedbackIndex);
+            document.getElementById('3').innerHTML += generateTodoHTML(element, feedbackIndex);
             updateToDo(element, feedbackIndex);
         }
     }
@@ -503,7 +504,7 @@ function searchInDone(search) {
     let done = tasks.filter((task) => {
         return task['status'] == '4'
     });
-    document.getElementById('closed').innerHTML = '';
+    document.getElementById('4').innerHTML = '';
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
         if (element['title'].includes(search)) {
